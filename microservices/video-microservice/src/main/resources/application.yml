@@ -1,0 +1,22 @@
+datasources:
+  default:
+    driver-class-name: org.mariadb.jdbc.Driver
+    db-type: mariadb
+    dialect: MYSQL
+    url: jdbc:mariadb://localhost:3306/videos
+    username: todo
+    password: todosecret
+micronaut:
+  application:
+    name: video-microservice
+jpa:
+  default:
+    entity-scan:
+      packages:
+        - uk.ac.york.eng2.domain
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+kafka:
+  enabled: false
