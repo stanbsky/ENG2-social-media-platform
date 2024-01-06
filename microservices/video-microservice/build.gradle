@@ -6,7 +6,7 @@ plugins {
 }
 
 version = "0.1"
-group = "uk.ac.york.eng2"
+group = "uk.ac.york.eng2.vms"
 
 repositories {
     mavenCentral()
@@ -30,7 +30,7 @@ dependencies {
 
 
 application {
-    mainClass.set("uk.ac.york.eng2.Application")
+    mainClass.set("uk.ac.york.eng2.vms.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("17")
@@ -44,7 +44,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("uk.ac.york.eng2.*")
+        annotations("uk.ac.york.eng2.vms.*")
     }
 //    testResources {
 //        sharedServer = true

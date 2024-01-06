@@ -7,9 +7,18 @@ public class VideoDTO {
 
     private String title;
 
-    private String user;
-
     private Long likes;
+
+    private Long userId;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
 
     public String getTitle() {
         return title;
@@ -19,19 +28,20 @@ public class VideoDTO {
         this.title = title;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public Long getLikes() {
         return likes;
     }
 
     public void setLikes(Long likes) {
         this.likes = likes;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoDTO{" +
+                "title='" + title + '\'' +
+                ", likes=" + likes +
+                ", userId=" + userId +
+                '}';
     }
 }

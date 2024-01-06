@@ -13,10 +13,14 @@ jpa:
   default:
     entity-scan:
       packages:
-        - uk.ac.york.eng2.domain
+        - uk.ac.york.eng2.vms.domain
     properties:
       hibernate:
         hbm2ddl:
           auto: update
 kafka:
   enabled: false
+logger:
+  levels:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE

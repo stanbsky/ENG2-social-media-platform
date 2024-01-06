@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: uk.ac.york.eng2
+defaultPackage: uk.ac.york.eng2.vms
 testFramework: junit
 sourceLanguage: java
 buildTool: gradle
