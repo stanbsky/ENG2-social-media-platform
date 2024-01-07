@@ -6,10 +6,26 @@ import io.micronaut.serde.annotation.Serdeable;
 public class VideoDTO {
 
     private String title;
-
+    private Long views;
     private Long likes;
-
+    private Long dislikes;
     private Long userId;
+
+    public Long getViews() {
+        return views;
+    }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
+
+    public Long getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(Long dislikes) {
+        this.dislikes = dislikes;
+    }
 
     public Long getUserId() {
         return userId;
@@ -40,7 +56,9 @@ public class VideoDTO {
     public String toString() {
         return "VideoDTO{" +
                 "title='" + title + '\'' +
+                ", views=" + views +
                 ", likes=" + likes +
+                ", dislikes=" + dislikes +
                 ", userId=" + userId +
                 '}';
     }
