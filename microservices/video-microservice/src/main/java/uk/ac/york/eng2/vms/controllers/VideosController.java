@@ -6,10 +6,12 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.ac.york.eng2.vms.domain.Hashtag;
 import uk.ac.york.eng2.vms.domain.User;
 import uk.ac.york.eng2.vms.domain.Video;
 import uk.ac.york.eng2.vms.dto.VideoDTO;
 import uk.ac.york.eng2.vms.events.VideosProducer;
+import uk.ac.york.eng2.vms.repositories.HashtagRepository;
 import uk.ac.york.eng2.vms.repositories.UsersRepository;
 import uk.ac.york.eng2.vms.repositories.VideosRepository;
 
@@ -30,11 +32,16 @@ public class VideosController {
     @Inject
     private VideosProducer videosProducer;
 
+    @Inject
+    private HashtagRepository hashtagRepository;
+
+    // TODO: add hashtag retrieval after pagination implementation
     @Get("/")
     public Iterable<Video> list() {
         return videosRepository.findAll();
     }
 
+    @Transactional
     @Get("/{id}")
     public VideoDTO getVideo(Long id) {
         Video video = videosRepository.findById(id).orElse(null);
@@ -92,10 +99,28 @@ public class VideosController {
 
         Video newVideo = new Video();
         newVideo.setTitle(video.getTitle());
-        newVideo.setViews(0L);
-        newVideo.setLikes(0L);
-        newVideo.setDislikes(0L);
         newVideo.setUser(user);
+
+        // Get the list of desired hashtags
+        Set<String> videoHashtags = video.getHashtags();
+        // Retrieve the existing matching hashtags
+        Set<Hashtag> hashtags = hashtagRepository.findByNameIn(videoHashtags);
+        // Remove all existing matching hashtags, leaving only new hashtags
+        for (Hashtag hashtag : hashtags) {
+            if (videoHashtags.contains(hashtag.getName())) {
+                videoHashtags.remove(hashtag.getName());
+            }
+        }
+        // TODO: do we need to add the video to each hashtag?
+        for (String hashtag : videoHashtags) {
+            Hashtag newHashtag = new Hashtag();
+            newHashtag.setName(hashtag);
+            hashtags.add(newHashtag);
+            hashtagRepository.save(newHashtag);
+        }
+        // TODO: do we emit an event for each hashtag in a new video?
+        newVideo.setHashtags(hashtags);
+
         videosRepository.save(newVideo);
 
         videosProducer.postVideo(newVideo.getId(), newVideo);

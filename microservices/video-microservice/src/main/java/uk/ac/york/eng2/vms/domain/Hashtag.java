@@ -3,25 +3,22 @@ package uk.ac.york.eng2.vms.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
-import uk.ac.york.eng2.vms.dto.UserDTO;
+import uk.ac.york.eng2.vms.dto.HashtagDTO;
 
 import java.util.Set;
 
 @Entity @Serdeable
-public class User {
+public class Hashtag {
 
     @Id
-    @GeneratedValue(generator = "user-id-generator")
+    @GeneratedValue(generator = "hashtag-id-generator")
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
     @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Video> videos;
 
     public Long getId() {
@@ -40,14 +37,6 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Set<Video> getVideos() {
         return videos;
     }
@@ -58,21 +47,17 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Hashtag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
                 ", videos=" + videos +
                 '}';
     }
 
-    // TODO: move to constructor
-    public UserDTO toDTO() {
-        UserDTO dto = new UserDTO();
-        dto.setName(this.name);
-        dto.setEmail(this.email);
-        dto.setVideos(this.videos);
-        return dto;
+    // TODO: remove, or change to a constructor
+    public HashtagDTO toDTO() {
+    	HashtagDTO dto = new HashtagDTO();
+    	dto.setName(name);
+    	return dto;
     }
-
 }

@@ -2,14 +2,26 @@ package uk.ac.york.eng2.vms.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Serdeable
 public class VideoDTO {
 
     private String title;
+    private Set<String> hashtags = new HashSet<>();
     private Long views;
     private Long likes;
     private Long dislikes;
     private Long userId;
+
+    public Set<String> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(Set<String> hashtags) {
+        this.hashtags = hashtags;
+    }
 
     public Long getViews() {
         return views;
