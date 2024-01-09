@@ -57,17 +57,36 @@ public class VideosController {
         return video.toDTO();
     }
 
-    @Patch("/{id}/like")
-    public HttpResponse<Void> likeVideo(Long id) {
+    @Transactional
+    @Put("/{id}/like")
+    public HttpResponse<Void> likeVideo(Long id, @QueryValue String username) {
+        User user = userRepository.findByName(username).orElse(null);
+        if (user == null) {
+            return HttpResponse.notAllowed();
+        }
+
         Video video = videosRepository.findById(id).orElse(null);
         if (video == null) {
             return HttpResponse.notFound();
+        }
+
+        if (user.getLikedVideos().contains(video)) {
+        	return HttpResponse.ok();
         }
 
         // TODO: move to worker
         video.setLikes(video.getLikes() + 1);
         videosRepository.update(video);
         videosProducer.likeVideo(video.getId(), video);
+
+        for (Hashtag hashtag : video.getHashtags()) {
+        	videosProducer.likeHashtag(hashtag.getId(), hashtag.getName());
+        }
+
+        Set<Video> userVideos = user.getLikedVideos();
+        userVideos.add(video);
+        user.setLikedVideos(userVideos);
+        userRepository.update(user);
 
         return HttpResponse.ok();
     }
@@ -90,12 +109,12 @@ public class VideosController {
     @Post("/")
     @Transactional
     public HttpResponse<Void> add(@Body VideoDTO video) {
-        logger.warn("VideoDTO: " + video);
+//        logger.warn("VideoDTO: " + video);
         User user = userRepository.findById(video.getUserId()).orElse(null);
         if (user == null) {
             return HttpResponse.notFound();
         }
-        logger.warn("User: " + user);
+//        logger.warn("User: " + user);
 
         Video newVideo = new Video();
         newVideo.setTitle(video.getTitle());
@@ -108,10 +127,12 @@ public class VideosController {
         // Remove all existing matching hashtags, leaving only new hashtags
         for (Hashtag hashtag : hashtags) {
             if (videoHashtags.contains(hashtag.getName())) {
+                // TODO: act off return value of .remove
                 videoHashtags.remove(hashtag.getName());
             }
         }
         // TODO: do we need to add the video to each hashtag?
+        // TODO: use insertMany on HashtagRepo
         for (String hashtag : videoHashtags) {
             Hashtag newHashtag = new Hashtag();
             newHashtag.setName(hashtag);

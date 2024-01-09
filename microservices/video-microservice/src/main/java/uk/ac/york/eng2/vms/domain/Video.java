@@ -1,6 +1,8 @@
 package uk.ac.york.eng2.vms.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Serdeable
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Video {
 
     private static final Logger logger = LoggerFactory.getLogger(Video.class);

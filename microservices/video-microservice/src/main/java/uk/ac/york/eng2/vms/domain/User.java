@@ -5,6 +5,7 @@ import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import uk.ac.york.eng2.vms.dto.UserDTO;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity @Serdeable
@@ -17,12 +18,20 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Video> videos;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Video> likedVideos = new HashSet<>();
+
+    public Set<Video> getLikedVideos() {
+        return likedVideos;
+    }
+
+    public void setLikedVideos(Set<Video> likedVideos) {
+        this.likedVideos = likedVideos;
+    }
 
     public Long getId() {
         return id;
@@ -40,14 +49,6 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Set<Video> getVideos() {
         return videos;
     }
@@ -61,7 +62,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
                 ", videos=" + videos +
                 '}';
     }
@@ -70,8 +70,8 @@ public class User {
     public UserDTO toDTO() {
         UserDTO dto = new UserDTO();
         dto.setName(this.name);
-        dto.setEmail(this.email);
         dto.setVideos(this.videos);
+        dto.setLikedVideos(this.likedVideos);
         return dto;
     }
 

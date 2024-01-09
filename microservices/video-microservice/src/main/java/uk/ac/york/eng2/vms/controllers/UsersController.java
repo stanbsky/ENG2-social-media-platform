@@ -1,7 +1,10 @@
 package uk.ac.york.eng2.vms.controllers;
 
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.*;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Post;
 import jakarta.inject.Inject;
 import uk.ac.york.eng2.vms.domain.User;
 import uk.ac.york.eng2.vms.dto.UserDTO;
@@ -33,7 +36,6 @@ public class UsersController {
     public HttpResponse<Void> add(@Body UserDTO user) {
         User newUser = new User();
         newUser.setName(user.getName());
-        newUser.setEmail(user.getEmail());
         usersRepository.save(newUser);
         return HttpResponse.created(URI.create("/users/" + newUser.getId()));
     }

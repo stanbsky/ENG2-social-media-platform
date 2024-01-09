@@ -9,9 +9,17 @@ import java.util.Set;
 public class UserDTO {
 
     private String name;
-    private String email;
 
     private Set<Video> videos;
+    private Set<Video> likedVideos;
+
+    public Set<Video> getLikedVideos() {
+        return likedVideos;
+    }
+
+    public void setLikedVideos(Set<Video> likedVideos) {
+        this.likedVideos = likedVideos;
+    }
 
     public Set<Video> getVideos() {
         return videos;
@@ -29,11 +37,4 @@ public class UserDTO {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

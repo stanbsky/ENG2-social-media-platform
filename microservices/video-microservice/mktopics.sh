@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOPICS='video-posted video-liked video-disliked video-viewed'
+TOPICS='video-posted video-liked video-disliked video-viewed hashtag-liked hashtag-disliked'
 
 create() {
     for t in $TOPICS; do
