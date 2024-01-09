@@ -1,6 +1,7 @@
 package uk.ac.york.eng2.vms.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
+import uk.ac.york.eng2.vms.domain.User;
 import uk.ac.york.eng2.vms.domain.Video;
 
 import java.util.Set;
@@ -13,12 +14,30 @@ public class UserDTO {
     private Set<Video> videos;
     private Set<Video> likedVideos;
 
+    public UserDTO() {
+    }
+
+    public UserDTO(User user) {
+        this.name = user.getName();
+        this.videos = user.getVideos();
+        this.likedVideos = user.getLikedVideos();
+    }
+
     public Set<Video> getLikedVideos() {
         return likedVideos;
     }
 
     public void setLikedVideos(Set<Video> likedVideos) {
         this.likedVideos = likedVideos;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "name='" + name + '\'' +
+                ", videos=" + videos +
+                ", likedVideos=" + likedVideos +
+                '}';
     }
 
     public Set<Video> getVideos() {

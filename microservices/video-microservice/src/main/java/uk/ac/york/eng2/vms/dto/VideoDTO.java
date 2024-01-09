@@ -1,19 +1,37 @@
 package uk.ac.york.eng2.vms.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
+import uk.ac.york.eng2.vms.domain.Hashtag;
+import uk.ac.york.eng2.vms.domain.Video;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Serdeable
 public class VideoDTO {
 
     private String title;
+    // We only care about returning the name of the hashtag, so use lighter String instead of a full DTO
     private Set<String> hashtags = new HashSet<>();
     private Long views;
     private Long likes;
     private Long dislikes;
     private Long userId;
+
+    public VideoDTO() {
+    }
+
+    public VideoDTO(Video video) {
+        this.title = video.getTitle();
+        Set<String> hashtags = video.getHashtags().stream()
+                .map(Hashtag::getName).collect(Collectors.toSet());
+        this.hashtags = hashtags;
+        this.views = video.getViews();
+        this.likes = video.getLikes();
+        this.dislikes = video.getDislikes();
+        this.userId = video.getUserId();
+    }
 
     public Set<String> getHashtags() {
         return hashtags;
@@ -68,6 +86,7 @@ public class VideoDTO {
     public String toString() {
         return "VideoDTO{" +
                 "title='" + title + '\'' +
+                ", hashtags=" + hashtags +
                 ", views=" + views +
                 ", likes=" + likes +
                 ", dislikes=" + dislikes +

@@ -1,11 +1,10 @@
 package uk.ac.york.eng2.vms.controllers;
 
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import uk.ac.york.eng2.vms.domain.Hashtag;
 import uk.ac.york.eng2.vms.domain.User;
 import uk.ac.york.eng2.vms.domain.Video;
@@ -17,11 +16,10 @@ import uk.ac.york.eng2.vms.repositories.VideosRepository;
 
 import java.net.URI;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller("/videos")
 public class VideosController {
-
-    private static final Logger logger = LoggerFactory.getLogger(VideosController.class);
 
     @Inject
     private VideosRepository videosRepository;
@@ -54,22 +52,25 @@ public class VideosController {
         videosRepository.update(video);
         videosProducer.viewVideo(video.getId(), video);
 
-        return video.toDTO();
+        return new VideoDTO(video);
     }
 
     @Transactional
     @Put("/{id}/like")
     public HttpResponse<Void> likeVideo(Long id, @QueryValue String username) {
+        // Return 403 if user doesn't exist: knowing the right user == being authorized
         User user = userRepository.findByName(username).orElse(null);
         if (user == null) {
-            return HttpResponse.notAllowed();
+            return HttpResponse.status(HttpStatus.FORBIDDEN);
         }
 
+        // Return 404 if video doesn't exist
         Video video = videosRepository.findById(id).orElse(null);
         if (video == null) {
             return HttpResponse.notFound();
         }
 
+        // If user has already liked the video, return 200
         if (user.getLikedVideos().contains(video)) {
         	return HttpResponse.ok();
         }
@@ -109,12 +110,10 @@ public class VideosController {
     @Post("/")
     @Transactional
     public HttpResponse<Void> add(@Body VideoDTO video) {
-//        logger.warn("VideoDTO: " + video);
         User user = userRepository.findById(video.getUserId()).orElse(null);
         if (user == null) {
             return HttpResponse.notFound();
         }
-//        logger.warn("User: " + user);
 
         Video newVideo = new Video();
         newVideo.setTitle(video.getTitle());
@@ -122,28 +121,19 @@ public class VideosController {
 
         // Get the list of desired hashtags
         Set<String> videoHashtags = video.getHashtags();
-        // Retrieve the existing matching hashtags
-        Set<Hashtag> hashtags = hashtagRepository.findByNameIn(videoHashtags);
-        // Remove all existing matching hashtags, leaving only new hashtags
-        for (Hashtag hashtag : hashtags) {
-            if (videoHashtags.contains(hashtag.getName())) {
-                // TODO: act off return value of .remove
-                videoHashtags.remove(hashtag.getName());
-            }
-        }
-        // TODO: do we need to add the video to each hashtag?
-        // TODO: use insertMany on HashtagRepo
-        for (String hashtag : videoHashtags) {
-            Hashtag newHashtag = new Hashtag();
-            newHashtag.setName(hashtag);
-            hashtags.add(newHashtag);
-            hashtagRepository.save(newHashtag);
-        }
-        // TODO: do we emit an event for each hashtag in a new video?
-        newVideo.setHashtags(hashtags);
+        // Retrieve the names of existing matching hashtags
+        Set<Hashtag> existingHashtags = hashtagRepository.findByNameIn(videoHashtags);
+        Set<String> existingHashtagsNames = existingHashtags.stream().map(Hashtag::getName).collect(Collectors.toSet());
+        // Create a new hashtag for each hashtag that doesn't exist
+        Set<Hashtag> newHashtags = videoHashtags.stream().filter(hashtag -> !existingHashtagsNames.contains(hashtag))
+                .map(Hashtag::new).collect(Collectors.toSet());
+        // Persist the new hashtags
+        hashtagRepository.saveAll(newHashtags);
+        // Combine the existing and new hashtags
+        existingHashtags.addAll(newHashtags);
+        newVideo.setHashtags(existingHashtags);
 
         videosRepository.save(newVideo);
-
         videosProducer.postVideo(newVideo.getId(), newVideo);
 
         Set<Video> userVideos = user.getVideos();

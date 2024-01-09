@@ -29,7 +29,7 @@ public class UsersController {
         if (user == null) {
             return null;
         }
-        return user.toDTO();
+        return new UserDTO(user);
     }
 
     @Post("/")

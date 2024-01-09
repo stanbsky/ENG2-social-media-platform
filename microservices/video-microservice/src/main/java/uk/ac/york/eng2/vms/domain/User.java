@@ -3,7 +3,6 @@ package uk.ac.york.eng2.vms.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
-import uk.ac.york.eng2.vms.dto.UserDTO;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +20,6 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Video> videos;
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Video> likedVideos = new HashSet<>();
 
@@ -63,16 +61,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", videos=" + videos +
+                ", likedVideos=" + likedVideos +
                 '}';
     }
-
-    // TODO: move to constructor
-    public UserDTO toDTO() {
-        UserDTO dto = new UserDTO();
-        dto.setName(this.name);
-        dto.setVideos(this.videos);
-        dto.setLikedVideos(this.likedVideos);
-        return dto;
-    }
-
 }
