@@ -23,6 +23,7 @@ public interface VideosProducer {
 
     @Topic("eng2-hashtag-liked")
     void likeHashtag(@KafkaKey Long id, String h);
+//    void likeHashtag(@KafkaKey Long id, Object val);
 
     @Topic("eng2-hashtag-disliked")
     void dislikeHashtag(@KafkaKey Long id, String h);

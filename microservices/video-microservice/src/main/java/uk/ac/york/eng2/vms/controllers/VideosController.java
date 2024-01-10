@@ -5,6 +5,8 @@ import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uk.ac.york.eng2.vms.domain.Hashtag;
 import uk.ac.york.eng2.vms.domain.User;
 import uk.ac.york.eng2.vms.domain.Video;
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 
 @Controller("/videos")
 public class VideosController {
+
+    private static final Logger logger = LoggerFactory.getLogger(VideosController.class);
 
     @Inject
     private VideosRepository videosRepository;
@@ -70,10 +74,14 @@ public class VideosController {
             return HttpResponse.notFound();
         }
 
-        // If user has already liked the video, return 200
-        if (user.getLikedVideos().contains(video)) {
-        	return HttpResponse.ok();
-        }
+//        logger.warn("Video: ", video.toString());
+//        logger.warn("Hashtags", video.getHashtags().toString());
+
+        // TODO: commented out for debugging
+//        // If user has already liked the video, return 200
+//        if (user.getLikedVideos().contains(video)) {
+//        	return HttpResponse.ok();
+//        }
 
         // TODO: move to worker
         video.setLikes(video.getLikes() + 1);
@@ -81,6 +89,7 @@ public class VideosController {
         videosProducer.likeVideo(video.getId(), video);
 
         for (Hashtag hashtag : video.getHashtags()) {
+//            logger.warn("Hashtag: ", hashtag.toString());
         	videosProducer.likeHashtag(hashtag.getId(), hashtag.getName());
         }
 

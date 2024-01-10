@@ -2,8 +2,10 @@ package uk.ac.york.eng2.vms.domain;
 
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
+import uk.ac.york.eng2.vms.dto.VideoDTO;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity @Serdeable
 @Table(indexes = @Index(columnList = "name", unique = true))
@@ -60,7 +62,7 @@ public class Hashtag {
         return "Hashtag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", videos=" + videos +
+                ", videos=" + videos.stream().map(VideoDTO::new).collect(Collectors.toSet()) +
                 '}';
     }
 }
