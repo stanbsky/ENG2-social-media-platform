@@ -6,12 +6,8 @@ import io.micronaut.http.annotation.Get;
 import jakarta.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.ac.york.eng2.thm.dto.Top10DTO;
 import uk.ac.york.eng2.thm.events.HashtagIQS;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 @Controller("/trending")
 public class TrendingController {
@@ -22,7 +18,11 @@ public class TrendingController {
     private HashtagIQS hashtagIQS;
 
     @Get("/")
-    public LinkedHashMap<Long, List<Long>> getTop10() {
+    public Top10DTO getTop10() {
+        Multimap<Long, Long> counts = hashtagIQS.getHashtagCounts();
+        logger.warn("counts: {}", counts);
+        return new Top10DTO(counts);
+    /*public LinkedHashMap<Long, List<Long>> getTop10() {
         Multimap<Long, Long> counts = hashtagIQS.getHashtagCounts();
         logger.warn("counts: {}", counts);
         LinkedHashMap<Long, List<Long>> result = new LinkedHashMap<>();
@@ -30,7 +30,7 @@ public class TrendingController {
             Collection<Long> values = counts.get(key);
             result.put(key, new ArrayList<>(values));
         }
-        return result;
+        return result;*/
 //        Multimap<Long, Long> map = MultimapBuilder.treeKeys(Collections.reverseOrder()).arrayListValues().build();
 //        map.put
 //

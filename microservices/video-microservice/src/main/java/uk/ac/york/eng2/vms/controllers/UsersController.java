@@ -18,6 +18,7 @@ public class UsersController {
     @Inject
     private UsersRepository usersRepository;
 
+    //TODO: failed to lazily initialize a collection of role: uk.ac.york.eng2.vms.domain.User.likedVideos
     @Get("/")
     public Iterable<User> list() {
         return usersRepository.findAll();

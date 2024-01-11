@@ -29,7 +29,7 @@ public class HashtagIQS {
         }
         ReadOnlyKeyValueStore<Long, Long> store = storeOptional.get();
         try (KeyValueIterator<Long, Long> iterator = store.all()) {
-            iterator.forEachRemaining(kv -> counts.put(kv.key, kv.value));
+            iterator.forEachRemaining(kv -> counts.put(kv.value, kv.key));
         }
         return counts;
     }

@@ -6,7 +6,13 @@ function setup() {
   {
       "name": "john"
   }' http://localhost:8080/users | jq
-  for i in {1..10} ; do
+  if [ -z "$1" ]; then
+    videos=11
+  else
+    videos="$1"
+  fi
+  for i in $(seq 1 $videos) ; do
+    echo "Creating video $i"
      curl -s -X POST -H "Content-Type: application/json" \
      -d '
      {
@@ -20,8 +26,18 @@ function setup() {
 }
 
 function like() {
-  for i in {1..10} ; do
-    likes=$(( ( RANDOM % 10 )  + 1 ))
+  if [ -z "$1" ]; then
+    maxLikes=10
+  else
+    maxLikes="$1"
+  fi
+  if [ -z "$2" ]; then
+    videos=11
+  else
+    videos="$2"
+  fi
+  for i in $(seq 1 $videos) ; do
+    likes=$(( ( RANDOM % maxLikes )  + 1 ))
     for j in $(seq 1 $likes) ; do
 #      echo "Liking video $i, like $j"
       curl -s -X PUT \
@@ -33,12 +49,12 @@ function like() {
 
 case "$1" in
   setup)
-    setup
+    setup "$2"
     ;;
   like)
-    like
+    like "$2" "$3"
     ;;
   *)
-    echo "Usage: $0 {setup}"
+    echo "Usage: $0 {setup|like [maxLikes] [videos]}"
     exit 1
 esac
