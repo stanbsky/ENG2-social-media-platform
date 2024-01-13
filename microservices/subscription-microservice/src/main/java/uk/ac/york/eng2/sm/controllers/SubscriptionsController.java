@@ -12,6 +12,7 @@ import uk.ac.york.eng2.sm.domain.Hashtag;
 import uk.ac.york.eng2.sm.domain.User;
 import uk.ac.york.eng2.sm.dto.WatchlistDTO;
 import uk.ac.york.eng2.sm.events.SubscriptionsProducer;
+import uk.ac.york.eng2.sm.kafkaobjects.HashtagSet;
 import uk.ac.york.eng2.sm.repositories.HashtagRepository;
 import uk.ac.york.eng2.sm.repositories.UsersRepository;
 
@@ -53,7 +54,8 @@ public class SubscriptionsController {
         hashtags.add(hashtag);
         user.setSubscribedHashtags(hashtags);
         userRepository.update(user);
-        subscriptionsProducer.subscribe(userId, hashtagId);
+
+        subscriptionsProducer.subscribe(userId, new HashtagSet(hashtags));
 
         return HttpResponse.ok();
     }

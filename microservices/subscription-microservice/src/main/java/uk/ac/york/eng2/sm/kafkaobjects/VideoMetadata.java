@@ -11,7 +11,20 @@ public class VideoMetadata {
     private Long hashtagId;
     private String hashtagName;
 
-    public VideoMetadata() {
+    public VideoMetadata(Long userId, Long videoID) {
+        this.userId = userId;
+        this.videoId = videoID;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoMetadata{" +
+                "videoId=" + videoId +
+                ", videoName='" + videoName + '\'' +
+                ", userId=" + userId +
+                ", hashtagId=" + hashtagId +
+                ", hashtagName='" + hashtagName + '\'' +
+                '}';
     }
 
     public Long getVideoId() {

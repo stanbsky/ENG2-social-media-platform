@@ -4,13 +4,14 @@ import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
 import uk.ac.york.eng2.vms.domain.Video;
+import uk.ac.york.eng2.vms.kafkaobjects.HashtagSet;
 
 @KafkaClient
 public interface VideosProducer {
 
     // TODO: refactor messages to reduce body to only relevant bits
-    @Topic("eng2-video-posted")
-    void postVideo(@KafkaKey Long id, Video v);
+    @Topic("eng2-new-videos")
+    void postVideo(@KafkaKey Long id, HashtagSet hashtags);
 
     @Topic("eng2-video-liked")
     void likeVideo(@KafkaKey Long id, Video v);

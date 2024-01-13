@@ -24,9 +24,8 @@ public class VideoDTO {
 
     public VideoDTO(Video video) {
         this.title = video.getTitle();
-        Set<String> hashtags = video.getHashtags().stream()
+        this.hashtags = video.getHashtags().stream()
                 .map(Hashtag::getName).collect(Collectors.toSet());
-        this.hashtags = hashtags;
         this.views = video.getViews();
         this.likes = video.getLikes();
         this.dislikes = video.getDislikes();

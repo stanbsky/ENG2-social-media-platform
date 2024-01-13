@@ -13,6 +13,7 @@ import uk.ac.york.eng2.vms.domain.User;
 import uk.ac.york.eng2.vms.domain.Video;
 import uk.ac.york.eng2.vms.dto.VideoDTO;
 import uk.ac.york.eng2.vms.events.VideosProducer;
+import uk.ac.york.eng2.vms.kafkaobjects.HashtagSet;
 import uk.ac.york.eng2.vms.repositories.HashtagRepository;
 import uk.ac.york.eng2.vms.repositories.UsersRepository;
 import uk.ac.york.eng2.vms.repositories.VideosRepository;
@@ -144,7 +145,7 @@ public class VideosController {
         newVideo.setHashtags(existingHashtags);
 
         videosRepository.save(newVideo);
-        videosProducer.postVideo(newVideo.getId(), newVideo);
+        videosProducer.postVideo(newVideo.getId(), new HashtagSet(existingHashtags));
 
         Set<Video> userVideos = user.getVideos();
         userVideos.add(newVideo);
