@@ -19,11 +19,10 @@ public interface VideosProducer {
     void dislikeVideo(@KafkaKey Long id, Video v);
 
     @Topic("eng2-video-viewed")
-    void viewVideo(@KafkaKey Long id, Video v);
+    void viewVideo(@KafkaKey Long userId, Long videoId);
 
     @Topic("eng2-hashtag-liked")
-    void likeHashtag(@KafkaKey Long id, String h);
-//    void likeHashtag(@KafkaKey Long id, Object val);
+    void likeHashtag(@KafkaKey Long userId, Long hashtagId);
 
     @Topic("eng2-hashtag-disliked")
     void dislikeHashtag(@KafkaKey Long id, String h);

@@ -27,13 +27,13 @@ public class HashtagCountStream {
         String outputTopic = "eng2-top-hashtags-windowed";
 
         // TODO: make wrapper classes for HashtagID, HashtagName, and Count
-        KStream<Long,String> stream = builder.stream(inputTopic, Consumed.with(Serdes.Long(), Serdes.String()));
+        KStream<Long,Long> stream = builder.stream(inputTopic, Consumed.with(Serdes.Long(), Serdes.Long()));
 
-        // Accept <HashtagID, HashtagName> and emit <HashtagID, Count>
+        // Accept <UserID, HashtagID> and emit <HashtagID, Count>
+        Grouped<Long, Long> grouped = Grouped.with(Serdes.Long(), Serdes.Long());
         KTable<Windowed<Long>, Long> countTable = stream
-                .groupByKey()
-                // TODO: switch to sliding windows
-//                .windowedBy(TimeWindows.of(windowSize).grace(Duration.ZERO))
+                .map((key, value) -> new KeyValue<>(value, key))
+                .groupByKey(grouped)
                 .windowedBy(SlidingWindows.ofTimeDifferenceWithNoGrace(windowSize))
                 .count();
 
@@ -41,6 +41,7 @@ public class HashtagCountStream {
         countStream.to(outputTopic, Produced.with(Serdes.Long(), Serdes.Long()));
 
         // Build the GlobalKTable which will be queried by the controller
+        // TODO: can we get rid of variable and just call the builder.globalTable() method?
         GlobalKTable<Long, Long> globalCountTable = builder.globalTable(
                 outputTopic,
                 Materialized.<Long, Long, KeyValueStore<Bytes, byte[]>>as(stateStoreName)

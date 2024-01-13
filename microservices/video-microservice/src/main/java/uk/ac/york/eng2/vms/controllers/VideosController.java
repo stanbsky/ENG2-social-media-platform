@@ -3,6 +3,7 @@ package uk.ac.york.eng2.vms.controllers;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
+import jakarta.annotation.Nullable;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -45,7 +46,7 @@ public class VideosController {
 
     @Transactional
     @Get("/{id}")
-    public VideoDTO getVideo(Long id) {
+    public VideoDTO getVideo(Long id, @Nullable @QueryValue Long userId) {
         Video video = videosRepository.findById(id).orElse(null);
         if (video == null) {
             return null;
@@ -54,7 +55,7 @@ public class VideosController {
         // TODO: move to worker
         video.setViews(video.getViews() + 1);
         videosRepository.update(video);
-        videosProducer.viewVideo(video.getId(), video);
+        videosProducer.viewVideo(userId, video.getId());
 
         return new VideoDTO(video);
     }
@@ -90,7 +91,7 @@ public class VideosController {
 
         for (Hashtag hashtag : video.getHashtags()) {
 //            logger.warn("Hashtag: ", hashtag.toString());
-        	videosProducer.likeHashtag(hashtag.getId(), hashtag.getName());
+        	videosProducer.likeHashtag(user.getId(), hashtag.getId());
         }
 
         Set<Video> userVideos = user.getLikedVideos();

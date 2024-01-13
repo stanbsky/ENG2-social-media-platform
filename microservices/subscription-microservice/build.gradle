@@ -1,7 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.2.1"
-    id("io.micronaut.test-resources") version "4.2.1"
+//    id("io.micronaut.test-resources") version "4.2.1"
     id("io.micronaut.aot") version "4.2.1"
 }
 
@@ -20,10 +20,12 @@ dependencies {
     implementation("io.micronaut.kafka:micronaut-kafka")
     implementation("io.micronaut.kafka:micronaut-kafka-streams")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+    runtimeOnly("org.yaml:snakeyaml")
     testImplementation("io.micronaut:micronaut-http-client")
 }
 
@@ -45,9 +47,9 @@ micronaut {
         incremental(true)
         annotations("uk.ac.york.eng2.sm.*")
     }
-    testResources {
-        sharedServer = true
-    }
+//    testResources {
+//        sharedServer = true
+//    }
     aot {
     // Please review carefully the optimizations enabled below
     // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
