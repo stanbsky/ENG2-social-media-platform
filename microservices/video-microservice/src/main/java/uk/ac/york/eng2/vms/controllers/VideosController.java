@@ -14,6 +14,7 @@ import uk.ac.york.eng2.vms.domain.Video;
 import uk.ac.york.eng2.vms.dto.VideoDTO;
 import uk.ac.york.eng2.vms.events.VideosProducer;
 import uk.ac.york.eng2.vms.kafkaobjects.HashtagSet;
+import uk.ac.york.eng2.vms.kafkaobjects.UserVideo;
 import uk.ac.york.eng2.vms.repositories.HashtagRepository;
 import uk.ac.york.eng2.vms.repositories.UsersRepository;
 import uk.ac.york.eng2.vms.repositories.VideosRepository;
@@ -56,7 +57,9 @@ public class VideosController {
         // TODO: move to worker
         video.setViews(video.getViews() + 1);
         videosRepository.update(video);
-        videosProducer.viewVideo(userId, video.getId());
+        if (userId != null) {
+            videosProducer.viewVideo(new UserVideo(userId, video.getId()), new HashtagSet(video.getHashtags()));
+        }
 
         return new VideoDTO(video);
     }

@@ -12,7 +12,9 @@ import uk.ac.york.eng2.sm.domain.Hashtag;
 import uk.ac.york.eng2.sm.domain.User;
 import uk.ac.york.eng2.sm.dto.WatchlistDTO;
 import uk.ac.york.eng2.sm.events.SubscriptionsProducer;
+import uk.ac.york.eng2.sm.events.WatchlistIQS;
 import uk.ac.york.eng2.sm.kafkaobjects.HashtagSet;
+import uk.ac.york.eng2.sm.kafkaobjects.UserHashtag;
 import uk.ac.york.eng2.sm.repositories.HashtagRepository;
 import uk.ac.york.eng2.sm.repositories.UsersRepository;
 
@@ -30,10 +32,13 @@ public class SubscriptionsController {
     @Inject
     private SubscriptionsProducer subscriptionsProducer;
 
-    @Transactional
+    @Inject
+    private WatchlistIQS watchlistIQS;
+
     @Get("/user/{userId}/hashtag/{hashtagId}")
     public WatchlistDTO getWatchlist(Long userId, Long hashtagId) {
-        return null;
+        return watchlistIQS.getWatchlist(
+                new UserHashtag(userId, hashtagId));
     }
 
     @Transactional

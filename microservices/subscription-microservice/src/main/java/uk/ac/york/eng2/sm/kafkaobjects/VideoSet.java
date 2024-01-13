@@ -13,6 +13,10 @@ public class VideoSet {
     public VideoSet() {
     }
 
+    public void removeAll(VideoSet videos) {
+        this.videos.removeAll(videos.getVideos());
+    }
+
     public Set<Long> getVideos() {
         return videos;
     }

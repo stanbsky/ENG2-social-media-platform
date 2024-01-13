@@ -5,6 +5,7 @@ import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
 import uk.ac.york.eng2.vms.domain.Video;
 import uk.ac.york.eng2.vms.kafkaobjects.HashtagSet;
+import uk.ac.york.eng2.vms.kafkaobjects.UserVideo;
 
 @KafkaClient
 public interface VideosProducer {
@@ -19,8 +20,8 @@ public interface VideosProducer {
     @Topic("eng2-video-disliked")
     void dislikeVideo(@KafkaKey Long id, Video v);
 
-    @Topic("eng2-video-viewed")
-    void viewVideo(@KafkaKey Long userId, Long videoId);
+    @Topic("eng2-watched-videos")
+    void viewVideo(@KafkaKey UserVideo uv, HashtagSet hashtags);
 
     @Topic("eng2-hashtag-liked")
     void likeHashtag(@KafkaKey Long userId, Long hashtagId);
