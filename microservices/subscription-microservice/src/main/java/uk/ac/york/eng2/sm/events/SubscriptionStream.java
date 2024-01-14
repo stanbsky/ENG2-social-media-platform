@@ -13,6 +13,7 @@ import org.apache.kafka.streams.kstream.*;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.ac.york.eng2.sm.KafkaConfig;
 import uk.ac.york.eng2.sm.kafkaobjects.*;
 
 import java.util.ArrayList;
@@ -24,9 +25,14 @@ import java.util.Set;
 public class SubscriptionStream {
 
     private static final Logger logger = LoggerFactory.getLogger(SubscriptionStream.class);
-
+    private static final long WINDOW_SIZE = 4L;
+    private final KafkaConfig.Topics topics;
     @Inject
     SerdeRegistry serdeRegistry;
+
+    public SubscriptionStream(KafkaConfig.Topics topics) {
+        this.topics = topics;
+    }
 
     @Singleton
     public KStream<UserHashtag, VideoSet> newVideosByHashtag(@SuppressWarnings("MnInjectionPoints") ConfiguredStreamBuilder builder) {
@@ -38,7 +44,7 @@ public class SubscriptionStream {
         // Build stream of user subscriptions and transform it ready for join
         // <userId, Set<HashtagId>> => <HashtagId, userId>
         KStream<Long, Long> userSubscriptions = builder.stream(
-                "eng2-subscriptions",
+                topics.getNewSubscriptions(),
                 Consumed.with(Serdes.Long(), serdeRegistry.getSerde(HashtagSet.class)))
                 .flatMap((key, value) -> {
                     List<KeyValue<Long, Long>> results = new ArrayList<>();
@@ -52,7 +58,7 @@ public class SubscriptionStream {
         // Build stream of new videos and transform it ready for join
         // <videoId, Set<HashtagId>> => <HashtagId, videoId>
         KStream<Long, Long> newVideos = builder.stream(
-                "eng2-new-videos",
+                topics.getNewVideos(),
                 Consumed.with(Serdes.Long(), serdeRegistry.getSerde(HashtagSet.class)))
                 .flatMap((key, value) -> {
                     List<KeyValue<Long, Long>> results = new ArrayList<>();
@@ -68,7 +74,8 @@ public class SubscriptionStream {
         ValueJoiner<Long, Long, VideoMetadata> newVideosJoiner = (newVideo, userSubscription) ->
             new VideoMetadata(userSubscription, newVideo);
         KStream<UserHashtag, Long> newVideosByUserHashtag = newVideos
-                .join(userSubscriptions, newVideosJoiner, JoinWindows.ofTimeDifferenceWithNoGrace(java.time.Duration.ofMinutes(10)),
+                .join(userSubscriptions, newVideosJoiner,
+                        JoinWindows.ofTimeDifferenceWithNoGrace(java.time.Duration.ofMinutes(WINDOW_SIZE)),
                 StreamJoined.with(Serdes.Long(), Serdes.Long(), Serdes.Long()))
                 .peek((key, value) -> logger.warn("afterJoinBeforeGroup: key={}, value={}", key, value))
                 .flatMap((key, value) -> {
@@ -81,7 +88,7 @@ public class SubscriptionStream {
                 })
                 .peek((key, value) -> logger.warn("newVideosByUserHashtag: key={}, value={}", key, value));
         newVideosByUserHashtag.to(
-                "newVideosByUserHashtag",
+                topics.getNewVideosByUserHashtag(),
                 Produced.with(serdeRegistry.getSerde(UserHashtag.class),
                         Serdes.Long()));
 
@@ -106,14 +113,14 @@ public class SubscriptionStream {
                 .toStream()
                 .peek((key, value) -> logger.warn("newVideoStream: key={}, value={}", key, value));
                 newVideoStream.to(
-                        "eng2-subscription-videos",
+                        topics.getSubscriptionVideosByUserHashtag(),
                         Produced.with(serdeRegistry.getSerde(UserHashtag.class),
                                 serdeRegistry.getSerde(VideoSet.class)));
 
         // Build a stream of watched videos and transform it ready for join
         // <UserVideo, Set<HashtagId>> => <UserHashtag, videoId> => <UserHashtag, Set<videoId>>
         KStream<UserHashtag, VideoSet> watchedVideos = builder.stream(
-                "eng2-watched-videos",
+                topics.getWatchedVideos(),
                 Consumed.with(serdeRegistry.getSerde(UserVideo.class), serdeRegistry.getSerde(HashtagSet.class)))
                 .flatMap((key, value) -> {
                     List<KeyValue<UserHashtag,Long>> results = new ArrayList<>();
@@ -140,20 +147,20 @@ public class SubscriptionStream {
                             newVideosSet.removeAll(watchedVideosSet);
                             return newVideosSet;
                         },
-                        JoinWindows.ofTimeDifferenceWithNoGrace(java.time.Duration.ofMinutes(10)),
+                        JoinWindows.ofTimeDifferenceWithNoGrace(java.time.Duration.ofMinutes(WINDOW_SIZE)),
                         StreamJoined.with(
                                 serdeRegistry.getSerde(UserHashtag.class),
                                 serdeRegistry.getSerde(VideoSet.class),
                                 serdeRegistry.getSerde(VideoSet.class)))
                 .peek((key, value) -> logger.warn("newUnwatchedVideosByUserHashtag: key={}, value={}", key, value));
         newVideoStream.to(
-                "eng2-next-subscription-videos",
+                topics.getNextSubscriptionVideos(),
                 Produced.with(serdeRegistry.getSerde(UserHashtag.class),
                         serdeRegistry.getSerde(VideoSet.class)));
 
         // Build the GlobalKTable which will be queried by the controller for next videos to watch
         GlobalKTable<UserHashtag, VideoSet> globalUnwatchedVideosTable = builder.globalTable(
-                "eng2-next-subscription-videos",
+                topics.getNextSubscriptionVideos(),
                 Materialized.<UserHashtag, VideoSet, KeyValueStore<Bytes, byte[]>>as("next-subscription-videos-store")
                         .withKeySerde(serdeRegistry.getSerde(UserHashtag.class))
                         .withValueSerde(serdeRegistry.getSerde(VideoSet.class))

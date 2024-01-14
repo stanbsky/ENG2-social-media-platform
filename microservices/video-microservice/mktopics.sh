@@ -1,6 +1,21 @@
 #!/bin/bash
 
-TOPICS='video-posted video-liked video-disliked video-viewed hashtag-liked hashtag-disliked top-hashtags top-hashtags-windowed'
+read -r -d '' TOPICS <<'EOF'
+video-posted
+video-liked
+video-disliked
+video-viewed
+hashtag-liked
+hashtag-disliked
+top-hashtags
+top-hashtags-windowed
+subscriptions
+new-videos
+newVideosByUserHashtag
+subscription-videos
+next-subscription-videos
+watched-videos
+EOF
 
 create() {
     for t in $TOPICS; do

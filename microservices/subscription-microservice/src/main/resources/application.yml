@@ -31,3 +31,16 @@ logger:
   levels:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql: TRACE
+subscription-microservice:
+  kafka:
+    topics:
+      new-subscriptions: eng2-subscriptions
+      new-videos: eng2-new-videos
+      new-videos-by-user-hashtag: newVideosByUserHashtag
+      subscription-videos-by-user-hashtag: eng2-subscription-videos
+      next-subscription-videos: eng2-next-subscription-videos
+      watched-videos: eng2-watched-videos
+    stores:
+      next-subscription-videos: next-subscription-videos-store
+    config:
+      cleanup: true

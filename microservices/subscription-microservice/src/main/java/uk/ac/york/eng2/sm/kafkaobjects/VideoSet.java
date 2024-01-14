@@ -14,6 +14,9 @@ public class VideoSet {
     }
 
     public void removeAll(VideoSet videos) {
+        if (videos == null) {
+            return;
+        }
         this.videos.removeAll(videos.getVideos());
     }
 
