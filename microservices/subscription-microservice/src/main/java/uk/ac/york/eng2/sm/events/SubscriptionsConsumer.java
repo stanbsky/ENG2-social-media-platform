@@ -4,6 +4,8 @@ import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.Topic;
 import jakarta.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uk.ac.york.eng2.sm.domain.Video;
 import uk.ac.york.eng2.sm.kafkaobjects.HashtagSet;
 import uk.ac.york.eng2.sm.kafkaobjects.UserHashtag;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @KafkaListener("eng2-subscriptions-consumer")
 public class SubscriptionsConsumer {
+
+    private static final Logger logger = LoggerFactory.getLogger(SubscriptionsConsumer.class);
 
     @Inject
     private SubscriptionsProducer subscriptionsProducer;
@@ -31,6 +35,7 @@ public class SubscriptionsConsumer {
         UserHashtag key = new UserHashtag(userId, hashtagId);
         VideoSet vs = new VideoSet();
         List<Video> videos = videosRepository.findByHashtagsId(hashtagId);
+        logger.info("Populating new subscription stream with: {}", videos);
         videos.stream().map(Video::getId).forEach(vs::add);
         subscriptionsProducer.populateNewSubscriptionStream(key, vs);
         HashtagSet hs = new HashtagSet();

@@ -20,6 +20,10 @@ function sub() {
   curl -s -X PUT 'http://localhost:8083/subscriptions/user/1/hashtag/'$1
 }
 
+function unsub() {
+  curl -s -X DELETE 'http://localhost:8083/subscriptions/user/1/hashtag/'$1
+}
+
 function post() {
   curl -s -X POST -H "Content-Type: application/json" \
   -d '
@@ -54,6 +58,9 @@ case "$1" in
     ;;
   sub)
     sub "$2"
+    ;;
+  unsub)
+    unsub "$2"
     ;;
   post)
     post "$2"

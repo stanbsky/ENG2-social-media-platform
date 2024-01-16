@@ -69,6 +69,27 @@ public class SubscriptionsController {
     @Transactional
     @Delete("/user/{userId}/hashtag/{hashtagId}")
     public HttpResponse<Void> unsubscribe(Long userId, Long hashtagId) {
-        return null;
+        // Return 403 if user doesn't exist: knowing the right user == being authorized
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            return HttpResponse.status(HttpStatus.FORBIDDEN);
+        }
+
+        Hashtag hashtag = hashtagRepository.findById(hashtagId).orElse(null);
+        if (hashtag == null) {
+            return HttpResponse.notFound();
+        }
+
+        Set<Hashtag> hashtags = user.getSubscribedHashtags();
+        hashtags.remove(hashtag);
+        user.setSubscribedHashtags(hashtags);
+        userRepository.update(user);
+
+        // To fulfil assignment spec
+        subscriptionsProducer.unsubscribe(userId, hashtagId);
+        // TODO: check why this doesn't stop the old subscription updating: it should no longer be reflected in the KTable
+        subscriptionsProducer.updateSubscriptions(userId, new HashtagSet(hashtags));
+
+        return HttpResponse.ok();
     }
 }

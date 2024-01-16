@@ -16,6 +16,9 @@ public interface SubscriptionsProducer {
     @Topic("eng2-subscriptions-single")
     void subscribe(@KafkaKey Long userId, Long hashtagId);
 
+    @Topic("eng2-unsubscribe-single")
+    void unsubscribe(@KafkaKey Long userId, Long hashtagId);
+
     @Topic("eng2-watched-videos-by-user-hashtag")
     void fakeWatchedVideo(@KafkaKey UserHashtag userHashtag, VideoSet videos);
 
