@@ -29,18 +29,19 @@ kafka:
     servers: ${KAFKA_BOOTSTRAP_SERVERS:`localhost:9094`}
 logger:
   levels:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.SQL: WARN
 subscription-microservice:
   kafka:
     topics:
       new-subscriptions: eng2-subscriptions
       new-videos: eng2-new-videos
-      new-videos-by-user-hashtag: newVideosByUserHashtag
-      subscription-videos-by-user-hashtag: eng2-subscription-videos
+      new-videos-by-user-hashtag: eng2-new-videos-by-user-hashtag
+#      subscription-videos-by-user-hashtag: eng2-subscription-videos
       next-subscription-videos: eng2-next-subscription-videos
       watched-videos: eng2-watched-videos
+      watched-videos-by-user-hashtag: eng2-watched-videos-by-user-hashtag
+      new-sub-suggestions: eng2-new-sub-vid-suggestions
     stores:
       next-subscription-videos: next-subscription-videos-store
-    config:
+    misc:
       cleanup: true

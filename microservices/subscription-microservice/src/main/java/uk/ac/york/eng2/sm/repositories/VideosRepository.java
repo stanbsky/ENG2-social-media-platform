@@ -6,6 +6,7 @@ import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 import uk.ac.york.eng2.sm.domain.Video;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,4 +17,6 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
     @Join(value = "hashtags", type = Join.Type.LEFT_FETCH)
 //    @Query("SELECT v FROM Video v LEFT JOIN FETCH v.hashtags WHERE v.id = :aLong")
     @NonNull Optional<Video> findById(@NonNull Long id);
+
+    List<Video> findByHashtagsId(@NonNull Long hashtagId);
 }

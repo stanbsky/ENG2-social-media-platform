@@ -11,7 +11,7 @@ top-hashtags
 top-hashtags-windowed
 subscriptions
 new-videos
-newVideosByUserHashtag
+new-videos-by-user-hashtag
 subscription-videos
 next-subscription-videos
 watched-videos

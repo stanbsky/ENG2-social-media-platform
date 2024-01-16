@@ -9,8 +9,17 @@ import java.util.Set;
 public class VideoSet {
 
     private Set<Long> videos = new HashSet<>();
+    private Boolean dummy = false;
 
     public VideoSet() {
+    }
+
+    public Boolean getDummy() {
+        return dummy;
+    }
+
+    public void setDummy(Boolean dummy) {
+        this.dummy = dummy;
     }
 
     public void removeAll(VideoSet videos) {
@@ -18,6 +27,10 @@ public class VideoSet {
             return;
         }
         this.videos.removeAll(videos.getVideos());
+    }
+
+    public void add(Long video) {
+        this.videos.add(video);
     }
 
     public Set<Long> getVideos() {
