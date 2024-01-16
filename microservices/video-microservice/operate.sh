@@ -32,6 +32,18 @@ function post() {
   http://localhost:8080/videos | jq
 }
 
+function post2() {
+  curl -s -X POST -H "Content-Type: application/json" \
+  -d '
+  {
+    "title": "Video",
+    "hashtags": ["hashtag'$1'", "hashtag'$2'"],
+    "userId": 1
+  }
+  ' \
+  http://localhost:8080/videos | jq
+}
+
 function google() {
   curl https://google.com
 }
@@ -45,6 +57,9 @@ case "$1" in
     ;;
   post)
     post "$2"
+    ;;
+  post2)
+    post2 "$2" "$3"
     ;;
   list)
     list "$2"

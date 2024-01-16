@@ -65,14 +65,6 @@ public class KafkaConfig {
             this.newVideosByUserHashtag = newVideosByUserHashtag;
         }
 
-        /*public String getSubscriptionVideosByUserHashtag() {
-            return subscriptionVideosByUserHashtag;
-        }
-
-        public void setSubscriptionVideosByUserHashtag(String subscriptionVideosByUserHashtag) {
-            this.subscriptionVideosByUserHashtag = subscriptionVideosByUserHashtag;
-        }*/
-
         public String getNextSubscriptionVideos() {
             return nextSubscriptionVideos;
         }
@@ -93,11 +85,13 @@ public class KafkaConfig {
         public String toString() {
             return "Topics{" +
                     "newSubscriptions='" + newSubscriptions + '\'' +
+                    ", newSubscriptionsSingle='" + newSubscriptionsSingle + '\'' +
                     ", newVideos='" + newVideos + '\'' +
-//                    ", newVideosByUserHashtag='" + newVideosByUserHashtag + '\'' +
-//                    ", subscriptionVideosByUserHashtag='" + subscriptionVideosByUserHashtag + '\'' +
+                    ", newVideosByUserHashtag='" + newVideosByUserHashtag + '\'' +
                     ", nextSubscriptionVideos='" + nextSubscriptionVideos + '\'' +
                     ", WatchedVideos='" + WatchedVideos + '\'' +
+                    ", WatchedVideosByUserHashtag='" + WatchedVideosByUserHashtag + '\'' +
+                    ", newSubSuggestions='" + newSubSuggestions + '\'' +
                     '}';
         }
     }

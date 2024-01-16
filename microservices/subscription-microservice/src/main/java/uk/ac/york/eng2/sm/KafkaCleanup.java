@@ -18,12 +18,9 @@ public class KafkaCleanup {
 
     @EventListener
     public void execute(BeforeKafkaStreamStart event) {
-        logger.warn("Checking if Kafka Streams state stores should be cleaned up");
-        logger.warn("kafkaConfig: {}", config);
         if (config.doCleanup()) {
-            logger.warn("Cleaning up Kafka Streams state stores");
+            logger.info("Cleaning up Kafka Streams state stores");
             event.getKafkaStreams().cleanUp();
         }
-        logger.warn("Before Kafka Streams topology: {}", event.getKafkaStreams().toString());
     }
 }

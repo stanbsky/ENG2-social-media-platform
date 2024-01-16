@@ -17,9 +17,12 @@ public interface SubscriptionsProducer {
     void subscribe(@KafkaKey Long userId, Long hashtagId);
 
     @Topic("eng2-watched-videos-by-user-hashtag")
-    void watchedVideo(@KafkaKey UserHashtag userHashtag, VideoSet videos);
+    void fakeWatchedVideo(@KafkaKey UserHashtag userHashtag, VideoSet videos);
 
     @Topic("eng2-new-videos-by-user-hashtag")
-    void fakeVideo(@KafkaKey UserHashtag userHashtag, VideoSet videos);
+    void populateNewSubscriptionStream(@KafkaKey UserHashtag userHashtag, VideoSet videos);
+
+    @Topic("eng2-new-videos")
+    void fakeNewVideo(@KafkaKey Long id, HashtagSet hashtags);
 
 }

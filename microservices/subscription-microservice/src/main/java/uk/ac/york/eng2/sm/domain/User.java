@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity @Serdeable
+@Entity
+@Serdeable
 public class User {
 
     @Id
@@ -75,8 +76,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", videos=" + videos +
-                ", likedVideos=" + likedVideos +
                 '}';
     }
 }

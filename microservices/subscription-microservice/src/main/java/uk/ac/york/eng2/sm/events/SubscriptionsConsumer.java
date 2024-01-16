@@ -4,13 +4,9 @@ import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.Topic;
 import jakarta.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import uk.ac.york.eng2.sm.KafkaConfig;
 import uk.ac.york.eng2.sm.domain.Video;
 import uk.ac.york.eng2.sm.kafkaobjects.HashtagSet;
 import uk.ac.york.eng2.sm.kafkaobjects.UserHashtag;
-import uk.ac.york.eng2.sm.kafkaobjects.UserVideo;
 import uk.ac.york.eng2.sm.kafkaobjects.VideoSet;
 import uk.ac.york.eng2.sm.repositories.VideosRepository;
 
@@ -19,48 +15,27 @@ import java.util.List;
 @KafkaListener("eng2-subscriptions-consumer")
 public class SubscriptionsConsumer {
 
-    private final Logger logger = LoggerFactory.getLogger(SubscriptionsConsumer.class);
-    private final KafkaConfig.Topics topics;
     @Inject
     private SubscriptionsProducer subscriptionsProducer;
     @Inject
     private VideosRepository videosRepository;
 
-    public SubscriptionsConsumer(KafkaConfig.Topics topics) {
-        this.topics = topics;
-    }
-
     @Topic("eng2-subscriptions-single")
     public void initNewSubscription(@KafkaKey Long userId, Long hashtagId) {
+        // This is a hack to prod into action the subscriptions stream on new subscription:
+        // - populate the new subscription stream with videos
+        // - prod the stream into action by sending a null video set to watched videos
+        // - emit the videos to the new subscription stream - if we don't do this, the
+        //   pre-populated videos will be lost on first new video posted
+        // TODO: find a way to emit the query so that we only grab 10 latest videos that the user hasn't seen
         UserHashtag key = new UserHashtag(userId, hashtagId);
         VideoSet vs = new VideoSet();
         List<Video> videos = videosRepository.findByHashtagsId(hashtagId);
         videos.stream().map(Video::getId).forEach(vs::add);
-        subscriptionsProducer.watchedVideo(key, new VideoSet());
-        subscriptionsProducer.fakeVideo(key, vs);
-
-//        for (Long hashtagId : hashtags.getHashtags()) {
-//            VideoSet vs = new VideoSet();
-//            List<Video> videos = videosRepository.findByHashtagsId(hashtagId);
-//            videos.stream().map(Video::getId).forEach(vs::add);
-//            key.setHashtagId(hashtagId);
-//            logger.info("Pushing empty message to trigger left join: k:{}, v: {}", key, vs);
-//            subscriptionsProducer.watchedVideo(key, vs);
-//            subscriptionsProducer.fakeVideo(key, vs);
-//        }
+        subscriptionsProducer.populateNewSubscriptionStream(key, vs);
+        HashtagSet hs = new HashtagSet();
+        hs.add(hashtagId);
+        videos.stream().map(Video::getId).forEach(id -> subscriptionsProducer.fakeNewVideo(id, hs));
+        subscriptionsProducer.fakeWatchedVideo(key, new VideoSet());
     }
-
-    @Topic("eng2-watched-videos")
-    public void watchedVideo(@KafkaKey UserVideo userVideo, HashtagSet hashtags) {
-        logger.info("Received watched videos: k:{}, v: {}", userVideo, hashtags);
-        for (Long hashtagId : hashtags.getHashtags()) {
-            UserHashtag key = new UserHashtag(userVideo.getUserId(), hashtagId);
-            VideoSet vs = new VideoSet();
-            vs.add(userVideo.getVideoId());
-            logger.info("Pushing empty message to trigger left join: k:{}, v: {}", key, vs);
-            subscriptionsProducer.watchedVideo(key, vs);
-            subscriptionsProducer.fakeVideo(key, vs);
-        }
-    }
-
 }

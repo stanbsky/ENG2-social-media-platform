@@ -15,8 +15,8 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 
     @Override
     @Join(value = "hashtags", type = Join.Type.LEFT_FETCH)
-//    @Query("SELECT v FROM Video v LEFT JOIN FETCH v.hashtags WHERE v.id = :aLong")
     @NonNull Optional<Video> findById(@NonNull Long id);
 
     List<Video> findByHashtagsId(@NonNull Long hashtagId);
+
 }

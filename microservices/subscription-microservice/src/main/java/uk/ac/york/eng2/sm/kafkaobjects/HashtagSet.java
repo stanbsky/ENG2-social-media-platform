@@ -18,6 +18,10 @@ public class HashtagSet {
         hashtags.forEach(hashtag -> this.hashtags.add(hashtag.getId()));
     }
 
+    public void add(Long hashtag) {
+        this.hashtags.add(hashtag);
+    }
+
     public Set<Long> getHashtags() {
         return hashtags;
     }

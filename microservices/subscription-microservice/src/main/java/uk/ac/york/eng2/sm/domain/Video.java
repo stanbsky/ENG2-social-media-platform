@@ -95,10 +95,6 @@ public class Video {
         return "Video{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", user=" + user +
-                ", hashtags=" + hashtags +
-                ", likes=" + likes +
-                ", dislikes=" + dislikes +
                 ", views=" + views +
                 '}';
     }
