@@ -9,13 +9,21 @@ public class KafkaConfig {
     public static class Topics {
 
         private String newSubscriptions;
+        private String newSubscriptionsSingle;
         private String newVideos;
         private String newVideosByUserHashtag;
-//        private String subscriptionVideosByUserHashtag;
         private String nextSubscriptionVideos;
         private String WatchedVideos;
         private String WatchedVideosByUserHashtag;
         private String newSubSuggestions;
+
+        public String getNewSubscriptionsSingle() {
+            return newSubscriptionsSingle;
+        }
+
+        public void setNewSubscriptionsSingle(String newSubscriptionsSingle) {
+            this.newSubscriptionsSingle = newSubscriptionsSingle;
+        }
 
         public String getWatchedVideosByUserHashtag() {
             return WatchedVideosByUserHashtag;

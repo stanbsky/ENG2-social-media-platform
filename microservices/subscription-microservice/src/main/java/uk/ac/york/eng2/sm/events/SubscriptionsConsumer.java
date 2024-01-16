@@ -30,18 +30,24 @@ public class SubscriptionsConsumer {
         this.topics = topics;
     }
 
-    @Topic("eng2-subscriptions")
-    public void initNewSubscription(@KafkaKey Long userId, HashtagSet hashtags) {
-        UserHashtag key = new UserHashtag(userId, 0L);
-        for (Long hashtagId : hashtags.getHashtags()) {
-            VideoSet vs = new VideoSet();
-            List<Video> videos = videosRepository.findByHashtagsId(hashtagId);
-            videos.stream().map(Video::getId).forEach(vs::add);
-            key.setHashtagId(hashtagId);
-            logger.info("Pushing empty message to trigger left join: k:{}, v: {}", key, vs);
-            subscriptionsProducer.watchedVideo(key, vs);
-            subscriptionsProducer.fakeVideo(key, vs);
-        }
+    @Topic("eng2-subscriptions-single")
+    public void initNewSubscription(@KafkaKey Long userId, Long hashtagId) {
+        UserHashtag key = new UserHashtag(userId, hashtagId);
+        VideoSet vs = new VideoSet();
+        List<Video> videos = videosRepository.findByHashtagsId(hashtagId);
+        videos.stream().map(Video::getId).forEach(vs::add);
+        subscriptionsProducer.watchedVideo(key, new VideoSet());
+        subscriptionsProducer.fakeVideo(key, vs);
+
+//        for (Long hashtagId : hashtags.getHashtags()) {
+//            VideoSet vs = new VideoSet();
+//            List<Video> videos = videosRepository.findByHashtagsId(hashtagId);
+//            videos.stream().map(Video::getId).forEach(vs::add);
+//            key.setHashtagId(hashtagId);
+//            logger.info("Pushing empty message to trigger left join: k:{}, v: {}", key, vs);
+//            subscriptionsProducer.watchedVideo(key, vs);
+//            subscriptionsProducer.fakeVideo(key, vs);
+//        }
     }
 
     @Topic("eng2-watched-videos")

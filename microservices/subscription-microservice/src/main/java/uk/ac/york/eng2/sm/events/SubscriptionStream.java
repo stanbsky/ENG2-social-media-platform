@@ -100,7 +100,7 @@ public class SubscriptionStream {
                         results.add(new KeyValue<>(hashtagId, key));
                     }
                     return results;
-                }, Named.as("flatmap-to-hashtagId-userId"))
+                }, Named.as("newVideosByUserHashtag.flatmap.hashtagId.userId"))
                 .peek((key, value) -> logger.warn("userSubscriptions: key={}, value={}", key, value))
                 .groupByKey(Grouped.with(Serdes.Long(), Serdes.Long()))
                 .aggregate(
@@ -111,7 +111,7 @@ public class SubscriptionStream {
                             userSet.setUsers(users);
                             return userSet;
                         },
-                        Named.as("aggregate-subscribed-users-to-set-userId"),
+                        Named.as("newVideosByUserHashtag.aggregate.subscribed-users.SetOfUserId"),
                         Materialized.with(
                                 Serdes.Long(),
                                 serdeRegistry.getSerde(UserSet.class)));

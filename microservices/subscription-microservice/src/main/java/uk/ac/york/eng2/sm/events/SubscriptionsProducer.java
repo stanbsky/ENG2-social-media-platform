@@ -11,7 +11,10 @@ import uk.ac.york.eng2.sm.kafkaobjects.VideoSet;
 public interface SubscriptionsProducer {
 
     @Topic("eng2-subscriptions")
-    void subscribe(@KafkaKey Long userId, HashtagSet hashtags);
+    void updateSubscriptions(@KafkaKey Long userId, HashtagSet hashtags);
+
+    @Topic("eng2-subscriptions-single")
+    void subscribe(@KafkaKey Long userId, Long hashtagId);
 
     @Topic("eng2-watched-videos-by-user-hashtag")
     void watchedVideo(@KafkaKey UserHashtag userHashtag, VideoSet videos);

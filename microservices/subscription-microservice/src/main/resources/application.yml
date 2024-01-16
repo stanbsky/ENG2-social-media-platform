@@ -33,14 +33,14 @@ logger:
 subscription-microservice:
   kafka:
     topics:
-      new-subscriptions: eng2-subscriptions
-      new-videos: eng2-new-videos
-      new-videos-by-user-hashtag: eng2-new-videos-by-user-hashtag
-#      subscription-videos-by-user-hashtag: eng2-subscription-videos
-      next-subscription-videos: eng2-next-subscription-videos
-      watched-videos: eng2-watched-videos
-      watched-videos-by-user-hashtag: eng2-watched-videos-by-user-hashtag
       new-sub-suggestions: eng2-new-sub-vid-suggestions
+      new-subscriptions-single: eng2-subscriptions-single
+      new-subscriptions: eng2-subscriptions
+      new-videos-by-user-hashtag: eng2-new-videos-by-user-hashtag
+      new-videos: eng2-new-videos
+      next-subscription-videos: eng2-next-subscription-videos
+      watched-videos-by-user-hashtag: eng2-watched-videos-by-user-hashtag
+      watched-videos: eng2-watched-videos
     stores:
       next-subscription-videos: next-subscription-videos-store
     misc:

@@ -60,7 +60,8 @@ public class SubscriptionsController {
         user.setSubscribedHashtags(hashtags);
         userRepository.update(user);
 
-        subscriptionsProducer.subscribe(userId, new HashtagSet(hashtags));
+        subscriptionsProducer.updateSubscriptions(userId, new HashtagSet(hashtags));
+        subscriptionsProducer.subscribe(userId, hashtagId);
 
         return HttpResponse.ok();
     }

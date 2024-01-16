@@ -1,20 +1,21 @@
 #!/bin/bash
 
 read -r -d '' TOPICS <<'EOF'
-video-posted
-video-liked
-video-disliked
-video-viewed
-hashtag-liked
 hashtag-disliked
-top-hashtags
-top-hashtags-windowed
-subscriptions
+hashtag-liked
 new-videos
 new-videos-by-user-hashtag
-subscription-videos
 next-subscription-videos
+subscriptions
+subscriptions-single
+top-hashtags
+top-hashtags-windowed
+video-disliked
+video-liked
+video-posted
+video-viewed
 watched-videos
+watched-videos-by-user-hashtag
 EOF
 
 create() {
