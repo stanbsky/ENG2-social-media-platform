@@ -1,4 +1,4 @@
-package uk.ac.york.eng2.vms.dto;
+package uk.ac.york.eng2.client.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 

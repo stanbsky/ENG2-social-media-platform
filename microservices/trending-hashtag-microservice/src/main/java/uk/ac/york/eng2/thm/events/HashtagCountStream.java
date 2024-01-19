@@ -27,7 +27,7 @@ public class HashtagCountStream {
         String outputTopic = "eng2-top-hashtags-windowed";
 
         // TODO: make wrapper classes for HashtagID, HashtagName, and Count
-        KStream<Long,Long> stream = builder.stream(inputTopic, Consumed.with(Serdes.Long(), Serdes.Long()));
+        KStream<Long, Long> stream = builder.stream(inputTopic, Consumed.with(Serdes.Long(), Serdes.Long()));
 
         // Accept <UserID, HashtagID> and emit <HashtagID, Count>
         Grouped<Long, Long> grouped = Grouped.with(Serdes.Long(), Serdes.Long());
@@ -51,7 +51,6 @@ public class HashtagCountStream {
 
         return countStream;
     }
-
 
 
 }

@@ -9,7 +9,7 @@ public class Video {
 
     private String title;
 
-    private String user;
+    private Long userId;
 
     private Long likes;
 
@@ -29,12 +29,12 @@ public class Video {
         this.title = title;
     }
 
-    public String getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getLikes() {
@@ -43,5 +43,15 @@ public class Video {
 
     public void setLikes(Long likes) {
         this.likes = likes;
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", userId='" + userId + '\'' +
+                ", likes=" + likes +
+                '}';
     }
 }

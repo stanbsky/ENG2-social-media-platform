@@ -1,12 +1,16 @@
-package uk.ac.york.eng2.vms.client;
+package uk.ac.york.eng2.client;
 
 import io.micronaut.configuration.picocli.PicocliRunner;
-
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import uk.ac.york.eng2.client.vms.GetVideoCommand;
+import uk.ac.york.eng2.client.vms.GetVideosCommand;
 
-@Command(name = "client", description = "...",
-        mixinStandardHelpOptions = true)
+@Command(name = "client", description = "...", mixinStandardHelpOptions = true,
+        subcommands = {
+                GetVideosCommand.class,
+                GetVideoCommand.class
+        })
 public class ClientCommand implements Runnable {
 
     @Option(names = {"-v", "--verbose"}, description = "...")
