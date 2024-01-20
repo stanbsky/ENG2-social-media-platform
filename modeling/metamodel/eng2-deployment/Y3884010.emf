@@ -1,0 +1,141 @@
+// Encountered some Eclipse issues when using non-URL-like values for URI
+@namespace(uri="https://Y3884010", prefix="")
+package deployment;
+
+// General
+
+class Deployment {
+	val Microservice[*] microservices;
+	val Topic[*] topics;
+	val CliTool cliTool;
+	val Table[*] tables;
+    val JoinTable[*] joinTables;
+}
+
+class Microservice {
+	attr String name;
+	attr Short port;
+	val Controller[*] controllers;
+	val Producer[*] producers;
+}
+
+class JavaClass {
+	attr String className;
+	attr Boolean serdeable;
+}
+
+// Controller
+
+class Controller extends JavaClass {
+	attr String uri;
+	val Endpoint[*] endpoints;
+}
+
+class Endpoint {
+	attr String methodName;
+	attr String uri;
+	attr Boolean transactional;
+	val Parameter[*] parameters;
+	attr HttpMethod method;
+	val HttpResponse[*] response;
+	val Event[*] emittedEvents;
+	
+	// Used for codegen for CLI client
+	ref Command clientCommand;
+}
+
+class Parameter {
+	attr String key;
+	attr Model value;
+}
+
+class HttpResponse {
+	attr HttpResponseCode code;
+	attr Model body;
+}
+
+enum HttpMethod {
+    GET;
+    PUT;
+    POST;
+    PATCH;
+    DELETE;
+}
+
+enum HttpResponseCode {
+	OK;
+	CREATED;
+	NOT_FOUND;
+	FORBIDDEN;
+}
+
+// CLI tool
+// We have a 1-1 mapping between CLI commands and controller endpoints, so rather than redefine them,
+// let's use them directly in the CliTool metamodel to maintain that correspondence
+
+class CliTool extends JavaClass {
+	ref Controller[*] clients;
+}
+
+class Command extends JavaClass {
+	attr String name;
+	attr String description;	
+}
+
+// Kafka
+
+class Producer {
+	attr String name;
+	ref Topic[1..*] topic;
+}
+
+class Topic {
+	attr String name;
+	attr Model key;
+	attr Model value;
+}
+
+class Event {
+	attr Model key;
+	attr Model value;
+	ref Topic topic;
+}
+
+// Domain model - we use a simple enum to represent return values for code gen purposes
+// Given the customisations necessary for models across the different services (e.g. omitting unnecessary fields)
+// representing domain models in full in the metamodel was deemed infeasible.
+
+enum Model {
+	MLong;
+	MString;
+	Video;
+	IterableVideo;
+	IterableUser;
+	VideoDTO;
+	Hashtag;
+	HashtagDTO;
+	User;
+	UserDTO;
+	UserVideo;
+	HashtagSet;
+}
+
+// Relational model
+
+class Table {
+    attr String name;
+    val Column[*] columns;
+}
+
+class Column {
+    attr String name;
+    attr Model type;
+}
+
+class ForeignKey {
+    ref Column source;
+    ref Column destination;
+}
+
+class JoinTable extends Table {
+}

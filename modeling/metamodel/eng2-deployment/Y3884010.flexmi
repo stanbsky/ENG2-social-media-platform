@@ -1,0 +1,138 @@
+- ?nsuri: https://Y3884010
+
+- deployment:
+  - microservice:
+    - name: video-microservice
+    - port: 8080
+    - controller:
+      - name: VideosController
+      - uri: /videos
+      - endpoint:
+        - methodName: list
+        - uri: /
+        - transactional: true
+        - method: GET
+        - httpResponse:
+          - code: OK
+          - body: IterableVideo
+      - endpoint:
+        - methodName: getVideo
+        - uri: /{id}
+        - transactional: true
+        - parameter:
+          - key: id
+          - value: Long
+        - method: GET
+        - response:
+          - code: OK
+          - body: VideoDTO
+        - event:
+          - topic: watched-videos
+          - key: UserVideo
+          - value: HashtagSet
+      - endpoint:
+        - methodName: likeVideo
+        - uri: /{id}/like
+        - transactional: true
+        - parameter:
+          - key: id
+          - value: Long
+        - parameter:
+          - key: username
+          - val: MString
+        - method: PUT
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: NOT_FOUND
+        - response:
+          - code: OK
+        - event:
+          - topic: video-liked
+          - key: MLong
+          - val: MLong
+        - event:
+          - topic: hashtag-liked
+          - key: MLong
+          - val: MLong
+      - endpoint:
+        - methodName: dislikeVideo
+        - uri: /{id}/dislike
+        - transactional: false
+        - parameter:
+          - key: id
+          - value: Long
+        - method: PUT
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - responsCode: NOT_FOUND
+        - response:
+          - code: OK
+        - event:
+          - topic: video-disliked
+          - key: MLong
+          - val: MLong
+      - endpoint:
+        - methodName: add
+        - uri: /
+        - transactional: true
+        - method: POST
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: CREATED
+        - event:
+          - topic:
+            - name: new-videos
+            - key: MLong
+            - val: HashtagSet
+    - controller:
+      - name: UsersController
+      - uri: /users
+      - endpoint:
+        - methodName: list
+        - uri: /
+        - transactional: false
+        - method: GET
+        - response:
+          - body: IterableUser;
+      - endpoint:
+        - methodName: getUser
+        - uri: /{id}
+        - transactional: false
+        - method: GET
+        - parameter:
+          - key: id
+          - val: MLong
+        - response:
+          - code: OK
+          - body: UserDTO
+      - endpoint:
+        - methodName: add
+        - uri: /
+        - transactional: false
+        - method: POST
+        - response:
+          - code: CREATED          
+          
+  - topic:
+    - name: watched-videos
+    - key: UserVideo
+    - value: HashtagSet
+  - topic:
+    - name: video-liked
+    - key: MLong
+    - val: MLong
+  - topic:
+    - name: video-disliked
+    - key: MLong
+    - val: MLong
+  - topic:
+    - name: hashtag-liked
+    - key: MLong
+    - val: MLong
+  - topic:
+    - name: new-videos
+    - key: MLong
+    - val: HashtagSet

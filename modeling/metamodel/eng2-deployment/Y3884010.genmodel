@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eng2-deployment/src" modelPluginID="eng2-deployment"
+    modelName="Y3884010" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Y3884010.ecore</foreignModel>
+  <genPackages prefix="Deployment" disposableProviderFactory="true" ecorePackage="Y3884010.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Y3884010.ecore#//HttpMethod">
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpMethod/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpMethod/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpMethod/POST"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpMethod/PATCH"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpMethod/DELETE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Y3884010.ecore#//HttpResponseCode">
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpResponseCode/OK"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpResponseCode/CREATED"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpResponseCode/NOT_FOUND"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//HttpResponseCode/FORBIDDEN"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Y3884010.ecore#//Model">
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/MLong"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/MString"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/Video"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/VideoDTO"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/Hashtag"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/HashtagDTO"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/User"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/UserDTO"/>
+    </genEnums>
+    <genClasses ecoreClass="Y3884010.ecore#//Deployment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/microservices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/topics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/cliTool"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/tables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/joinTables"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Microservice">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Microservice/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Microservice/port"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Microservice/controllers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Microservice/producers"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//JavaClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//JavaClass/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//JavaClass/serdeable"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Controller">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Controller/uri"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Controller/endpoints"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Endpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Endpoint/methodName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Endpoint/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Endpoint/transactional"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Endpoint/emittedEvents"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Endpoint/method"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Endpoint/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Endpoint/response"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Endpoint/clientCommand"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Parameter/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Parameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//HttpResponse">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//HttpResponse/responseCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//HttpResponse/responseBody"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//CliTool">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//CliTool/clients"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Command">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Command/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Command/description"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Producer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Producer/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Producer/topic"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Topic">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Topic/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Topic/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Topic/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Event">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Event/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Event/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Event/topic"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Table">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Table/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Table/columns"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//Column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Column/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Column/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//ForeignKey">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//ForeignKey/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//ForeignKey/destination"/>
+    </genClasses>
+    <genClasses ecoreClass="Y3884010.ecore#//JoinTable"/>
+  </genPackages>
+</genmodel:GenModel>

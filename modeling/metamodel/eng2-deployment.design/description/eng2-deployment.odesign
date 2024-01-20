@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="eng2-deployment" version="12.0.0.2017041100">
+  <ownedViewpoints name="Deployment Viewpoint">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Deployment Diagram" domainClass="deployment::Deployment" enablePopupBars="true">
+      <metamodel href="https://Y3884010#/"/>
+      <defaultLayer name="Default">
+        <nodeMappings name="topicNode" label="Topic" domainClass="deployment::Topic">
+          <style xsi:type="style:EllipseNodeDescription" labelSize="12" showIcon="false" labelExpression="aql:[self.name + '\n&lt;' + self.key + ', ' + self.value + '>' /]" sizeComputationExpression="15" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="15" verticalDiameterComputationExpression="8">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+          </style>
+        </nodeMappings>
+        <containerMappings name="microserviceContainer" label="Microservice" semanticCandidatesExpression="feature:microservices" domainClass="deployment::Microservice" childrenPresentation="HorizontalStack">
+          <subContainerMappings name="controllerContainer" label="Controller" semanticCandidatesExpression="feature:eAllContents" domainClass="deployment::Controller" childrenPresentation="HorizontalStack">
+            <subContainerMappings name="endpointContainer" label="Endpoint" semanticCandidatesExpression="feature:eAllContents" domainClass="deployment::Endpoint" childrenPresentation="List">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:[self.methodName + '(' + self.parameters->collect(p | p.value + ' ' + p.key)->sep(', ') + ')\n' + self.method + ' ' + self.uri + ' ' /]">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              </style>
+            </subContainerMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:[self.className + '\n     ' + self.uri /]" widthComputationExpression="20" heightComputationExpression="10">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="16" showIcon="false" labelExpression="aql:[self.name + '\n' + '   - port: ' + self.port /]" widthComputationExpression="20" heightComputationExpression="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </containerMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="eng2-deployment.design.Services"/>
+  </ownedViewpoints>
+</description:Group>
