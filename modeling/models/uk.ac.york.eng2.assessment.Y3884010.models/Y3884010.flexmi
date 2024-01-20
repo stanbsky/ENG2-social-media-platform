@@ -1,0 +1,327 @@
+- ?nsuri: https://Y3884010/v2
+
+- deployment:
+  - microservice:
+    - name: video-microservice
+    - port: 8080
+    - controller:
+      - name: VideosController
+      - uri: "/videos"
+      - method:
+        - name: listVideos
+        - transactional: true
+        - request:
+          - verb: GET
+          - uri: "/"
+        - response:
+          - code: OK
+          - body: IterableVideo
+      - method:
+        - name: getVideo
+        - transactional: true
+        - parameter:
+          - key: id
+          - value: Long
+        - request:
+          - verb: GET
+          - uri: "/{id}"
+        - response:
+          - code: OK
+          - body: VideoDTO
+        - produced: watched-videos
+      - method:
+        - name: likeVideo
+        - transactional: true
+        - parameter:
+          - key: id
+          - value: Long
+        - parameter:
+          - key: username
+          - val: String
+        - request:
+          - verb: PUT
+          - uri: "/{id}/like"
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: NOT_FOUND
+        - response:
+          - code: OK
+        - produced:
+          - video-liked
+          - hashtag-liked
+      - method:
+        - name: dislikeVideo
+        - transactional: false
+        - parameter:
+          - key: id
+          - value: Long
+        - request:
+          - verb: PUT
+          - uri: "/{id}/dislike"
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: NOT_FOUND
+        - response:
+          - code: OK
+        - produced: video-disliked
+      - method:
+        - name: addVideo
+        - transactional: true
+        - request:
+          - verb: POST
+          - uri: "/"
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: CREATED
+        - produced: new-videos
+    - controller:
+      - name: UsersController
+      - uri: "/users"
+      - method:
+        - name: listUsers
+        - transactional: false
+        - request:
+          - verb: GET
+          - uri: "/"
+        - response:
+          - body: IterableUser;
+      - method:
+        - name: getUser
+        - transactional: false
+        - request:
+          - verb: GET
+          - uri: "/{id}"
+        - parameter:
+          - key: id
+          - val: Long
+        - response:
+          - code: OK
+          - body: UserDTO
+      - method:
+        - name: addUser
+        - transactional: false
+        - request:
+          - verb: POST
+          - uri: "/"
+        - response:
+          - code: CREATED   
+    - controller:
+      - name: HashtagsController
+      - uri: "/hashtags"
+      - method:
+        - name: getHashtag
+        - transactional: true
+        - request:
+          - verb: GET
+          - uri: "/{id}"
+        - parameter:
+          - key: id
+          - val: Long
+        - response:
+          - body: Hashtag
+  - microservice:
+    - name: trending-microservice
+    - port: 8081
+    - controller:
+      - name: TrendingController
+      - uri: "/trending"
+      - method:
+        - name: getTrending
+        - transactional: true
+        - request:
+          - verb: GET
+          - uri: "/"
+        - response:
+          - code: OK
+          - body: IterableVideo
+  - microservice:
+    - name: subscription-microservice
+    - port: 8082
+    - controller:
+      - name: SubscriptionsController
+      - uri: "/subscriptions"
+      - method:
+        - name: getWatchlist
+        - transactional: true
+        - request:
+          - verb: GET
+          - uri: "/{userId}/hashtag/{hashtagId}"
+        - parameter:
+          - key: userId
+          - val: Long
+        - parameter:
+          - key: hashtagId
+          - val: Long
+        - response:
+          - code: OK
+          - body: WatchlistDTO
+      - method:
+        - name: subHashtag # 'subscribe' name breaks Command ref
+        - transactional: true
+        - request:
+          - verb: PUT
+          - uri: "/{userId}/hashtag/{hashtagId}"
+        - parameter:
+          - key: userId
+          - val: Long
+        - parameter:
+          - key: hashtagId
+          - val: Long
+        - response:
+          - code: OK
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: NOT_FOUND
+        - produced:
+          - subscriptions
+          - subscriptions-single
+      - method:
+        - name: unsubHashtag # 'unsubscribe' breaks Command ref
+        - transactional: true
+        - request:
+          - verb: DELETE
+          - uri: "/{userId}/hashtag/{hashtagId}"
+        - parameter:
+          - key: userId
+          - val: Long
+        - parameter:
+          - key: hashtagId
+          - val: Long
+        - response:
+          - code: OK
+        - response:
+          - code: FORBIDDEN
+        - response:
+          - code: NOT_FOUND
+        - produced: unsubscribe-single
+    - producer:
+      - name: SubscriptionsProducer
+      - method:
+        - name: updateSubscriptions
+        - topic: subscriptions
+      - method:
+        - name: subscribe
+        - topic: subscriptions-single
+      - method:
+        - name: unsubscribe
+        - topic: unsubscribe-single
+      - method:
+        - name: populateNewSubscriptionStream
+        - topic: new-videos-by-user-hashtag
+      - method:
+        - name: fakeWatchedVideo
+        - topic: watched-videos-by-user-hashtag
+      - method:
+        - name: fakeNewVideo
+        - topic: new-videos            
+
+  - topic:
+    - name: watched-videos
+    - key: UserVideo
+    - value: HashtagSet
+  - topic:
+    - name: video-liked
+    - key: Long
+    - val: Long
+  - topic:
+    - name: video-disliked
+    - key: Long
+    - val: Long
+  - topic:
+    - name: hashtag-liked
+    - key: Long
+    - val: Long
+  - topic:
+    - name: new-videos
+    - key: Long
+    - val: HashtagSet
+  - topic:
+    - name: subscriptions
+    - key: Long
+    - val: HashtagSet
+  - topic:
+    - name: subscriptions-single
+    - key: Long
+    - val: Long
+  - topic:
+    - name: unsubscribe-single
+    - key: Long
+    - val: Long
+  - topic:
+    - name: new-videos-by-user-hashtag
+    - key: UserHashtag
+    - val: VideoSet
+  - topic:
+    - name: watched-videos-by-user-hashtag
+    - key: UserHashtag
+    - val: VideoSet
+    
+  - cliTool:
+    - className: ClientCommand
+    - command:
+      - className: GetVideosCommand
+      - name: get-videos
+      - description: Return all videos
+      - controllerMethod: listVideos
+    - command:
+      - className: GetVideoCommand
+      - name: get-video
+      - description: Return a video
+      - controllerMethod: getVideo
+    - command:
+      - className: LikeVideoCommand
+      - name: like-video
+      - description: Like a video
+      - controllerMethod: likeVideo
+    - command:
+      - className: DislikeVideoCommand
+      - name: dislike-video
+      - description: Dislike a video
+      - controllerMethod: dislikeVideo
+    - command:
+      - className: AddVideoCommand
+      - name: add-video
+      - description: Add a video
+      - controllerMethod: addVideo
+    - command:
+      - className: GetUserCommand
+      - name: get-user
+      - description: Return details on a user
+      - controllerMethod: getUser
+    - command:
+      - className: AddUserCommand
+      - name: add-user
+      - description: Add a user
+      - controllerMethod: addUser
+    - command:
+      - className: GetHashtagCommand
+      - name: get-hashtag
+      - description: Return details on a hashtag
+      - controllerMethod: getHashtag
+    - command:
+      - className: GetTrendingCommand
+      - name: get-trending
+      - description: Return top 10 trending hashtags
+      - controllerMethod: getTrending
+    - command:
+      - className: GetWatchlistCommand
+      - name: get-watchlist
+      - description: Return latest 10 videos to watch for a given user and hashtag
+      - controllerMethod: getWatchlist
+    - command:
+      - className: SubscribeCommand
+      - name: subscribe
+      - description: Subscribe to a hashtag
+      - controllerMethod: subHashtag
+    - command:
+      - className: UnsubscribeCommand
+      - name: unsubscribe-hashtag
+      - description: Unsubscribe to a hashtag
+      - controllerMethod: unsubHashtag
+
+          
+  
