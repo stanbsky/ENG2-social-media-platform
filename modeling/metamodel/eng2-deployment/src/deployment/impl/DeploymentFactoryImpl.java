@@ -61,14 +61,14 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
       case DeploymentPackage.MICROSERVICE: return createMicroservice();
       case DeploymentPackage.JAVA_CLASS: return createJavaClass();
       case DeploymentPackage.CONTROLLER: return createController();
-      case DeploymentPackage.ENDPOINT: return createEndpoint();
+      case DeploymentPackage.METHOD: return createMethod();
       case DeploymentPackage.PARAMETER: return createParameter();
-      case DeploymentPackage.HTTP_RESPONSE: return createHttpResponse();
+      case DeploymentPackage.REQUEST: return createRequest();
+      case DeploymentPackage.RESPONSE: return createResponse();
       case DeploymentPackage.CLI_TOOL: return createCliTool();
       case DeploymentPackage.COMMAND: return createCommand();
       case DeploymentPackage.PRODUCER: return createProducer();
       case DeploymentPackage.TOPIC: return createTopic();
-      case DeploymentPackage.EVENT: return createEvent();
       case DeploymentPackage.TABLE: return createTable();
       case DeploymentPackage.COLUMN: return createColumn();
       case DeploymentPackage.FOREIGN_KEY: return createForeignKey();
@@ -86,10 +86,10 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
-      case DeploymentPackage.HTTP_METHOD:
-        return createHttpMethodFromString(eDataType, initialValue);
-      case DeploymentPackage.HTTP_RESPONSE_CODE:
-        return createHttpResponseCodeFromString(eDataType, initialValue);
+      case DeploymentPackage.HTTP_VERB:
+        return createHttpVerbFromString(eDataType, initialValue);
+      case DeploymentPackage.HTTP_CODE:
+        return createHttpCodeFromString(eDataType, initialValue);
       case DeploymentPackage.MODEL:
         return createModelFromString(eDataType, initialValue);
       default:
@@ -105,10 +105,10 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
-      case DeploymentPackage.HTTP_METHOD:
-        return convertHttpMethodToString(eDataType, instanceValue);
-      case DeploymentPackage.HTTP_RESPONSE_CODE:
-        return convertHttpResponseCodeToString(eDataType, instanceValue);
+      case DeploymentPackage.HTTP_VERB:
+        return convertHttpVerbToString(eDataType, instanceValue);
+      case DeploymentPackage.HTTP_CODE:
+        return convertHttpCodeToString(eDataType, instanceValue);
       case DeploymentPackage.MODEL:
         return convertModelToString(eDataType, instanceValue);
       default:
@@ -158,15 +158,15 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Endpoint createEndpoint() {
-    EndpointImpl endpoint = new EndpointImpl();
-    return endpoint;
+  public Method createMethod() {
+    MethodImpl method = new MethodImpl();
+    return method;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -178,15 +178,25 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public HttpResponse createHttpResponse() {
-    HttpResponseImpl httpResponse = new HttpResponseImpl();
-    return httpResponse;
+  public Request createRequest() {
+    RequestImpl request = new RequestImpl();
+    return request;
   }
 
-	/**
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Response createResponse() {
+    ResponseImpl response = new ResponseImpl();
+    return response;
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -224,16 +234,6 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 	public Topic createTopic() {
     TopicImpl topic = new TopicImpl();
     return topic;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public Event createEvent() {
-    EventImpl event = new EventImpl();
-    return event;
   }
 
 	/**
@@ -278,45 +278,45 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public HttpMethod createHttpMethodFromString(EDataType eDataType, String initialValue) {
-    HttpMethod result = HttpMethod.get(initialValue);
+  public HttpVerb createHttpVerbFromString(EDataType eDataType, String initialValue) {
+    HttpVerb result = HttpVerb.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertHttpMethodToString(EDataType eDataType, Object instanceValue) {
+  public String convertHttpVerbToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public HttpResponseCode createHttpResponseCodeFromString(EDataType eDataType, String initialValue) {
-    HttpResponseCode result = HttpResponseCode.get(initialValue);
+  public HttpCode createHttpCodeFromString(EDataType eDataType, String initialValue) {
+    HttpCode result = HttpCode.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertHttpResponseCodeToString(EDataType eDataType, Object instanceValue) {
+  public String convertHttpCodeToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated

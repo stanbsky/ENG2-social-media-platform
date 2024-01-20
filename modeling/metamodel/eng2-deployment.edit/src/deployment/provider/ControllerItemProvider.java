@@ -87,7 +87,7 @@ public class ControllerItemProvider extends JavaClassItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(DeploymentPackage.Literals.CONTROLLER__ENDPOINTS);
+      childrenFeatures.add(DeploymentPackage.Literals.CONTROLLER__METHODS);
     }
     return childrenFeatures;
   }
@@ -146,7 +146,7 @@ public class ControllerItemProvider extends JavaClassItemProvider {
       case DeploymentPackage.CONTROLLER__URI:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
-      case DeploymentPackage.CONTROLLER__ENDPOINTS:
+      case DeploymentPackage.CONTROLLER__METHODS:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -166,8 +166,8 @@ public class ControllerItemProvider extends JavaClassItemProvider {
 
     newChildDescriptors.add
       (createChildParameter
-        (DeploymentPackage.Literals.CONTROLLER__ENDPOINTS,
-         DeploymentFactory.eINSTANCE.createEndpoint()));
+        (DeploymentPackage.Literals.CONTROLLER__METHODS,
+         DeploymentFactory.eINSTANCE.createMethod()));
   }
 
 }

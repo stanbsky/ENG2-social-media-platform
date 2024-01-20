@@ -5,7 +5,7 @@ package deployment.provider;
 
 import deployment.DeploymentFactory;
 import deployment.DeploymentPackage;
-import deployment.Endpoint;
+import deployment.Method;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,12 +29,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link deployment.Endpoint} object.
+ * This is the item provider adapter for a {@link deployment.Method} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EndpointItemProvider 
+public class MethodItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -48,7 +48,7 @@ public class EndpointItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public EndpointItemProvider(AdapterFactory adapterFactory) {
+  public MethodItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -63,51 +63,28 @@ public class EndpointItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addMethodNamePropertyDescriptor(object);
-      addUriPropertyDescriptor(object);
+      addNamePropertyDescriptor(object);
       addTransactionalPropertyDescriptor(object);
-      addMethodPropertyDescriptor(object);
+      addProducedPropertyDescriptor(object);
       addClientCommandPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Method Name feature.
+   * This adds a property descriptor for the Name feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addMethodNamePropertyDescriptor(Object object) {
+  protected void addNamePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Endpoint_methodName_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Endpoint_methodName_feature", "_UI_Endpoint_type"),
-         DeploymentPackage.Literals.ENDPOINT__METHOD_NAME,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Uri feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Endpoint_uri_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Endpoint_uri_feature", "_UI_Endpoint_type"),
-         DeploymentPackage.Literals.ENDPOINT__URI,
+         getString("_UI_Method_name_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Method_name_feature", "_UI_Method_type"),
+         DeploymentPackage.Literals.METHOD__NAME,
          true,
          false,
          false,
@@ -127,9 +104,9 @@ public class EndpointItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Endpoint_transactional_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Endpoint_transactional_feature", "_UI_Endpoint_type"),
-         DeploymentPackage.Literals.ENDPOINT__TRANSACTIONAL,
+         getString("_UI_Method_transactional_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Method_transactional_feature", "_UI_Method_type"),
+         DeploymentPackage.Literals.METHOD__TRANSACTIONAL,
          true,
          false,
          false,
@@ -139,23 +116,23 @@ public class EndpointItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Method feature.
+   * This adds a property descriptor for the Produced feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addMethodPropertyDescriptor(Object object) {
+  protected void addProducedPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Endpoint_method_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Endpoint_method_feature", "_UI_Endpoint_type"),
-         DeploymentPackage.Literals.ENDPOINT__METHOD,
+         getString("_UI_Method_produced_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Method_produced_feature", "_UI_Method_type"),
+         DeploymentPackage.Literals.METHOD__PRODUCED,
          true,
          false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         true,
+         null,
          null,
          null));
   }
@@ -171,9 +148,9 @@ public class EndpointItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Endpoint_clientCommand_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Endpoint_clientCommand_feature", "_UI_Endpoint_type"),
-         DeploymentPackage.Literals.ENDPOINT__CLIENT_COMMAND,
+         getString("_UI_Method_clientCommand_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Method_clientCommand_feature", "_UI_Method_type"),
+         DeploymentPackage.Literals.METHOD__CLIENT_COMMAND,
          true,
          false,
          true,
@@ -194,9 +171,9 @@ public class EndpointItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(DeploymentPackage.Literals.ENDPOINT__EMITTED_EVENTS);
-      childrenFeatures.add(DeploymentPackage.Literals.ENDPOINT__PARAMETERS);
-      childrenFeatures.add(DeploymentPackage.Literals.ENDPOINT__RESPONSE);
+      childrenFeatures.add(DeploymentPackage.Literals.METHOD__PARAMETERS);
+      childrenFeatures.add(DeploymentPackage.Literals.METHOD__REQUEST);
+      childrenFeatures.add(DeploymentPackage.Literals.METHOD__RESPONSE);
     }
     return childrenFeatures;
   }
@@ -215,14 +192,14 @@ public class EndpointItemProvider
   }
 
   /**
-   * This returns Endpoint.gif.
+   * This returns Method.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Endpoint"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Method"));
   }
 
   /**
@@ -233,10 +210,10 @@ public class EndpointItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((Endpoint)object).getMethodName();
+    String label = ((Method)object).getName();
     return label == null || label.length() == 0 ?
-      getString("_UI_Endpoint_type") :
-      getString("_UI_Endpoint_type") + " " + label;
+      getString("_UI_Method_type") :
+      getString("_UI_Method_type") + " " + label;
   }
 
 
@@ -251,16 +228,14 @@ public class EndpointItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Endpoint.class)) {
-      case DeploymentPackage.ENDPOINT__METHOD_NAME:
-      case DeploymentPackage.ENDPOINT__URI:
-      case DeploymentPackage.ENDPOINT__TRANSACTIONAL:
-      case DeploymentPackage.ENDPOINT__METHOD:
+    switch (notification.getFeatureID(Method.class)) {
+      case DeploymentPackage.METHOD__NAME:
+      case DeploymentPackage.METHOD__TRANSACTIONAL:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
-      case DeploymentPackage.ENDPOINT__EMITTED_EVENTS:
-      case DeploymentPackage.ENDPOINT__PARAMETERS:
-      case DeploymentPackage.ENDPOINT__RESPONSE:
+      case DeploymentPackage.METHOD__PARAMETERS:
+      case DeploymentPackage.METHOD__REQUEST:
+      case DeploymentPackage.METHOD__RESPONSE:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -280,18 +255,18 @@ public class EndpointItemProvider
 
     newChildDescriptors.add
       (createChildParameter
-        (DeploymentPackage.Literals.ENDPOINT__EMITTED_EVENTS,
-         DeploymentFactory.eINSTANCE.createEvent()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (DeploymentPackage.Literals.ENDPOINT__PARAMETERS,
+        (DeploymentPackage.Literals.METHOD__PARAMETERS,
          DeploymentFactory.eINSTANCE.createParameter()));
 
     newChildDescriptors.add
       (createChildParameter
-        (DeploymentPackage.Literals.ENDPOINT__RESPONSE,
-         DeploymentFactory.eINSTANCE.createHttpResponse()));
+        (DeploymentPackage.Literals.METHOD__REQUEST,
+         DeploymentFactory.eINSTANCE.createRequest()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (DeploymentPackage.Literals.METHOD__RESPONSE,
+         DeploymentFactory.eINSTANCE.createResponse()));
   }
 
   /**

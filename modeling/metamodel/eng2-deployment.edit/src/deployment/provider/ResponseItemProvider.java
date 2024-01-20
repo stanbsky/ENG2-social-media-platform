@@ -4,8 +4,8 @@ package deployment.provider;
 
 
 import deployment.DeploymentPackage;
-import deployment.HttpResponse;
-import deployment.HttpResponseCode;
+import deployment.HttpCode;
+import deployment.Response;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link deployment.HttpResponse} object.
+ * This is the item provider adapter for a {@link deployment.Response} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HttpResponseItemProvider 
+public class ResponseItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class HttpResponseItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public HttpResponseItemProvider(AdapterFactory adapterFactory) {
+  public ResponseItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -61,26 +61,26 @@ public class HttpResponseItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addResponseCodePropertyDescriptor(object);
-      addResponseBodyPropertyDescriptor(object);
+      addCodePropertyDescriptor(object);
+      addBodyPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Response Code feature.
+   * This adds a property descriptor for the Code feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addResponseCodePropertyDescriptor(Object object) {
+  protected void addCodePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HttpResponse_responseCode_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HttpResponse_responseCode_feature", "_UI_HttpResponse_type"),
-         DeploymentPackage.Literals.HTTP_RESPONSE__RESPONSE_CODE,
+         getString("_UI_Response_code_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Response_code_feature", "_UI_Response_type"),
+         DeploymentPackage.Literals.RESPONSE__CODE,
          true,
          false,
          false,
@@ -90,19 +90,19 @@ public class HttpResponseItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Response Body feature.
+   * This adds a property descriptor for the Body feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addResponseBodyPropertyDescriptor(Object object) {
+  protected void addBodyPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HttpResponse_responseBody_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HttpResponse_responseBody_feature", "_UI_HttpResponse_type"),
-         DeploymentPackage.Literals.HTTP_RESPONSE__RESPONSE_BODY,
+         getString("_UI_Response_body_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Response_body_feature", "_UI_Response_type"),
+         DeploymentPackage.Literals.RESPONSE__BODY,
          true,
          false,
          false,
@@ -112,14 +112,14 @@ public class HttpResponseItemProvider
   }
 
   /**
-   * This returns HttpResponse.gif.
+   * This returns Response.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/HttpResponse"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Response"));
   }
 
   /**
@@ -130,11 +130,11 @@ public class HttpResponseItemProvider
    */
   @Override
   public String getText(Object object) {
-    HttpResponseCode labelValue = ((HttpResponse)object).getResponseCode();
+    HttpCode labelValue = ((Response)object).getCode();
     String label = labelValue == null ? null : labelValue.toString();
     return label == null || label.length() == 0 ?
-      getString("_UI_HttpResponse_type") :
-      getString("_UI_HttpResponse_type") + " " + label;
+      getString("_UI_Response_type") :
+      getString("_UI_Response_type") + " " + label;
   }
 
 
@@ -149,9 +149,9 @@ public class HttpResponseItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(HttpResponse.class)) {
-      case DeploymentPackage.HTTP_RESPONSE__RESPONSE_CODE:
-      case DeploymentPackage.HTTP_RESPONSE__RESPONSE_BODY:
+    switch (notification.getFeatureID(Response.class)) {
+      case DeploymentPackage.RESPONSE__CODE:
+      case DeploymentPackage.RESPONSE__BODY:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

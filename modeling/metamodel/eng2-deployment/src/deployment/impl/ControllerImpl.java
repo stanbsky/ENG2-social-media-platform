@@ -4,8 +4,7 @@ package deployment.impl;
 
 import deployment.Controller;
 import deployment.DeploymentPackage;
-import deployment.Endpoint;
-
+import deployment.Method;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link deployment.impl.ControllerImpl#getUri <em>Uri</em>}</li>
- *   <li>{@link deployment.impl.ControllerImpl#getEndpoints <em>Endpoints</em>}</li>
+ *   <li>{@link deployment.impl.ControllerImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,16 +56,16 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
 	protected String uri = URI_EDEFAULT;
 
 	/**
-   * The cached value of the '{@link #getEndpoints() <em>Endpoints</em>}' containment reference list.
+   * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see #getEndpoints()
+   * <!-- end-user-doc -->
+   * @see #getMethods()
    * @generated
    * @ordered
    */
-	protected EList<Endpoint> endpoints;
+  protected EList<Method> methods;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -108,17 +107,17 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<Endpoint> getEndpoints() {
-    if (endpoints == null) {
-      endpoints = new EObjectContainmentEList<Endpoint>(Endpoint.class, this, DeploymentPackage.CONTROLLER__ENDPOINTS);
+  public EList<Method> getMethods() {
+    if (methods == null) {
+      methods = new EObjectContainmentEList<Method>(Method.class, this, DeploymentPackage.CONTROLLER__METHODS);
     }
-    return endpoints;
+    return methods;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -126,8 +125,8 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case DeploymentPackage.CONTROLLER__ENDPOINTS:
-        return ((InternalEList<?>)getEndpoints()).basicRemove(otherEnd, msgs);
+      case DeploymentPackage.CONTROLLER__METHODS:
+        return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -142,8 +141,8 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
     switch (featureID) {
       case DeploymentPackage.CONTROLLER__URI:
         return getUri();
-      case DeploymentPackage.CONTROLLER__ENDPOINTS:
-        return getEndpoints();
+      case DeploymentPackage.CONTROLLER__METHODS:
+        return getMethods();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -160,9 +159,9 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
       case DeploymentPackage.CONTROLLER__URI:
         setUri((String)newValue);
         return;
-      case DeploymentPackage.CONTROLLER__ENDPOINTS:
-        getEndpoints().clear();
-        getEndpoints().addAll((Collection<? extends Endpoint>)newValue);
+      case DeploymentPackage.CONTROLLER__METHODS:
+        getMethods().clear();
+        getMethods().addAll((Collection<? extends Method>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -179,8 +178,8 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
       case DeploymentPackage.CONTROLLER__URI:
         setUri(URI_EDEFAULT);
         return;
-      case DeploymentPackage.CONTROLLER__ENDPOINTS:
-        getEndpoints().clear();
+      case DeploymentPackage.CONTROLLER__METHODS:
+        getMethods().clear();
         return;
     }
     super.eUnset(featureID);
@@ -196,8 +195,8 @@ public class ControllerImpl extends JavaClassImpl implements Controller {
     switch (featureID) {
       case DeploymentPackage.CONTROLLER__URI:
         return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-      case DeploymentPackage.CONTROLLER__ENDPOINTS:
-        return endpoints != null && !endpoints.isEmpty();
+      case DeploymentPackage.CONTROLLER__METHODS:
+        return methods != null && !methods.isEmpty();
     }
     return super.eIsSet(featureID);
   }

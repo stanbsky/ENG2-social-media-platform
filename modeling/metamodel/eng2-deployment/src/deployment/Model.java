@@ -49,6 +49,22 @@ public enum Model implements Enumerator {
 	VIDEO(2, "Video", "Video"),
 
 	/**
+   * The '<em><b>Iterable Video</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #ITERABLE_VIDEO_VALUE
+   * @generated
+   * @ordered
+   */
+  ITERABLE_VIDEO(3, "IterableVideo", "IterableVideo"), /**
+   * The '<em><b>Iterable User</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #ITERABLE_USER_VALUE
+   * @generated
+   * @ordered
+   */
+  ITERABLE_USER(4, "IterableUser", "IterableUser"), /**
    * The '<em><b>Video DTO</b></em>' literal object.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,7 +72,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	VIDEO_DTO(3, "VideoDTO", "VideoDTO"),
+	VIDEO_DTO(5, "VideoDTO", "VideoDTO"),
 
 	/**
    * The '<em><b>Hashtag</b></em>' literal object.
@@ -66,7 +82,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	HASHTAG(4, "Hashtag", "Hashtag"),
+	HASHTAG(6, "Hashtag", "Hashtag"),
 
 	/**
    * The '<em><b>Hashtag DTO</b></em>' literal object.
@@ -76,7 +92,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	HASHTAG_DTO(5, "HashtagDTO", "HashtagDTO"),
+	HASHTAG_DTO(7, "HashtagDTO", "HashtagDTO"),
 
 	/**
    * The '<em><b>User</b></em>' literal object.
@@ -86,7 +102,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	USER(6, "User", "User"),
+	USER(8, "User", "User"),
 
 	/**
    * The '<em><b>User DTO</b></em>' literal object.
@@ -96,7 +112,23 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	USER_DTO(7, "UserDTO", "UserDTO");
+	USER_DTO(9, "UserDTO", "UserDTO"), /**
+   * The '<em><b>User Video</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #USER_VIDEO_VALUE
+   * @generated
+   * @ordered
+   */
+  USER_VIDEO(10, "UserVideo", "UserVideo"), /**
+   * The '<em><b>Hashtag Set</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #HASHTAG_SET_VALUE
+   * @generated
+   * @ordered
+   */
+  HASHTAG_SET(11, "HashtagSet", "HashtagSet");
 
 	/**
    * The '<em><b>MLong</b></em>' literal value.
@@ -132,6 +164,28 @@ public enum Model implements Enumerator {
 	public static final int VIDEO_VALUE = 2;
 
 	/**
+   * The '<em><b>Iterable Video</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #ITERABLE_VIDEO
+   * @model name="IterableVideo"
+   * @generated
+   * @ordered
+   */
+  public static final int ITERABLE_VIDEO_VALUE = 3;
+
+  /**
+   * The '<em><b>Iterable User</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #ITERABLE_USER
+   * @model name="IterableUser"
+   * @generated
+   * @ordered
+   */
+  public static final int ITERABLE_USER_VALUE = 4;
+
+  /**
    * The '<em><b>Video DTO</b></em>' literal value.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,7 +194,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int VIDEO_DTO_VALUE = 3;
+	public static final int VIDEO_DTO_VALUE = 5;
 
 	/**
    * The '<em><b>Hashtag</b></em>' literal value.
@@ -151,7 +205,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int HASHTAG_VALUE = 4;
+	public static final int HASHTAG_VALUE = 6;
 
 	/**
    * The '<em><b>Hashtag DTO</b></em>' literal value.
@@ -162,7 +216,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int HASHTAG_DTO_VALUE = 5;
+	public static final int HASHTAG_DTO_VALUE = 7;
 
 	/**
    * The '<em><b>User</b></em>' literal value.
@@ -173,7 +227,7 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int USER_VALUE = 6;
+	public static final int USER_VALUE = 8;
 
 	/**
    * The '<em><b>User DTO</b></em>' literal value.
@@ -184,9 +238,31 @@ public enum Model implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int USER_DTO_VALUE = 7;
+	public static final int USER_DTO_VALUE = 9;
 
 	/**
+   * The '<em><b>User Video</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #USER_VIDEO
+   * @model name="UserVideo"
+   * @generated
+   * @ordered
+   */
+  public static final int USER_VIDEO_VALUE = 10;
+
+  /**
+   * The '<em><b>Hashtag Set</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #HASHTAG_SET
+   * @model name="HashtagSet"
+   * @generated
+   * @ordered
+   */
+  public static final int HASHTAG_SET_VALUE = 11;
+
+  /**
    * An array of all the '<em><b>Model</b></em>' enumerators.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,11 +273,15 @@ public enum Model implements Enumerator {
       MLONG,
       MSTRING,
       VIDEO,
+      ITERABLE_VIDEO,
+      ITERABLE_USER,
       VIDEO_DTO,
       HASHTAG,
       HASHTAG_DTO,
       USER,
       USER_DTO,
+      USER_VIDEO,
+      HASHTAG_SET,
     };
 
 	/**
@@ -261,11 +341,15 @@ public enum Model implements Enumerator {
       case MLONG_VALUE: return MLONG;
       case MSTRING_VALUE: return MSTRING;
       case VIDEO_VALUE: return VIDEO;
+      case ITERABLE_VIDEO_VALUE: return ITERABLE_VIDEO;
+      case ITERABLE_USER_VALUE: return ITERABLE_USER;
       case VIDEO_DTO_VALUE: return VIDEO_DTO;
       case HASHTAG_VALUE: return HASHTAG;
       case HASHTAG_DTO_VALUE: return HASHTAG_DTO;
       case USER_VALUE: return USER;
       case USER_DTO_VALUE: return USER_DTO;
+      case USER_VIDEO_VALUE: return USER_VIDEO;
+      case HASHTAG_SET_VALUE: return HASHTAG_SET;
     }
     return null;
   }

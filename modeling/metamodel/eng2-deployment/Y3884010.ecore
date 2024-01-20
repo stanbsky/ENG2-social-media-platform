@@ -27,38 +27,42 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" eSuperTypes="#//JavaClass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endpoints" upperBound="-1"
-        eType="#//Endpoint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//Method" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Endpoint">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Method">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="emittedEvents" upperBound="-1"
-        eType="#//Event" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="#//HttpMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="request" eType="#//Request"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="response" upperBound="-1"
-        eType="#//HttpResponse" containment="true"/>
+        eType="#//Response" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="produced" upperBound="-1"
+        eType="#//Topic"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="clientCommand" eType="#//Command"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Model"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HttpResponse">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="responseCode" eType="#//HttpResponseCode"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="responseBody" eType="#//Model"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Request">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="verb" eType="#//HttpVerb"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="HttpMethod">
+  <eClassifiers xsi:type="ecore:EClass" name="Response">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="#//HttpCode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="#//Model"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HttpVerb">
     <eLiterals name="GET"/>
     <eLiterals name="PUT" value="1"/>
     <eLiterals name="POST" value="2"/>
     <eLiterals name="PATCH" value="3"/>
     <eLiterals name="DELETE" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="HttpResponseCode">
+  <eClassifiers xsi:type="ecore:EEnum" name="HttpCode">
     <eLiterals name="OK"/>
     <eLiterals name="CREATED" value="1"/>
     <eLiterals name="NOT_FOUND" value="2"/>
@@ -82,20 +86,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="#//Model"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Model"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Event">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="#//Model"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Model"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Model">
     <eLiterals name="MLong"/>
     <eLiterals name="MString" value="1"/>
     <eLiterals name="Video" value="2"/>
-    <eLiterals name="VideoDTO" value="3"/>
-    <eLiterals name="Hashtag" value="4"/>
-    <eLiterals name="HashtagDTO" value="5"/>
-    <eLiterals name="User" value="6"/>
-    <eLiterals name="UserDTO" value="7"/>
+    <eLiterals name="IterableVideo" value="3"/>
+    <eLiterals name="IterableUser" value="4"/>
+    <eLiterals name="VideoDTO" value="5"/>
+    <eLiterals name="Hashtag" value="6"/>
+    <eLiterals name="HashtagDTO" value="7"/>
+    <eLiterals name="User" value="8"/>
+    <eLiterals name="UserDTO" value="9"/>
+    <eLiterals name="UserVideo" value="10"/>
+    <eLiterals name="HashtagSet" value="11"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Table">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

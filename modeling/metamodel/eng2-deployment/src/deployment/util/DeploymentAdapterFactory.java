@@ -84,16 +84,20 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
         return createControllerAdapter();
       }
       @Override
-      public Adapter caseEndpoint(Endpoint object) {
-        return createEndpointAdapter();
+      public Adapter caseMethod(Method object) {
+        return createMethodAdapter();
       }
       @Override
       public Adapter caseParameter(Parameter object) {
         return createParameterAdapter();
       }
       @Override
-      public Adapter caseHttpResponse(HttpResponse object) {
-        return createHttpResponseAdapter();
+      public Adapter caseRequest(Request object) {
+        return createRequestAdapter();
+      }
+      @Override
+      public Adapter caseResponse(Response object) {
+        return createResponseAdapter();
       }
       @Override
       public Adapter caseCliTool(CliTool object) {
@@ -110,10 +114,6 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseTopic(Topic object) {
         return createTopicAdapter();
-      }
-      @Override
-      public Adapter caseEvent(Event object) {
-        return createEventAdapter();
       }
       @Override
       public Adapter caseTable(Table object) {
@@ -208,20 +208,20 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link deployment.Endpoint <em>Endpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link deployment.Method <em>Method</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see deployment.Endpoint
+   * @see deployment.Method
    * @generated
    */
-	public Adapter createEndpointAdapter() {
+  public Adapter createMethodAdapter() {
     return null;
   }
 
-	/**
+  /**
    * Creates a new adapter for an object of class '{@link deployment.Parameter <em>Parameter</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -236,20 +236,34 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link deployment.HttpResponse <em>Http Response</em>}'.
+   * Creates a new adapter for an object of class '{@link deployment.Request <em>Request</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see deployment.HttpResponse
+   * @see deployment.Request
    * @generated
    */
-	public Adapter createHttpResponseAdapter() {
+  public Adapter createRequestAdapter() {
     return null;
   }
 
-	/**
+  /**
+   * Creates a new adapter for an object of class '{@link deployment.Response <em>Response</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see deployment.Response
+   * @generated
+   */
+  public Adapter createResponseAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link deployment.CliTool <em>Cli Tool</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -302,20 +316,6 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createTopicAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link deployment.Event <em>Event</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see deployment.Event
-   * @generated
-   */
-	public Adapter createEventAdapter() {
     return null;
   }
 

@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link deployment.Controller#getUri <em>Uri</em>}</li>
- *   <li>{@link deployment.Controller#getEndpoints <em>Endpoints</em>}</li>
+ *   <li>{@link deployment.Controller#getMethods <em>Methods</em>}</li>
  * </ul>
  *
  * @see deployment.DeploymentPackage#getController()
@@ -45,15 +45,15 @@ public interface Controller extends JavaClass {
 	void setUri(String value);
 
 	/**
-   * Returns the value of the '<em><b>Endpoints</b></em>' containment reference list.
-   * The list contents are of type {@link deployment.Endpoint}.
+   * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
+   * The list contents are of type {@link deployment.Method}.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Endpoints</em>' containment reference list.
-   * @see deployment.DeploymentPackage#getController_Endpoints()
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Methods</em>' containment reference list.
+   * @see deployment.DeploymentPackage#getController_Methods()
    * @model containment="true"
    * @generated
    */
-	EList<Endpoint> getEndpoints();
+  EList<Method> getMethods();
 
 } // Controller

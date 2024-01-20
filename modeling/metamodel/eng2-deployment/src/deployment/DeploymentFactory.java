@@ -58,15 +58,15 @@ public interface DeploymentFactory extends EFactory {
 	Controller createController();
 
 	/**
-   * Returns a new object of class '<em>Endpoint</em>'.
+   * Returns a new object of class '<em>Method</em>'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Endpoint</em>'.
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Method</em>'.
    * @generated
    */
-	Endpoint createEndpoint();
+  Method createMethod();
 
-	/**
+  /**
    * Returns a new object of class '<em>Parameter</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,15 +76,24 @@ public interface DeploymentFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
-   * Returns a new object of class '<em>Http Response</em>'.
+   * Returns a new object of class '<em>Request</em>'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Http Response</em>'.
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Request</em>'.
    * @generated
    */
-	HttpResponse createHttpResponse();
+  Request createRequest();
 
-	/**
+  /**
+   * Returns a new object of class '<em>Response</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Response</em>'.
+   * @generated
+   */
+  Response createResponse();
+
+  /**
    * Returns a new object of class '<em>Cli Tool</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,15 +128,6 @@ public interface DeploymentFactory extends EFactory {
    * @generated
    */
 	Topic createTopic();
-
-	/**
-   * Returns a new object of class '<em>Event</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Event</em>'.
-   * @generated
-   */
-	Event createEvent();
 
 	/**
    * Returns a new object of class '<em>Table</em>'.

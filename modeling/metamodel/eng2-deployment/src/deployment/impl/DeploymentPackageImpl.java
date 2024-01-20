@@ -9,18 +9,18 @@ import deployment.Controller;
 import deployment.Deployment;
 import deployment.DeploymentFactory;
 import deployment.DeploymentPackage;
-import deployment.Endpoint;
-import deployment.Event;
 import deployment.ForeignKey;
-import deployment.HttpMethod;
-import deployment.HttpResponse;
-import deployment.HttpResponseCode;
+import deployment.HttpCode;
+import deployment.HttpVerb;
 import deployment.JavaClass;
 import deployment.JoinTable;
+import deployment.Method;
 import deployment.Microservice;
 import deployment.Model;
 import deployment.Parameter;
 import deployment.Producer;
+import deployment.Request;
+import deployment.Response;
 import deployment.Table;
 import deployment.Topic;
 
@@ -69,12 +69,12 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass endpointEClass = null;
+  private EClass methodEClass = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -83,12 +83,19 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass httpResponseEClass = null;
+  private EClass requestEClass = null;
 
-	/**
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass responseEClass = null;
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -115,13 +122,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
    * @generated
    */
 	private EClass topicEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass eventEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -153,19 +153,19 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EEnum httpMethodEEnum = null;
+  private EEnum httpVerbEEnum = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EEnum httpResponseCodeEEnum = null;
+  private EEnum httpCodeEEnum = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -379,95 +379,86 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getController_Endpoints() {
+  public EReference getController_Methods() {
     return (EReference)controllerEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getEndpoint() {
-    return endpointEClass;
+  public EClass getMethod() {
+    return methodEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getEndpoint_MethodName() {
-    return (EAttribute)endpointEClass.getEStructuralFeatures().get(0);
+  public EAttribute getMethod_Name() {
+    return (EAttribute)methodEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getEndpoint_Uri() {
-    return (EAttribute)endpointEClass.getEStructuralFeatures().get(1);
+  public EAttribute getMethod_Transactional() {
+    return (EAttribute)methodEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getEndpoint_Transactional() {
-    return (EAttribute)endpointEClass.getEStructuralFeatures().get(2);
+  public EReference getMethod_Parameters() {
+    return (EReference)methodEClass.getEStructuralFeatures().get(2);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getEndpoint_EmittedEvents() {
-    return (EReference)endpointEClass.getEStructuralFeatures().get(3);
+  public EReference getMethod_Request() {
+    return (EReference)methodEClass.getEStructuralFeatures().get(3);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getEndpoint_Method() {
-    return (EAttribute)endpointEClass.getEStructuralFeatures().get(4);
+  public EReference getMethod_Response() {
+    return (EReference)methodEClass.getEStructuralFeatures().get(4);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getEndpoint_Parameters() {
-    return (EReference)endpointEClass.getEStructuralFeatures().get(5);
+  public EReference getMethod_Produced() {
+    return (EReference)methodEClass.getEStructuralFeatures().get(5);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getEndpoint_Response() {
-    return (EReference)endpointEClass.getEStructuralFeatures().get(6);
+  public EReference getMethod_ClientCommand() {
+    return (EReference)methodEClass.getEStructuralFeatures().get(6);
   }
 
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getEndpoint_ClientCommand() {
-    return (EReference)endpointEClass.getEStructuralFeatures().get(7);
-  }
-
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -496,32 +487,59 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getHttpResponse() {
-    return httpResponseEClass;
+  public EClass getRequest() {
+    return requestEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getHttpResponse_ResponseCode() {
-    return (EAttribute)httpResponseEClass.getEStructuralFeatures().get(0);
+  public EAttribute getRequest_Verb() {
+    return (EAttribute)requestEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getHttpResponse_ResponseBody() {
-    return (EAttribute)httpResponseEClass.getEStructuralFeatures().get(1);
+  public EAttribute getRequest_Uri() {
+    return (EAttribute)requestEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getResponse() {
+    return responseEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getResponse_Code() {
+    return (EAttribute)responseEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getResponse_Body() {
+    return (EAttribute)responseEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -631,42 +649,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getEvent() {
-    return eventEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getEvent_Key() {
-    return (EAttribute)eventEClass.getEStructuralFeatures().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getEvent_Value() {
-    return (EAttribute)eventEClass.getEStructuralFeatures().get(1);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getEvent_Topic() {
-    return (EReference)eventEClass.getEStructuralFeatures().get(2);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
@@ -757,23 +739,23 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EEnum getHttpMethod() {
-    return httpMethodEEnum;
+  public EEnum getHttpVerb() {
+    return httpVerbEEnum;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EEnum getHttpResponseCode() {
-    return httpResponseCodeEEnum;
+  public EEnum getHttpCode() {
+    return httpCodeEEnum;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -829,25 +811,28 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
     controllerEClass = createEClass(CONTROLLER);
     createEAttribute(controllerEClass, CONTROLLER__URI);
-    createEReference(controllerEClass, CONTROLLER__ENDPOINTS);
+    createEReference(controllerEClass, CONTROLLER__METHODS);
 
-    endpointEClass = createEClass(ENDPOINT);
-    createEAttribute(endpointEClass, ENDPOINT__METHOD_NAME);
-    createEAttribute(endpointEClass, ENDPOINT__URI);
-    createEAttribute(endpointEClass, ENDPOINT__TRANSACTIONAL);
-    createEReference(endpointEClass, ENDPOINT__EMITTED_EVENTS);
-    createEAttribute(endpointEClass, ENDPOINT__METHOD);
-    createEReference(endpointEClass, ENDPOINT__PARAMETERS);
-    createEReference(endpointEClass, ENDPOINT__RESPONSE);
-    createEReference(endpointEClass, ENDPOINT__CLIENT_COMMAND);
+    methodEClass = createEClass(METHOD);
+    createEAttribute(methodEClass, METHOD__NAME);
+    createEAttribute(methodEClass, METHOD__TRANSACTIONAL);
+    createEReference(methodEClass, METHOD__PARAMETERS);
+    createEReference(methodEClass, METHOD__REQUEST);
+    createEReference(methodEClass, METHOD__RESPONSE);
+    createEReference(methodEClass, METHOD__PRODUCED);
+    createEReference(methodEClass, METHOD__CLIENT_COMMAND);
 
     parameterEClass = createEClass(PARAMETER);
     createEAttribute(parameterEClass, PARAMETER__KEY);
     createEAttribute(parameterEClass, PARAMETER__VALUE);
 
-    httpResponseEClass = createEClass(HTTP_RESPONSE);
-    createEAttribute(httpResponseEClass, HTTP_RESPONSE__RESPONSE_CODE);
-    createEAttribute(httpResponseEClass, HTTP_RESPONSE__RESPONSE_BODY);
+    requestEClass = createEClass(REQUEST);
+    createEAttribute(requestEClass, REQUEST__VERB);
+    createEAttribute(requestEClass, REQUEST__URI);
+
+    responseEClass = createEClass(RESPONSE);
+    createEAttribute(responseEClass, RESPONSE__CODE);
+    createEAttribute(responseEClass, RESPONSE__BODY);
 
     cliToolEClass = createEClass(CLI_TOOL);
     createEReference(cliToolEClass, CLI_TOOL__CLIENTS);
@@ -865,11 +850,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
     createEAttribute(topicEClass, TOPIC__KEY);
     createEAttribute(topicEClass, TOPIC__VALUE);
 
-    eventEClass = createEClass(EVENT);
-    createEAttribute(eventEClass, EVENT__KEY);
-    createEAttribute(eventEClass, EVENT__VALUE);
-    createEReference(eventEClass, EVENT__TOPIC);
-
     tableEClass = createEClass(TABLE);
     createEAttribute(tableEClass, TABLE__NAME);
     createEReference(tableEClass, TABLE__COLUMNS);
@@ -885,8 +865,8 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
     joinTableEClass = createEClass(JOIN_TABLE);
 
     // Create enums
-    httpMethodEEnum = createEEnum(HTTP_METHOD);
-    httpResponseCodeEEnum = createEEnum(HTTP_RESPONSE_CODE);
+    httpVerbEEnum = createEEnum(HTTP_VERB);
+    httpCodeEEnum = createEEnum(HTTP_CODE);
     modelEEnum = createEEnum(MODEL);
   }
 
@@ -943,25 +923,28 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
     initEClass(controllerEClass, Controller.class, "Controller", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getController_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getController_Endpoints(), this.getEndpoint(), null, "endpoints", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getController_Methods(), this.getMethod(), null, "methods", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(endpointEClass, Endpoint.class, "Endpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEndpoint_MethodName(), ecorePackage.getEString(), "methodName", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEndpoint_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEndpoint_Transactional(), ecorePackage.getEBooleanObject(), "transactional", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEndpoint_EmittedEvents(), this.getEvent(), null, "emittedEvents", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEndpoint_Method(), this.getHttpMethod(), "method", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEndpoint_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEndpoint_Response(), this.getHttpResponse(), null, "response", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEndpoint_ClientCommand(), this.getCommand(), null, "clientCommand", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMethod_Name(), ecorePackage.getEString(), "name", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMethod_Transactional(), ecorePackage.getEBooleanObject(), "transactional", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMethod_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMethod_Request(), this.getRequest(), null, "request", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMethod_Response(), this.getResponse(), null, "response", null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMethod_Produced(), this.getTopic(), null, "produced", null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMethod_ClientCommand(), this.getCommand(), null, "clientCommand", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParameter_Key(), ecorePackage.getEString(), "key", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameter_Value(), this.getModel(), "value", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(httpResponseEClass, HttpResponse.class, "HttpResponse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getHttpResponse_ResponseCode(), this.getHttpResponseCode(), "responseCode", null, 0, 1, HttpResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getHttpResponse_ResponseBody(), this.getModel(), "responseBody", null, 0, 1, HttpResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(requestEClass, Request.class, "Request", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRequest_Verb(), this.getHttpVerb(), "verb", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRequest_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(responseEClass, Response.class, "Response", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getResponse_Code(), this.getHttpCode(), "code", null, 0, 1, Response.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getResponse_Body(), this.getModel(), "body", null, 0, 1, Response.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cliToolEClass, CliTool.class, "CliTool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCliTool_Clients(), this.getController(), null, "clients", null, 0, -1, CliTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -979,11 +962,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
     initEAttribute(getTopic_Key(), this.getModel(), "key", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTopic_Value(), this.getModel(), "value", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEvent_Key(), this.getModel(), "key", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEvent_Value(), this.getModel(), "value", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEvent_Topic(), this.getTopic(), null, "topic", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTable_Columns(), this.getColumn(), null, "columns", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -999,28 +977,32 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
     initEClass(joinTableEClass, JoinTable.class, "JoinTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
-    initEEnum(httpMethodEEnum, HttpMethod.class, "HttpMethod");
-    addEEnumLiteral(httpMethodEEnum, HttpMethod.GET);
-    addEEnumLiteral(httpMethodEEnum, HttpMethod.PUT);
-    addEEnumLiteral(httpMethodEEnum, HttpMethod.POST);
-    addEEnumLiteral(httpMethodEEnum, HttpMethod.PATCH);
-    addEEnumLiteral(httpMethodEEnum, HttpMethod.DELETE);
+    initEEnum(httpVerbEEnum, HttpVerb.class, "HttpVerb");
+    addEEnumLiteral(httpVerbEEnum, HttpVerb.GET);
+    addEEnumLiteral(httpVerbEEnum, HttpVerb.PUT);
+    addEEnumLiteral(httpVerbEEnum, HttpVerb.POST);
+    addEEnumLiteral(httpVerbEEnum, HttpVerb.PATCH);
+    addEEnumLiteral(httpVerbEEnum, HttpVerb.DELETE);
 
-    initEEnum(httpResponseCodeEEnum, HttpResponseCode.class, "HttpResponseCode");
-    addEEnumLiteral(httpResponseCodeEEnum, HttpResponseCode.OK);
-    addEEnumLiteral(httpResponseCodeEEnum, HttpResponseCode.CREATED);
-    addEEnumLiteral(httpResponseCodeEEnum, HttpResponseCode.NOT_FOUND);
-    addEEnumLiteral(httpResponseCodeEEnum, HttpResponseCode.FORBIDDEN);
+    initEEnum(httpCodeEEnum, HttpCode.class, "HttpCode");
+    addEEnumLiteral(httpCodeEEnum, HttpCode.OK);
+    addEEnumLiteral(httpCodeEEnum, HttpCode.CREATED);
+    addEEnumLiteral(httpCodeEEnum, HttpCode.NOT_FOUND);
+    addEEnumLiteral(httpCodeEEnum, HttpCode.FORBIDDEN);
 
     initEEnum(modelEEnum, Model.class, "Model");
     addEEnumLiteral(modelEEnum, Model.MLONG);
     addEEnumLiteral(modelEEnum, Model.MSTRING);
     addEEnumLiteral(modelEEnum, Model.VIDEO);
+    addEEnumLiteral(modelEEnum, Model.ITERABLE_VIDEO);
+    addEEnumLiteral(modelEEnum, Model.ITERABLE_USER);
     addEEnumLiteral(modelEEnum, Model.VIDEO_DTO);
     addEEnumLiteral(modelEEnum, Model.HASHTAG);
     addEEnumLiteral(modelEEnum, Model.HASHTAG_DTO);
     addEEnumLiteral(modelEEnum, Model.USER);
     addEEnumLiteral(modelEEnum, Model.USER_DTO);
+    addEEnumLiteral(modelEEnum, Model.USER_VIDEO);
+    addEEnumLiteral(modelEEnum, Model.HASHTAG_SET);
 
     // Create resource
     createResource(eNS_URI);

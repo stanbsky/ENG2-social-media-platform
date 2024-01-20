@@ -278,15 +278,15 @@ public interface DeploymentPackage extends EPackage {
 	int CONTROLLER__URI = JAVA_CLASS_FEATURE_COUNT + 0;
 
 	/**
-   * The feature id for the '<em><b>Endpoints</b></em>' containment reference list.
+   * The feature id for the '<em><b>Methods</b></em>' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int CONTROLLER__ENDPOINTS = JAVA_CLASS_FEATURE_COUNT + 1;
+  int CONTROLLER__METHODS = JAVA_CLASS_FEATURE_COUNT + 1;
 
-	/**
+  /**
    * The number of structural features of the '<em>Controller</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,106 +305,97 @@ public interface DeploymentPackage extends EPackage {
 	int CONTROLLER_OPERATION_COUNT = JAVA_CLASS_OPERATION_COUNT + 0;
 
 	/**
-   * The meta object id for the '{@link deployment.impl.EndpointImpl <em>Endpoint</em>}' class.
+   * The meta object id for the '{@link deployment.impl.MethodImpl <em>Method</em>}' class.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see deployment.impl.EndpointImpl
-   * @see deployment.impl.DeploymentPackageImpl#getEndpoint()
+   * <!-- end-user-doc -->
+   * @see deployment.impl.MethodImpl
+   * @see deployment.impl.DeploymentPackageImpl#getMethod()
    * @generated
    */
-	int ENDPOINT = 4;
+  int METHOD = 4;
 
-	/**
-   * The feature id for the '<em><b>Method Name</b></em>' attribute.
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int ENDPOINT__METHOD_NAME = 0;
-
-	/**
-   * The feature id for the '<em><b>Uri</b></em>' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT__URI = 1;
+  int METHOD__NAME = 0;
 
-	/**
+  /**
    * The feature id for the '<em><b>Transactional</b></em>' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT__TRANSACTIONAL = 2;
+  int METHOD__TRANSACTIONAL = 1;
 
-	/**
-   * The feature id for the '<em><b>Emitted Events</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int ENDPOINT__EMITTED_EVENTS = 3;
-
-	/**
-   * The feature id for the '<em><b>Method</b></em>' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int ENDPOINT__METHOD = 4;
-
-	/**
+  /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT__PARAMETERS = 5;
+  int METHOD__PARAMETERS = 2;
 
-	/**
+  /**
+   * The feature id for the '<em><b>Request</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD__REQUEST = 3;
+
+  /**
    * The feature id for the '<em><b>Response</b></em>' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT__RESPONSE = 6;
+  int METHOD__RESPONSE = 4;
 
-	/**
+  /**
+   * The feature id for the '<em><b>Produced</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD__PRODUCED = 5;
+
+  /**
    * The feature id for the '<em><b>Client Command</b></em>' reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT__CLIENT_COMMAND = 7;
+  int METHOD__CLIENT_COMMAND = 6;
 
-	/**
-   * The number of structural features of the '<em>Endpoint</em>' class.
+  /**
+   * The number of structural features of the '<em>Method</em>' class.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT_FEATURE_COUNT = 8;
+  int METHOD_FEATURE_COUNT = 7;
 
-	/**
-   * The number of operations of the '<em>Endpoint</em>' class.
+  /**
+   * The number of operations of the '<em>Method</em>' class.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ENDPOINT_OPERATION_COUNT = 0;
+  int METHOD_OPERATION_COUNT = 0;
 
-	/**
+  /**
    * The meta object id for the '{@link deployment.impl.ParameterImpl <em>Parameter</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -451,52 +442,98 @@ public interface DeploymentPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = 0;
 
 	/**
-   * The meta object id for the '{@link deployment.impl.HttpResponseImpl <em>Http Response</em>}' class.
+   * The meta object id for the '{@link deployment.impl.RequestImpl <em>Request</em>}' class.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see deployment.impl.HttpResponseImpl
-   * @see deployment.impl.DeploymentPackageImpl#getHttpResponse()
+   * <!-- end-user-doc -->
+   * @see deployment.impl.RequestImpl
+   * @see deployment.impl.DeploymentPackageImpl#getRequest()
    * @generated
    */
-	int HTTP_RESPONSE = 6;
+  int REQUEST = 6;
 
-	/**
-   * The feature id for the '<em><b>Response Code</b></em>' attribute.
+  /**
+   * The feature id for the '<em><b>Verb</b></em>' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int HTTP_RESPONSE__RESPONSE_CODE = 0;
-
-	/**
-   * The feature id for the '<em><b>Response Body</b></em>' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int HTTP_RESPONSE__RESPONSE_BODY = 1;
+  int REQUEST__VERB = 0;
 
-	/**
-   * The number of structural features of the '<em>Http Response</em>' class.
+  /**
+   * The feature id for the '<em><b>Uri</b></em>' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int HTTP_RESPONSE_FEATURE_COUNT = 2;
+  int REQUEST__URI = 1;
 
-	/**
-   * The number of operations of the '<em>Http Response</em>' class.
+  /**
+   * The number of structural features of the '<em>Request</em>' class.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int HTTP_RESPONSE_OPERATION_COUNT = 0;
+  int REQUEST_FEATURE_COUNT = 2;
 
-	/**
+  /**
+   * The number of operations of the '<em>Request</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REQUEST_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link deployment.impl.ResponseImpl <em>Response</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see deployment.impl.ResponseImpl
+   * @see deployment.impl.DeploymentPackageImpl#getResponse()
+   * @generated
+   */
+  int RESPONSE = 7;
+
+  /**
+   * The feature id for the '<em><b>Code</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESPONSE__CODE = 0;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESPONSE__BODY = 1;
+
+  /**
+   * The number of structural features of the '<em>Response</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESPONSE_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>Response</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESPONSE_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link deployment.impl.CliToolImpl <em>Cli Tool</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -504,7 +541,7 @@ public interface DeploymentPackage extends EPackage {
    * @see deployment.impl.DeploymentPackageImpl#getCliTool()
    * @generated
    */
-	int CLI_TOOL = 7;
+	int CLI_TOOL = 8;
 
 	/**
    * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -559,7 +596,7 @@ public interface DeploymentPackage extends EPackage {
    * @see deployment.impl.DeploymentPackageImpl#getCommand()
    * @generated
    */
-	int COMMAND = 8;
+	int COMMAND = 9;
 
 	/**
    * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -623,7 +660,7 @@ public interface DeploymentPackage extends EPackage {
    * @see deployment.impl.DeploymentPackageImpl#getProducer()
    * @generated
    */
-	int PRODUCER = 9;
+	int PRODUCER = 10;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -669,7 +706,7 @@ public interface DeploymentPackage extends EPackage {
    * @see deployment.impl.DeploymentPackageImpl#getTopic()
    * @generated
    */
-	int TOPIC = 10;
+	int TOPIC = 11;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -715,61 +752,6 @@ public interface DeploymentPackage extends EPackage {
    * @ordered
    */
 	int TOPIC_OPERATION_COUNT = 0;
-
-	/**
-   * The meta object id for the '{@link deployment.impl.EventImpl <em>Event</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see deployment.impl.EventImpl
-   * @see deployment.impl.DeploymentPackageImpl#getEvent()
-   * @generated
-   */
-	int EVENT = 11;
-
-	/**
-   * The feature id for the '<em><b>Key</b></em>' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int EVENT__KEY = 0;
-
-	/**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int EVENT__VALUE = 1;
-
-	/**
-   * The feature id for the '<em><b>Topic</b></em>' reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int EVENT__TOPIC = 2;
-
-	/**
-   * The number of structural features of the '<em>Event</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int EVENT_FEATURE_COUNT = 3;
-
-	/**
-   * The number of operations of the '<em>Event</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int EVENT_OPERATION_COUNT = 0;
 
 	/**
    * The meta object id for the '{@link deployment.impl.TableImpl <em>Table</em>}' class.
@@ -956,26 +938,26 @@ public interface DeploymentPackage extends EPackage {
   int JOIN_TABLE_OPERATION_COUNT = TABLE_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link deployment.HttpMethod <em>Http Method</em>}' enum.
+   * The meta object id for the '{@link deployment.HttpVerb <em>Http Verb</em>}' enum.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see deployment.HttpMethod
-   * @see deployment.impl.DeploymentPackageImpl#getHttpMethod()
+   * <!-- end-user-doc -->
+   * @see deployment.HttpVerb
+   * @see deployment.impl.DeploymentPackageImpl#getHttpVerb()
    * @generated
    */
-	int HTTP_METHOD = 16;
+  int HTTP_VERB = 16;
 
-	/**
-   * The meta object id for the '{@link deployment.HttpResponseCode <em>Http Response Code</em>}' enum.
+  /**
+   * The meta object id for the '{@link deployment.HttpCode <em>Http Code</em>}' enum.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see deployment.HttpResponseCode
-   * @see deployment.impl.DeploymentPackageImpl#getHttpResponseCode()
+   * <!-- end-user-doc -->
+   * @see deployment.HttpCode
+   * @see deployment.impl.DeploymentPackageImpl#getHttpCode()
    * @generated
    */
-	int HTTP_RESPONSE_CODE = 17;
+  int HTTP_CODE = 17;
 
-	/**
+  /**
    * The meta object id for the '{@link deployment.Model <em>Model</em>}' enum.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1159,115 +1141,104 @@ public interface DeploymentPackage extends EPackage {
 	EAttribute getController_Uri();
 
 	/**
-   * Returns the meta object for the containment reference list '{@link deployment.Controller#getEndpoints <em>Endpoints</em>}'.
+   * Returns the meta object for the containment reference list '{@link deployment.Controller#getMethods <em>Methods</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Endpoints</em>'.
-   * @see deployment.Controller#getEndpoints()
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Methods</em>'.
+   * @see deployment.Controller#getMethods()
    * @see #getController()
    * @generated
    */
-	EReference getController_Endpoints();
+  EReference getController_Methods();
 
-	/**
-   * Returns the meta object for class '{@link deployment.Endpoint <em>Endpoint</em>}'.
+  /**
+   * Returns the meta object for class '{@link deployment.Method <em>Method</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Endpoint</em>'.
-   * @see deployment.Endpoint
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Method</em>'.
+   * @see deployment.Method
    * @generated
    */
-	EClass getEndpoint();
+  EClass getMethod();
 
-	/**
-   * Returns the meta object for the attribute '{@link deployment.Endpoint#getMethodName <em>Method Name</em>}'.
+  /**
+   * Returns the meta object for the attribute '{@link deployment.Method#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Method Name</em>'.
-   * @see deployment.Endpoint#getMethodName()
-   * @see #getEndpoint()
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see deployment.Method#getName()
+   * @see #getMethod()
    * @generated
    */
-	EAttribute getEndpoint_MethodName();
+  EAttribute getMethod_Name();
 
-	/**
-   * Returns the meta object for the attribute '{@link deployment.Endpoint#getUri <em>Uri</em>}'.
+  /**
+   * Returns the meta object for the attribute '{@link deployment.Method#getTransactional <em>Transactional</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Uri</em>'.
-   * @see deployment.Endpoint#getUri()
-   * @see #getEndpoint()
-   * @generated
-   */
-	EAttribute getEndpoint_Uri();
-
-	/**
-   * Returns the meta object for the attribute '{@link deployment.Endpoint#getTransactional <em>Transactional</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Transactional</em>'.
-   * @see deployment.Endpoint#getTransactional()
-   * @see #getEndpoint()
+   * @see deployment.Method#getTransactional()
+   * @see #getMethod()
    * @generated
    */
-	EAttribute getEndpoint_Transactional();
+  EAttribute getMethod_Transactional();
 
-	/**
-   * Returns the meta object for the containment reference list '{@link deployment.Endpoint#getEmittedEvents <em>Emitted Events</em>}'.
+  /**
+   * Returns the meta object for the containment reference list '{@link deployment.Method#getParameters <em>Parameters</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Emitted Events</em>'.
-   * @see deployment.Endpoint#getEmittedEvents()
-   * @see #getEndpoint()
-   * @generated
-   */
-	EReference getEndpoint_EmittedEvents();
-
-	/**
-   * Returns the meta object for the attribute '{@link deployment.Endpoint#getMethod <em>Method</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Method</em>'.
-   * @see deployment.Endpoint#getMethod()
-   * @see #getEndpoint()
-   * @generated
-   */
-	EAttribute getEndpoint_Method();
-
-	/**
-   * Returns the meta object for the containment reference list '{@link deployment.Endpoint#getParameters <em>Parameters</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Parameters</em>'.
-   * @see deployment.Endpoint#getParameters()
-   * @see #getEndpoint()
+   * @see deployment.Method#getParameters()
+   * @see #getMethod()
    * @generated
    */
-	EReference getEndpoint_Parameters();
+  EReference getMethod_Parameters();
 
-	/**
-   * Returns the meta object for the containment reference list '{@link deployment.Endpoint#getResponse <em>Response</em>}'.
+  /**
+   * Returns the meta object for the containment reference '{@link deployment.Method#getRequest <em>Request</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Request</em>'.
+   * @see deployment.Method#getRequest()
+   * @see #getMethod()
+   * @generated
+   */
+  EReference getMethod_Request();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link deployment.Method#getResponse <em>Response</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Response</em>'.
-   * @see deployment.Endpoint#getResponse()
-   * @see #getEndpoint()
+   * @see deployment.Method#getResponse()
+   * @see #getMethod()
    * @generated
    */
-	EReference getEndpoint_Response();
+  EReference getMethod_Response();
 
-	/**
-   * Returns the meta object for the reference '{@link deployment.Endpoint#getClientCommand <em>Client Command</em>}'.
+  /**
+   * Returns the meta object for the reference list '{@link deployment.Method#getProduced <em>Produced</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Client Command</em>'.
-   * @see deployment.Endpoint#getClientCommand()
-   * @see #getEndpoint()
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Produced</em>'.
+   * @see deployment.Method#getProduced()
+   * @see #getMethod()
    * @generated
    */
-	EReference getEndpoint_ClientCommand();
+  EReference getMethod_Produced();
 
-	/**
+  /**
+   * Returns the meta object for the reference '{@link deployment.Method#getClientCommand <em>Client Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Client Command</em>'.
+   * @see deployment.Method#getClientCommand()
+   * @see #getMethod()
+   * @generated
+   */
+  EReference getMethod_ClientCommand();
+
+  /**
    * Returns the meta object for class '{@link deployment.Parameter <em>Parameter</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1300,38 +1271,70 @@ public interface DeploymentPackage extends EPackage {
 	EAttribute getParameter_Value();
 
 	/**
-   * Returns the meta object for class '{@link deployment.HttpResponse <em>Http Response</em>}'.
+   * Returns the meta object for class '{@link deployment.Request <em>Request</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Http Response</em>'.
-   * @see deployment.HttpResponse
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Request</em>'.
+   * @see deployment.Request
    * @generated
    */
-	EClass getHttpResponse();
+  EClass getRequest();
 
-	/**
-   * Returns the meta object for the attribute '{@link deployment.HttpResponse#getResponseCode <em>Response Code</em>}'.
+  /**
+   * Returns the meta object for the attribute '{@link deployment.Request#getVerb <em>Verb</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Response Code</em>'.
-   * @see deployment.HttpResponse#getResponseCode()
-   * @see #getHttpResponse()
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Verb</em>'.
+   * @see deployment.Request#getVerb()
+   * @see #getRequest()
    * @generated
    */
-	EAttribute getHttpResponse_ResponseCode();
+  EAttribute getRequest_Verb();
 
-	/**
-   * Returns the meta object for the attribute '{@link deployment.HttpResponse#getResponseBody <em>Response Body</em>}'.
+  /**
+   * Returns the meta object for the attribute '{@link deployment.Request#getUri <em>Uri</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Response Body</em>'.
-   * @see deployment.HttpResponse#getResponseBody()
-   * @see #getHttpResponse()
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Uri</em>'.
+   * @see deployment.Request#getUri()
+   * @see #getRequest()
    * @generated
    */
-	EAttribute getHttpResponse_ResponseBody();
+  EAttribute getRequest_Uri();
 
-	/**
+  /**
+   * Returns the meta object for class '{@link deployment.Response <em>Response</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Response</em>'.
+   * @see deployment.Response
+   * @generated
+   */
+  EClass getResponse();
+
+  /**
+   * Returns the meta object for the attribute '{@link deployment.Response#getCode <em>Code</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Code</em>'.
+   * @see deployment.Response#getCode()
+   * @see #getResponse()
+   * @generated
+   */
+  EAttribute getResponse_Code();
+
+  /**
+   * Returns the meta object for the attribute '{@link deployment.Response#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Body</em>'.
+   * @see deployment.Response#getBody()
+   * @see #getResponse()
+   * @generated
+   */
+  EAttribute getResponse_Body();
+
+  /**
    * Returns the meta object for class '{@link deployment.CliTool <em>Cli Tool</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1460,49 +1463,6 @@ public interface DeploymentPackage extends EPackage {
 	EAttribute getTopic_Value();
 
 	/**
-   * Returns the meta object for class '{@link deployment.Event <em>Event</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Event</em>'.
-   * @see deployment.Event
-   * @generated
-   */
-	EClass getEvent();
-
-	/**
-   * Returns the meta object for the attribute '{@link deployment.Event#getKey <em>Key</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Key</em>'.
-   * @see deployment.Event#getKey()
-   * @see #getEvent()
-   * @generated
-   */
-	EAttribute getEvent_Key();
-
-	/**
-   * Returns the meta object for the attribute '{@link deployment.Event#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see deployment.Event#getValue()
-   * @see #getEvent()
-   * @generated
-   */
-	EAttribute getEvent_Value();
-
-	/**
-   * Returns the meta object for the reference '{@link deployment.Event#getTopic <em>Topic</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Topic</em>'.
-   * @see deployment.Event#getTopic()
-   * @see #getEvent()
-   * @generated
-   */
-	EReference getEvent_Topic();
-
-	/**
    * Returns the meta object for class '{@link deployment.Table <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1609,26 +1569,26 @@ public interface DeploymentPackage extends EPackage {
   EClass getJoinTable();
 
   /**
-   * Returns the meta object for enum '{@link deployment.HttpMethod <em>Http Method</em>}'.
+   * Returns the meta object for enum '{@link deployment.HttpVerb <em>Http Verb</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Http Method</em>'.
-   * @see deployment.HttpMethod
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Http Verb</em>'.
+   * @see deployment.HttpVerb
    * @generated
    */
-	EEnum getHttpMethod();
+  EEnum getHttpVerb();
 
-	/**
-   * Returns the meta object for enum '{@link deployment.HttpResponseCode <em>Http Response Code</em>}'.
+  /**
+   * Returns the meta object for enum '{@link deployment.HttpCode <em>Http Code</em>}'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Http Response Code</em>'.
-   * @see deployment.HttpResponseCode
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Http Code</em>'.
+   * @see deployment.HttpCode
    * @generated
    */
-	EEnum getHttpResponseCode();
+  EEnum getHttpCode();
 
-	/**
+  /**
    * Returns the meta object for enum '{@link deployment.Model <em>Model</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1798,88 +1758,80 @@ public interface DeploymentPackage extends EPackage {
 		EAttribute CONTROLLER__URI = eINSTANCE.getController_Uri();
 
 		/**
-     * The meta object literal for the '<em><b>Endpoints</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EReference CONTROLLER__ENDPOINTS = eINSTANCE.getController_Endpoints();
+    EReference CONTROLLER__METHODS = eINSTANCE.getController_Methods();
 
-		/**
-     * The meta object literal for the '{@link deployment.impl.EndpointImpl <em>Endpoint</em>}' class.
+    /**
+     * The meta object literal for the '{@link deployment.impl.MethodImpl <em>Method</em>}' class.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see deployment.impl.EndpointImpl
-     * @see deployment.impl.DeploymentPackageImpl#getEndpoint()
+     * <!-- end-user-doc -->
+     * @see deployment.impl.MethodImpl
+     * @see deployment.impl.DeploymentPackageImpl#getMethod()
      * @generated
      */
-		EClass ENDPOINT = eINSTANCE.getEndpoint();
+    EClass METHOD = eINSTANCE.getMethod();
 
-		/**
-     * The meta object literal for the '<em><b>Method Name</b></em>' attribute feature.
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute ENDPOINT__METHOD_NAME = eINSTANCE.getEndpoint_MethodName();
+    EAttribute METHOD__NAME = eINSTANCE.getMethod_Name();
 
-		/**
-     * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EAttribute ENDPOINT__URI = eINSTANCE.getEndpoint_Uri();
-
-		/**
+    /**
      * The meta object literal for the '<em><b>Transactional</b></em>' attribute feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute ENDPOINT__TRANSACTIONAL = eINSTANCE.getEndpoint_Transactional();
+    EAttribute METHOD__TRANSACTIONAL = eINSTANCE.getMethod_Transactional();
 
-		/**
-     * The meta object literal for the '<em><b>Emitted Events</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EReference ENDPOINT__EMITTED_EVENTS = eINSTANCE.getEndpoint_EmittedEvents();
-
-		/**
-     * The meta object literal for the '<em><b>Method</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EAttribute ENDPOINT__METHOD = eINSTANCE.getEndpoint_Method();
-
-		/**
+    /**
      * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EReference ENDPOINT__PARAMETERS = eINSTANCE.getEndpoint_Parameters();
+    EReference METHOD__PARAMETERS = eINSTANCE.getMethod_Parameters();
 
-		/**
+    /**
+     * The meta object literal for the '<em><b>Request</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference METHOD__REQUEST = eINSTANCE.getMethod_Request();
+
+    /**
      * The meta object literal for the '<em><b>Response</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EReference ENDPOINT__RESPONSE = eINSTANCE.getEndpoint_Response();
+    EReference METHOD__RESPONSE = eINSTANCE.getMethod_Response();
 
-		/**
+    /**
+     * The meta object literal for the '<em><b>Produced</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference METHOD__PRODUCED = eINSTANCE.getMethod_Produced();
+
+    /**
      * The meta object literal for the '<em><b>Client Command</b></em>' reference feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EReference ENDPOINT__CLIENT_COMMAND = eINSTANCE.getEndpoint_ClientCommand();
+    EReference METHOD__CLIENT_COMMAND = eINSTANCE.getMethod_ClientCommand();
 
-		/**
+    /**
      * The meta object literal for the '{@link deployment.impl.ParameterImpl <em>Parameter</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1906,32 +1858,58 @@ public interface DeploymentPackage extends EPackage {
 		EAttribute PARAMETER__VALUE = eINSTANCE.getParameter_Value();
 
 		/**
-     * The meta object literal for the '{@link deployment.impl.HttpResponseImpl <em>Http Response</em>}' class.
+     * The meta object literal for the '{@link deployment.impl.RequestImpl <em>Request</em>}' class.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see deployment.impl.HttpResponseImpl
-     * @see deployment.impl.DeploymentPackageImpl#getHttpResponse()
+     * <!-- end-user-doc -->
+     * @see deployment.impl.RequestImpl
+     * @see deployment.impl.DeploymentPackageImpl#getRequest()
      * @generated
      */
-		EClass HTTP_RESPONSE = eINSTANCE.getHttpResponse();
+    EClass REQUEST = eINSTANCE.getRequest();
 
-		/**
-     * The meta object literal for the '<em><b>Response Code</b></em>' attribute feature.
+    /**
+     * The meta object literal for the '<em><b>Verb</b></em>' attribute feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute HTTP_RESPONSE__RESPONSE_CODE = eINSTANCE.getHttpResponse_ResponseCode();
+    EAttribute REQUEST__VERB = eINSTANCE.getRequest_Verb();
 
-		/**
-     * The meta object literal for the '<em><b>Response Body</b></em>' attribute feature.
+    /**
+     * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute HTTP_RESPONSE__RESPONSE_BODY = eINSTANCE.getHttpResponse_ResponseBody();
+    EAttribute REQUEST__URI = eINSTANCE.getRequest_Uri();
 
-		/**
+    /**
+     * The meta object literal for the '{@link deployment.impl.ResponseImpl <em>Response</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see deployment.impl.ResponseImpl
+     * @see deployment.impl.DeploymentPackageImpl#getResponse()
+     * @generated
+     */
+    EClass RESPONSE = eINSTANCE.getResponse();
+
+    /**
+     * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RESPONSE__CODE = eINSTANCE.getResponse_Code();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RESPONSE__BODY = eINSTANCE.getResponse_Body();
+
+    /**
      * The meta object literal for the '{@link deployment.impl.CliToolImpl <em>Cli Tool</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2036,40 +2014,6 @@ public interface DeploymentPackage extends EPackage {
 		EAttribute TOPIC__VALUE = eINSTANCE.getTopic_Value();
 
 		/**
-     * The meta object literal for the '{@link deployment.impl.EventImpl <em>Event</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see deployment.impl.EventImpl
-     * @see deployment.impl.DeploymentPackageImpl#getEvent()
-     * @generated
-     */
-		EClass EVENT = eINSTANCE.getEvent();
-
-		/**
-     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EAttribute EVENT__KEY = eINSTANCE.getEvent_Key();
-
-		/**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EAttribute EVENT__VALUE = eINSTANCE.getEvent_Value();
-
-		/**
-     * The meta object literal for the '<em><b>Topic</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EReference EVENT__TOPIC = eINSTANCE.getEvent_Topic();
-
-		/**
      * The meta object literal for the '{@link deployment.impl.TableImpl <em>Table</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2158,26 +2102,26 @@ public interface DeploymentPackage extends EPackage {
     EClass JOIN_TABLE = eINSTANCE.getJoinTable();
 
     /**
-     * The meta object literal for the '{@link deployment.HttpMethod <em>Http Method</em>}' enum.
+     * The meta object literal for the '{@link deployment.HttpVerb <em>Http Verb</em>}' enum.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see deployment.HttpMethod
-     * @see deployment.impl.DeploymentPackageImpl#getHttpMethod()
+     * <!-- end-user-doc -->
+     * @see deployment.HttpVerb
+     * @see deployment.impl.DeploymentPackageImpl#getHttpVerb()
      * @generated
      */
-		EEnum HTTP_METHOD = eINSTANCE.getHttpMethod();
+    EEnum HTTP_VERB = eINSTANCE.getHttpVerb();
 
-		/**
-     * The meta object literal for the '{@link deployment.HttpResponseCode <em>Http Response Code</em>}' enum.
+    /**
+     * The meta object literal for the '{@link deployment.HttpCode <em>Http Code</em>}' enum.
      * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see deployment.HttpResponseCode
-     * @see deployment.impl.DeploymentPackageImpl#getHttpResponseCode()
+     * <!-- end-user-doc -->
+     * @see deployment.HttpCode
+     * @see deployment.impl.DeploymentPackageImpl#getHttpCode()
      * @generated
      */
-		EEnum HTTP_RESPONSE_CODE = eINSTANCE.getHttpResponseCode();
+    EEnum HTTP_CODE = eINSTANCE.getHttpCode();
 
-		/**
+    /**
      * The meta object literal for the '{@link deployment.Model <em>Model</em>}' enum.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

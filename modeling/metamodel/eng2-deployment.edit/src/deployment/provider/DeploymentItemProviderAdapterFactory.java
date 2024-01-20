@@ -164,26 +164,26 @@ public class DeploymentItemProviderAdapterFactory extends DeploymentAdapterFacto
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link deployment.Endpoint} instances.
+   * This keeps track of the one adapter used for all {@link deployment.Method} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EndpointItemProvider endpointItemProvider;
+  protected MethodItemProvider methodItemProvider;
 
   /**
-   * This creates an adapter for a {@link deployment.Endpoint}.
+   * This creates an adapter for a {@link deployment.Method}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createEndpointAdapter() {
-    if (endpointItemProvider == null) {
-      endpointItemProvider = new EndpointItemProvider(this);
+  public Adapter createMethodAdapter() {
+    if (methodItemProvider == null) {
+      methodItemProvider = new MethodItemProvider(this);
     }
 
-    return endpointItemProvider;
+    return methodItemProvider;
   }
 
   /**
@@ -210,26 +210,49 @@ public class DeploymentItemProviderAdapterFactory extends DeploymentAdapterFacto
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link deployment.HttpResponse} instances.
+   * This keeps track of the one adapter used for all {@link deployment.Request} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected HttpResponseItemProvider httpResponseItemProvider;
+  protected RequestItemProvider requestItemProvider;
 
   /**
-   * This creates an adapter for a {@link deployment.HttpResponse}.
+   * This creates an adapter for a {@link deployment.Request}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createHttpResponseAdapter() {
-    if (httpResponseItemProvider == null) {
-      httpResponseItemProvider = new HttpResponseItemProvider(this);
+  public Adapter createRequestAdapter() {
+    if (requestItemProvider == null) {
+      requestItemProvider = new RequestItemProvider(this);
     }
 
-    return httpResponseItemProvider;
+    return requestItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link deployment.Response} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ResponseItemProvider responseItemProvider;
+
+  /**
+   * This creates an adapter for a {@link deployment.Response}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createResponseAdapter() {
+    if (responseItemProvider == null) {
+      responseItemProvider = new ResponseItemProvider(this);
+    }
+
+    return responseItemProvider;
   }
 
   /**
@@ -322,29 +345,6 @@ public class DeploymentItemProviderAdapterFactory extends DeploymentAdapterFacto
     }
 
     return topicItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link deployment.Event} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected EventItemProvider eventItemProvider;
-
-  /**
-   * This creates an adapter for a {@link deployment.Event}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createEventAdapter() {
-    if (eventItemProvider == null) {
-      eventItemProvider = new EventItemProvider(this);
-    }
-
-    return eventItemProvider;
   }
 
   /**
@@ -542,14 +542,14 @@ public class DeploymentItemProviderAdapterFactory extends DeploymentAdapterFacto
     if (microserviceItemProvider != null) microserviceItemProvider.dispose();
     if (javaClassItemProvider != null) javaClassItemProvider.dispose();
     if (controllerItemProvider != null) controllerItemProvider.dispose();
-    if (endpointItemProvider != null) endpointItemProvider.dispose();
+    if (methodItemProvider != null) methodItemProvider.dispose();
     if (parameterItemProvider != null) parameterItemProvider.dispose();
-    if (httpResponseItemProvider != null) httpResponseItemProvider.dispose();
+    if (requestItemProvider != null) requestItemProvider.dispose();
+    if (responseItemProvider != null) responseItemProvider.dispose();
     if (cliToolItemProvider != null) cliToolItemProvider.dispose();
     if (commandItemProvider != null) commandItemProvider.dispose();
     if (producerItemProvider != null) producerItemProvider.dispose();
     if (topicItemProvider != null) topicItemProvider.dispose();
-    if (eventItemProvider != null) eventItemProvider.dispose();
     if (tableItemProvider != null) tableItemProvider.dispose();
     if (columnItemProvider != null) columnItemProvider.dispose();
     if (foreignKeyItemProvider != null) foreignKeyItemProvider.dispose();

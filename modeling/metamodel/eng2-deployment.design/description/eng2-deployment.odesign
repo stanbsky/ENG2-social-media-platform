@@ -12,9 +12,9 @@
           </style>
         </nodeMappings>
         <containerMappings name="microserviceContainer" label="Microservice" semanticCandidatesExpression="feature:microservices" domainClass="deployment::Microservice" childrenPresentation="HorizontalStack">
-          <subContainerMappings name="controllerContainer" label="Controller" semanticCandidatesExpression="feature:eAllContents" domainClass="deployment::Controller" childrenPresentation="HorizontalStack">
-            <subContainerMappings name="endpointContainer" label="Endpoint" semanticCandidatesExpression="feature:eAllContents" domainClass="deployment::Endpoint" childrenPresentation="List">
-              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:[self.methodName + '(' + self.parameters->collect(p | p.value + ' ' + p.key)->sep(', ') + ')\n' + self.method + ' ' + self.uri + ' ' /]">
+          <subContainerMappings name="controllerContainer" label="Controller" semanticCandidatesExpression="feature:eAllContents" domainClass="deployment::Controller" childrenPresentation="VerticalStack">
+            <subContainerMappings name="endpointContainer" label="Method" semanticCandidatesExpression="feature:eAllContents" domainClass="deployment::Method" childrenPresentation="List">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:[self.name + '(' + self.parameters->collect(p | p.value + ' ' + p.key)->sep(', ') + ')\n' + self.method + ' ' + self.uri + ' ' /]">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>

@@ -4,8 +4,8 @@ package deployment.provider;
 
 
 import deployment.DeploymentPackage;
-import deployment.Event;
-import deployment.Model;
+import deployment.HttpVerb;
+import deployment.Request;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link deployment.Event} object.
+ * This is the item provider adapter for a {@link deployment.Request} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventItemProvider 
+public class RequestItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class EventItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public EventItemProvider(AdapterFactory adapterFactory) {
+  public RequestItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -61,27 +61,26 @@ public class EventItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addKeyPropertyDescriptor(object);
-      addValuePropertyDescriptor(object);
-      addTopicPropertyDescriptor(object);
+      addVerbPropertyDescriptor(object);
+      addUriPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Key feature.
+   * This adds a property descriptor for the Verb feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addKeyPropertyDescriptor(Object object) {
+  protected void addVerbPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Event_key_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Event_key_feature", "_UI_Event_type"),
-         DeploymentPackage.Literals.EVENT__KEY,
+         getString("_UI_Request_verb_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Request_verb_feature", "_UI_Request_type"),
+         DeploymentPackage.Literals.REQUEST__VERB,
          true,
          false,
          false,
@@ -91,19 +90,19 @@ public class EventItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Value feature.
+   * This adds a property descriptor for the Uri feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addValuePropertyDescriptor(Object object) {
+  protected void addUriPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Event_value_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Event_value_feature", "_UI_Event_type"),
-         DeploymentPackage.Literals.EVENT__VALUE,
+         getString("_UI_Request_uri_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Request_uri_feature", "_UI_Request_type"),
+         DeploymentPackage.Literals.REQUEST__URI,
          true,
          false,
          false,
@@ -113,36 +112,14 @@ public class EventItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Topic feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addTopicPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Event_topic_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Event_topic_feature", "_UI_Event_type"),
-         DeploymentPackage.Literals.EVENT__TOPIC,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This returns Event.gif.
+   * This returns Request.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Event"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Request"));
   }
 
   /**
@@ -153,11 +130,11 @@ public class EventItemProvider
    */
   @Override
   public String getText(Object object) {
-    Model labelValue = ((Event)object).getKey();
+    HttpVerb labelValue = ((Request)object).getVerb();
     String label = labelValue == null ? null : labelValue.toString();
     return label == null || label.length() == 0 ?
-      getString("_UI_Event_type") :
-      getString("_UI_Event_type") + " " + label;
+      getString("_UI_Request_type") :
+      getString("_UI_Request_type") + " " + label;
   }
 
 
@@ -172,9 +149,9 @@ public class EventItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Event.class)) {
-      case DeploymentPackage.EVENT__KEY:
-      case DeploymentPackage.EVENT__VALUE:
+    switch (notification.getFeatureID(Request.class)) {
+      case DeploymentPackage.REQUEST__VERB:
+      case DeploymentPackage.REQUEST__URI:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

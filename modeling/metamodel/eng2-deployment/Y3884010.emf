@@ -28,17 +28,16 @@ class JavaClass {
 
 class Controller extends JavaClass {
 	attr String uri;
-	val Endpoint[*] endpoints;
+	val Method[*] methods;
 }
 
-class Endpoint {
-	attr String methodName;
-	attr String uri;
+class Method {
+	attr String name;
 	attr Boolean transactional;
 	val Parameter[*] parameters;
-	attr HttpMethod method;
-	val HttpResponse[*] response;
-	val Event[*] emittedEvents;
+	val Request request;
+	val Response[*] response;
+	ref Topic[*] produced;
 	
 	// Used for codegen for CLI client
 	ref Command clientCommand;
@@ -49,12 +48,17 @@ class Parameter {
 	attr Model value;
 }
 
-class HttpResponse {
-	attr HttpResponseCode code;
+class Request {
+	attr HttpVerb verb;
+	attr String uri;
+}
+
+class Response {
+	attr HttpCode code;
 	attr Model body;
 }
 
-enum HttpMethod {
+enum HttpVerb {
     GET;
     PUT;
     POST;
@@ -62,7 +66,7 @@ enum HttpMethod {
     DELETE;
 }
 
-enum HttpResponseCode {
+enum HttpCode {
 	OK;
 	CREATED;
 	NOT_FOUND;
@@ -93,12 +97,6 @@ class Topic {
 	attr String name;
 	attr Model key;
 	attr Model value;
-}
-
-class Event {
-	attr Model key;
-	attr Model value;
-	ref Topic topic;
 }
 
 // Domain model - we use a simple enum to represent return values for code gen purposes
