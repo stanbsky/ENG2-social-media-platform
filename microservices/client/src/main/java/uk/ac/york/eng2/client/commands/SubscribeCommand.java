@@ -9,7 +9,6 @@ public class SubscribeCommand implements Runnable {
 
     @Inject
     private SubscriptionsClient client;
-
     @CommandLine.Parameters(index = "0")
     private Long userId;
     @CommandLine.Parameters(index = "1")
@@ -17,8 +16,6 @@ public class SubscribeCommand implements Runnable {
 
     @Override
     public void run() {
-
         System.out.println(client.subHashtag(userId, hashtagId));
-    }
-
+	}
 }

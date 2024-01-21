@@ -9,14 +9,11 @@ public class DislikeVideoCommand implements Runnable {
 
     @Inject
     private VideosClient client;
-
     @CommandLine.Parameters(index = "0")
     private Long id;
 
     @Override
     public void run() {
-
         System.out.println(client.dislikeVideo(id));
-    }
-
+	}
 }

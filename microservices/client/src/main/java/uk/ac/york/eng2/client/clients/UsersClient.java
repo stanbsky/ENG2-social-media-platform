@@ -14,6 +14,6 @@ public interface UsersClient {
     @Get("/{id}")
     public UserDTO getUser(Long id);
     @Post("/")
-    public HttpResponse<Void> addUser();
+    public HttpResponse<Void> addUser(@Body UserDTO body);
     
 }

@@ -12,7 +12,7 @@
         - name: listVideos
         - transactional: true
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/"
         - response:
           - code: OK
@@ -24,7 +24,7 @@
           - key: id
           - value: Long
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/{id}"
         - response:
           - code: OK
@@ -40,7 +40,7 @@
           - key: username
           - val: String
         - request:
-          - verb: Put
+          - verb: PUT
           - uri: "/{id}/like"
         - response:
           - code: FORBIDDEN
@@ -58,7 +58,7 @@
           - key: id
           - value: Long
         - request:
-          - verb: Put
+          - verb: PUT
           - uri: "/{id}/dislike"
         - response:
           - code: FORBIDDEN
@@ -71,8 +71,11 @@
         - name: addVideo
         - transactional: true
         - request:
-          - verb: Post
+          - verb: POST
           - uri: "/"
+        - parameters:
+          - key: body
+          - val: VideoDTO
         - response:
           - code: FORBIDDEN
         - response:
@@ -85,7 +88,7 @@
         - name: listUsers
         - transactional: false
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/"
         - response:
           - body: IterableUser;
@@ -93,7 +96,7 @@
         - name: getUser
         - transactional: false
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/{id}"
         - parameter:
           - key: id
@@ -105,8 +108,11 @@
         - name: addUser
         - transactional: false
         - request:
-          - verb: Post
+          - verb: POST
           - uri: "/"
+        - parameters:
+          - key: body
+          - val: UserDTO
         - response:
           - code: CREATED   
     - controller:
@@ -116,7 +122,7 @@
         - name: getHashtag
         - transactional: true
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/{id}"
         - parameter:
           - key: id
@@ -134,7 +140,7 @@
         - name: getTrending
         - transactional: true
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/"
         - response:
           - code: OK
@@ -150,7 +156,7 @@
         - name: getWatchlist
         - transactional: true
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
@@ -165,7 +171,7 @@
         - name: subHashtag # 'subscribe' name breaks Command ref
         - transactional: true
         - request:
-          - verb: Put
+          - verb: PUT
           - uri: "/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId

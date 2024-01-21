@@ -9,14 +9,11 @@ public class GetHashtagCommand implements Runnable {
 
     @Inject
     private HashtagsClient client;
-
     @CommandLine.Parameters(index = "0")
     private Long id;
 
     @Override
     public void run() {
-
         System.out.println(client.getHashtag(id));
-    }
-
+	}
 }

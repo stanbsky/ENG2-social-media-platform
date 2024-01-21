@@ -1,8 +1,17 @@
 [%
 var client : String = c.controllerMethod.eContainer().className.replace("Controller", "Client");
+var postRequest : Boolean = (c.controllerMethod.request.verb.toString() == "POST");
+var bodyType : String;
 %]
 package uk.ac.york.eng2.client.commands;
 
+[% if (postRequest) {
+bodyType = c.controllerMethod.parameters.get(0).value.toString();
+%]
+import io.micronaut.json.JsonMapper;
+import uk.ac.york.eng2.client.dto.[%=bodyType%];
+import java.io.IOException;
+[%}%]
 import jakarta.inject.Inject;
 import picocli.CommandLine;
 import uk.ac.york.eng2.client.clients.[%=client%];
@@ -12,21 +21,33 @@ public class [%=c.className%] implements Runnable {
 
     @Inject
     private [%=client%] client;
-
-	[%
+    [% if (c.controllerMethod.request.verb.toString() == "POST") {%]
+    @Inject
+    JsonMapper jsonMapper;
+    
+    @CommandLine.Parameters(index = "0")
+    private String body;
+    [%} else {
+    
 	for (p in c.controllerMethod.parameters) {
 	%]
     @CommandLine.Parameters(index = "[%=loopCount - 1%]")
     private [%=p.value.toString()%] [%=p.key%];
-    [%}%]
+    [%}}%]
 
     @Override
     public void run() {
-
+		[% if (not postRequest) {%]
         System.out.println(client.[%=c.controllerMethod.name%]([%
         for (p in c.controllerMethod.parameters) {
         	%][%=p.key%][%if (hasMore) {%], [%}
         }%]));
-    }
-
+        [%} else {%]
+        try {
+        	System.out.println(client.[%=c.controllerMethod.name%](
+        		jsonMapper.readValue(body, [%=bodyType%].class)).header("Location"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }[%}%]
+	}
 }

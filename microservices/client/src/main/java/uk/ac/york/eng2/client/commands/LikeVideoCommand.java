@@ -9,7 +9,6 @@ public class LikeVideoCommand implements Runnable {
 
     @Inject
     private VideosClient client;
-
     @CommandLine.Parameters(index = "0")
     private Long id;
     @CommandLine.Parameters(index = "1")
@@ -17,8 +16,6 @@ public class LikeVideoCommand implements Runnable {
 
     @Override
     public void run() {
-
         System.out.println(client.likeVideo(id, username));
-    }
-
+	}
 }

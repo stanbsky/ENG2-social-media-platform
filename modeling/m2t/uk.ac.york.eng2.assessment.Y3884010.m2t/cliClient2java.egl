@@ -39,6 +39,7 @@ public interface [%=c.className.replace("Controller", "Client")%] {
     	returnType = "Iterable<" + returnType.substring(8) + ">";
     }
     %][%=returnType%] [%=method.name%]([%
+    	if (method.request.verb.toString() == "POST") {%]@Body [%}
     	// Print out method params
     	for (param in method.parameters) {
     		%][%=param.value%] [%=param.key%][%

@@ -18,6 +18,6 @@ public interface VideosClient {
     @Put("/{id}/dislike")
     public HttpResponse<Void> dislikeVideo(Long id);
     @Post("/")
-    public HttpResponse<Void> addVideo();
+    public HttpResponse<Void> addVideo(@Body VideoDTO body);
     
 }

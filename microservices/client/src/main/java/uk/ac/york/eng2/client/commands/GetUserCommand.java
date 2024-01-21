@@ -9,14 +9,11 @@ public class GetUserCommand implements Runnable {
 
     @Inject
     private UsersClient client;
-
     @CommandLine.Parameters(index = "0")
     private Long id;
 
     @Override
     public void run() {
-
         System.out.println(client.getUser(id));
-    }
-
+	}
 }

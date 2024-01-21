@@ -10,11 +10,8 @@ public class GetTrendingCommand implements Runnable {
     @Inject
     private TrendingClient client;
 
-
     @Override
     public void run() {
-
         System.out.println(client.getTrending());
-    }
-
+	}
 }
