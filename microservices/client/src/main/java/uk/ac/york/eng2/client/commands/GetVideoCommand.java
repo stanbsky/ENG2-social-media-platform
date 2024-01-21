@@ -10,10 +10,12 @@ public class GetVideoCommand implements Runnable {
     @Inject
     private VideosClient client;
     @CommandLine.Parameters(index = "0")
-    private Long id;
+    private Long videoId;
+    @CommandLine.Parameters(index = "1")
+    private Long userId;
 
     @Override
     public void run() {
-        System.out.println(client.getVideo(id));
+        System.out.println(client.getVideo(videoId, userId));
 	}
 }

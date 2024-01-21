@@ -21,11 +21,14 @@
         - name: getVideo
         - transactional: true
         - parameter:
-          - key: id
+          - key: videoId
+          - value: Long
+        - parameter:
+          - key: userId
           - value: Long
         - request:
           - verb: GET
-          - uri: "/{id}"
+          - uri: "/user/{userId}/video/{videoId}"
         - response:
           - code: OK
           - body: VideoDTO
@@ -34,14 +37,14 @@
         - name: likeVideo
         - transactional: true
         - parameter:
-          - key: id
+          - key: videoId
           - value: Long
         - parameter:
-          - key: username
-          - val: String
+          - key: userId
+          - value: Long
         - request:
           - verb: PUT
-          - uri: "/{id}/like"
+          - uri: "/user/{userId}/video/{videoId}like"
         - response:
           - code: FORBIDDEN
         - response:
@@ -55,11 +58,14 @@
         - name: dislikeVideo
         - transactional: false
         - parameter:
-          - key: id
+          - key: videoId
+          - value: Long
+        - parameter:
+          - key: userId
           - value: Long
         - request:
           - verb: PUT
-          - uri: "/{id}/dislike"
+          - uri: "/user/{userId}/video/{videoId}/dislike"
         - response:
           - code: FORBIDDEN
         - response:
@@ -84,14 +90,6 @@
     - controller:
       - name: UsersController
       - uri: "/users"
-      - method:
-        - name: listUsers
-        - transactional: false
-        - request:
-          - verb: GET
-          - uri: "/"
-        - response:
-          - body: IterableUser;
       - method:
         - name: getUser
         - transactional: false

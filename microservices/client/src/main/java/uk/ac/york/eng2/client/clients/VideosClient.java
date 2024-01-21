@@ -11,12 +11,12 @@ public interface VideosClient {
 
     @Get("/")
     public Iterable<Video> listVideos();
-    @Get("/{id}")
-    public VideoDTO getVideo(Long id);
-    @Put("/{id}/like")
-    public HttpResponse<Void> likeVideo(Long id, String username);
-    @Put("/{id}/dislike")
-    public HttpResponse<Void> dislikeVideo(Long id);
+    @Get("/user/{userId}/video/{videoId}")
+    public VideoDTO getVideo(Long videoId, Long userId);
+    @Put("/user/{userId}/video/{videoId}like")
+    public HttpResponse<Void> likeVideo(Long videoId, Long userId);
+    @Put("/user/{userId}/video/{videoId}/dislike")
+    public HttpResponse<Void> dislikeVideo(Long videoId, Long userId);
     @Post("/")
     public HttpResponse<Void> addVideo(@Body VideoDTO body);
     

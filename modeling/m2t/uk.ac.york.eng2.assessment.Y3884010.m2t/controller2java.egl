@@ -20,7 +20,10 @@ public class [%=c.className%] {
 
     [% for (method in c.methods) {
     // Fix casing for the HTTP verb
-    var httpVerb : String = method.request.verb.toString().toLowerCase().ftuc(); 
+    var httpVerb : String = method.request.verb.toString().toLowerCase().ftuc();
+    if (method.transactional) {%]
+    @Transactional
+    [%} 
     %]
     @[%=httpVerb%]("[%=method.request.uri%]")
     public [%
