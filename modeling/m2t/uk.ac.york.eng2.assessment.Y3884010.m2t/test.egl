@@ -1,0 +1,3 @@
+
+Controller name: [%=c.className%]
+Microservice name: [%=m.javaPackage%]

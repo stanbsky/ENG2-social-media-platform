@@ -3,6 +3,7 @@
 - deployment:
   - microservice:
     - name: video-microservice
+    - javaPackage: uk.ac.york.eng2.vms
     - port: 8080
     - controller:
       - name: VideosController
@@ -11,7 +12,7 @@
         - name: listVideos
         - transactional: true
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/"
         - response:
           - code: OK
@@ -23,7 +24,7 @@
           - key: id
           - value: Long
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/{id}"
         - response:
           - code: OK
@@ -39,7 +40,7 @@
           - key: username
           - val: String
         - request:
-          - verb: PUT
+          - verb: Put
           - uri: "/{id}/like"
         - response:
           - code: FORBIDDEN
@@ -57,7 +58,7 @@
           - key: id
           - value: Long
         - request:
-          - verb: PUT
+          - verb: Put
           - uri: "/{id}/dislike"
         - response:
           - code: FORBIDDEN
@@ -70,7 +71,7 @@
         - name: addVideo
         - transactional: true
         - request:
-          - verb: POST
+          - verb: Post
           - uri: "/"
         - response:
           - code: FORBIDDEN
@@ -84,7 +85,7 @@
         - name: listUsers
         - transactional: false
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/"
         - response:
           - body: IterableUser;
@@ -92,7 +93,7 @@
         - name: getUser
         - transactional: false
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/{id}"
         - parameter:
           - key: id
@@ -104,7 +105,7 @@
         - name: addUser
         - transactional: false
         - request:
-          - verb: POST
+          - verb: Post
           - uri: "/"
         - response:
           - code: CREATED   
@@ -115,7 +116,7 @@
         - name: getHashtag
         - transactional: true
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/{id}"
         - parameter:
           - key: id
@@ -125,6 +126,7 @@
   - microservice:
     - name: trending-microservice
     - port: 8081
+    - javaPackage: uk.ac.york.eng2.thm
     - controller:
       - name: TrendingController
       - uri: "/trending"
@@ -132,7 +134,7 @@
         - name: getTrending
         - transactional: true
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/"
         - response:
           - code: OK
@@ -140,6 +142,7 @@
   - microservice:
     - name: subscription-microservice
     - port: 8082
+    - javaPackage: uk.ac.york.eng2.sm
     - controller:
       - name: SubscriptionsController
       - uri: "/subscriptions"
@@ -147,7 +150,7 @@
         - name: getWatchlist
         - transactional: true
         - request:
-          - verb: GET
+          - verb: Get
           - uri: "/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
@@ -162,7 +165,7 @@
         - name: subHashtag # 'subscribe' name breaks Command ref
         - transactional: true
         - request:
-          - verb: PUT
+          - verb: Put
           - uri: "/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
@@ -183,7 +186,7 @@
         - name: unsubHashtag # 'unsubscribe' breaks Command ref
         - transactional: true
         - request:
-          - verb: DELETE
+          - verb: Delete
           - uri: "/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId

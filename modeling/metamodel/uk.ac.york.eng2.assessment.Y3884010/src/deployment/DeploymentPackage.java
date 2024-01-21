@@ -150,13 +150,22 @@ public interface DeploymentPackage extends EPackage {
 	int MICROSERVICE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Java Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MICROSERVICE__JAVA_PACKAGE = 1;
+
+	/**
 	 * The feature id for the '<em><b>Port</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MICROSERVICE__PORT = 1;
+	int MICROSERVICE__PORT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Controllers</b></em>' containment reference list.
@@ -165,7 +174,7 @@ public interface DeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MICROSERVICE__CONTROLLERS = 2;
+	int MICROSERVICE__CONTROLLERS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Producers</b></em>' containment reference list.
@@ -174,7 +183,7 @@ public interface DeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MICROSERVICE__PRODUCERS = 3;
+	int MICROSERVICE__PRODUCERS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Microservice</em>' class.
@@ -183,7 +192,7 @@ public interface DeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MICROSERVICE_FEATURE_COUNT = 4;
+	int MICROSERVICE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Microservice</em>' class.
@@ -1110,6 +1119,17 @@ public interface DeploymentPackage extends EPackage {
 	EAttribute getMicroservice_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link deployment.Microservice#getJavaPackage <em>Java Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Package</em>'.
+	 * @see deployment.Microservice#getJavaPackage()
+	 * @see #getMicroservice()
+	 * @generated
+	 */
+	EAttribute getMicroservice_JavaPackage();
+
+	/**
 	 * Returns the meta object for the attribute '{@link deployment.Microservice#getPort <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1786,6 +1806,14 @@ public interface DeploymentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MICROSERVICE__NAME = eINSTANCE.getMicroservice_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Package</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MICROSERVICE__JAVA_PACKAGE = eINSTANCE.getMicroservice_JavaPackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Port</b></em>' attribute feature.

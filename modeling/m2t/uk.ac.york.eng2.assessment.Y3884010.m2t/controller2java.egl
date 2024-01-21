@@ -1,0 +1,49 @@
+package [%=m.javaPackage%].controllers;
+
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.annotation.*;
+import jakarta.annotation.Nullable;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Controller("[%=c.uri%]")
+public class [%=c.className%] {
+
+	private static final Logger logger = LoggerFactory.getLogger([%=c.className%].class);
+	[%=out.startPreserve("/*", "*/", "private-fields", true)%]
+	[%=out.stopPreserve()%]
+	
+	
+
+    [% for (method in c.methods) {
+    // Fix casing for the HTTP verb
+    var httpVerb : String = method.request.verb.toString().toLowerCase().ftuc(); 
+    %]
+    @[%=httpVerb%]("[%=method.request.uri%]")
+    public [%
+    // Parse response return type enum to handle iterables and Void responses
+    var returnType : String = "HttpResponse<Void>";
+    for (r in method.response) {
+    	if (r.body != none) {
+    		returnType = r.body.toString();
+    	}
+    }
+    if (returnType.length() > 8 and returnType.substring(0, 8) == "Iterable") {
+    	returnType = "Iterable<" + returnType.substring(8) + ">";
+    }
+    %][%=returnType%] [%=method.name%]([%
+    	// Print out method params
+    	for (param in method.parameters) {
+    		%][%=param.value%] [%=param.key%][%
+    		if (hasMore) {%], [%}
+    	}
+    %]) {
+        [%=out.startPreserve("/*", "*/", "controller-method-body", true)%]
+	[%=out.stopPreserve()%]	
+    }
+    [%} %]
+
+}

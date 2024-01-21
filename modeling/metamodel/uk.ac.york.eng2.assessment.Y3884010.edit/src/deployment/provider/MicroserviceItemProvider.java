@@ -64,6 +64,7 @@ public class MicroserviceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addJavaPackagePropertyDescriptor(object);
 			addPortPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -83,6 +84,28 @@ public class MicroserviceItemProvider
 				 getString("_UI_Microservice_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Microservice_name_feature", "_UI_Microservice_type"),
 				 DeploymentPackage.Literals.MICROSERVICE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Java Package feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addJavaPackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Microservice_javaPackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Microservice_javaPackage_feature", "_UI_Microservice_type"),
+				 DeploymentPackage.Literals.MICROSERVICE__JAVA_PACKAGE,
 				 true,
 				 false,
 				 false,
@@ -183,6 +206,7 @@ public class MicroserviceItemProvider
 
 		switch (notification.getFeatureID(Microservice.class)) {
 			case DeploymentPackage.MICROSERVICE__NAME:
+			case DeploymentPackage.MICROSERVICE__JAVA_PACKAGE:
 			case DeploymentPackage.MICROSERVICE__PORT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

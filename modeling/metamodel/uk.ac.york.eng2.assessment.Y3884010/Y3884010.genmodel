@@ -44,6 +44,7 @@
     </genClasses>
     <genClasses ecoreClass="Y3884010.ecore#//Microservice">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Microservice/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Microservice/javaPackage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Microservice/port"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Microservice/controllers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Microservice/producers"/>

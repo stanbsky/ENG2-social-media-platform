@@ -1,0 +1,12 @@
+rule Controller2Java
+    transform c : Controller {
+    
+    template : "controller2java.egl"
+    
+    parameters : Map{
+        "m" = c.eContainer(),
+        "none" = Deployment!Model#None
+    }
+
+	target : "src-gen/" + c.className + ".java"
+}

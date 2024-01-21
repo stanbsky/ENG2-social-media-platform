@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link deployment.impl.MicroserviceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link deployment.impl.MicroserviceImpl#getJavaPackage <em>Java Package</em>}</li>
  *   <li>{@link deployment.impl.MicroserviceImpl#getPort <em>Port</em>}</li>
  *   <li>{@link deployment.impl.MicroserviceImpl#getControllers <em>Controllers</em>}</li>
  *   <li>{@link deployment.impl.MicroserviceImpl#getProducers <em>Producers</em>}</li>
@@ -59,6 +60,26 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getJavaPackage() <em>Java Package</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJavaPackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String JAVA_PACKAGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getJavaPackage() <em>Java Package</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJavaPackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected String javaPackage = JAVA_PACKAGE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -145,6 +166,27 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getJavaPackage() {
+		return javaPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setJavaPackage(String newJavaPackage) {
+		String oldJavaPackage = javaPackage;
+		javaPackage = newJavaPackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DeploymentPackage.MICROSERVICE__JAVA_PACKAGE, oldJavaPackage, javaPackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Short getPort() {
 		return port;
 	}
@@ -211,6 +253,8 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 		switch (featureID) {
 			case DeploymentPackage.MICROSERVICE__NAME:
 				return getName();
+			case DeploymentPackage.MICROSERVICE__JAVA_PACKAGE:
+				return getJavaPackage();
 			case DeploymentPackage.MICROSERVICE__PORT:
 				return getPort();
 			case DeploymentPackage.MICROSERVICE__CONTROLLERS:
@@ -232,6 +276,9 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 		switch (featureID) {
 			case DeploymentPackage.MICROSERVICE__NAME:
 				setName((String)newValue);
+				return;
+			case DeploymentPackage.MICROSERVICE__JAVA_PACKAGE:
+				setJavaPackage((String)newValue);
 				return;
 			case DeploymentPackage.MICROSERVICE__PORT:
 				setPort((Short)newValue);
@@ -259,6 +306,9 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 			case DeploymentPackage.MICROSERVICE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case DeploymentPackage.MICROSERVICE__JAVA_PACKAGE:
+				setJavaPackage(JAVA_PACKAGE_EDEFAULT);
+				return;
 			case DeploymentPackage.MICROSERVICE__PORT:
 				setPort(PORT_EDEFAULT);
 				return;
@@ -282,6 +332,8 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 		switch (featureID) {
 			case DeploymentPackage.MICROSERVICE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DeploymentPackage.MICROSERVICE__JAVA_PACKAGE:
+				return JAVA_PACKAGE_EDEFAULT == null ? javaPackage != null : !JAVA_PACKAGE_EDEFAULT.equals(javaPackage);
 			case DeploymentPackage.MICROSERVICE__PORT:
 				return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
 			case DeploymentPackage.MICROSERVICE__CONTROLLERS:
@@ -304,6 +356,8 @@ public class MicroserviceImpl extends MinimalEObjectImpl.Container implements Mi
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", javaPackage: ");
+		result.append(javaPackage);
 		result.append(", port: ");
 		result.append(port);
 		result.append(')');

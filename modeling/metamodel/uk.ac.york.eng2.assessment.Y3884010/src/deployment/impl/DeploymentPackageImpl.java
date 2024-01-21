@@ -318,7 +318,7 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMicroservice_Port() {
+	public EAttribute getMicroservice_JavaPackage() {
 		return (EAttribute)microserviceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -327,8 +327,17 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMicroservice_Port() {
+		return (EAttribute)microserviceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMicroservice_Controllers() {
-		return (EReference)microserviceEClass.getEStructuralFeatures().get(2);
+		return (EReference)microserviceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -337,7 +346,7 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 	 * @generated
 	 */
 	public EReference getMicroservice_Producers() {
-		return (EReference)microserviceEClass.getEStructuralFeatures().get(3);
+		return (EReference)microserviceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -845,6 +854,7 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 		microserviceEClass = createEClass(MICROSERVICE);
 		createEAttribute(microserviceEClass, MICROSERVICE__NAME);
+		createEAttribute(microserviceEClass, MICROSERVICE__JAVA_PACKAGE);
 		createEAttribute(microserviceEClass, MICROSERVICE__PORT);
 		createEReference(microserviceEClass, MICROSERVICE__CONTROLLERS);
 		createEReference(microserviceEClass, MICROSERVICE__PRODUCERS);
@@ -962,6 +972,7 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 
 		initEClass(microserviceEClass, Microservice.class, "Microservice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMicroservice_Name(), ecorePackage.getEString(), "name", null, 0, 1, Microservice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMicroservice_JavaPackage(), ecorePackage.getEString(), "javaPackage", null, 0, 1, Microservice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMicroservice_Port(), ecorePackage.getEShortObject(), "port", null, 0, 1, Microservice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMicroservice_Controllers(), this.getController(), null, "controllers", null, 0, -1, Microservice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMicroservice_Producers(), this.getProducer(), null, "producers", null, 0, -1, Microservice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

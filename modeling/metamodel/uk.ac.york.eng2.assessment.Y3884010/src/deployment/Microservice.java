@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link deployment.Microservice#getName <em>Name</em>}</li>
+ *   <li>{@link deployment.Microservice#getJavaPackage <em>Java Package</em>}</li>
  *   <li>{@link deployment.Microservice#getPort <em>Port</em>}</li>
  *   <li>{@link deployment.Microservice#getControllers <em>Controllers</em>}</li>
  *   <li>{@link deployment.Microservice#getProducers <em>Producers</em>}</li>
@@ -47,6 +48,28 @@ public interface Microservice extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Java Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Java Package</em>' attribute.
+	 * @see #setJavaPackage(String)
+	 * @see deployment.DeploymentPackage#getMicroservice_JavaPackage()
+	 * @model
+	 * @generated
+	 */
+	String getJavaPackage();
+
+	/**
+	 * Sets the value of the '{@link deployment.Microservice#getJavaPackage <em>Java Package</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Java Package</em>' attribute.
+	 * @see #getJavaPackage()
+	 * @generated
+	 */
+	void setJavaPackage(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Port</b></em>' attribute.
