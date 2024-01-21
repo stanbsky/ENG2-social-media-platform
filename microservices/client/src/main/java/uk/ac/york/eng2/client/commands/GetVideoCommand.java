@@ -1,8 +1,8 @@
-package uk.ac.york.eng2.client.vms;
+package uk.ac.york.eng2.client.commands;
 
 import jakarta.inject.Inject;
 import picocli.CommandLine;
-import uk.ac.york.eng2.client.VideosClient;
+import uk.ac.york.eng2.client.clients.VideosClient;
 
 @CommandLine.Command(name = "get-video", description = "Return a video")
 public class GetVideoCommand implements Runnable {

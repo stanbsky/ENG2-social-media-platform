@@ -1,0 +1,32 @@
+[%
+var client : String = c.controllerMethod.eContainer().className.replace("Controller", "Client");
+%]
+package uk.ac.york.eng2.client.commands;
+
+import jakarta.inject.Inject;
+import picocli.CommandLine;
+import uk.ac.york.eng2.client.clients.[%=client%];
+
+@CommandLine.Command(name = "[%=c.name%]", description = "[%=c.description%]")
+public class [%=c.className%] implements Runnable {
+
+    @Inject
+    private [%=client%] client;
+
+	[%
+	for (p in c.controllerMethod.parameters) {
+	%]
+    @CommandLine.Parameters(index = "[%=loopCount - 1%]")
+    private [%=p.value.toString()%] [%=p.key%];
+    [%}%]
+
+    @Override
+    public void run() {
+
+        System.out.println(client.[%=c.controllerMethod.name%]([%
+        for (p in c.controllerMethod.parameters) {
+        	%][%=p.key%][%if (hasMore) {%], [%}
+        }%]));
+    }
+
+}

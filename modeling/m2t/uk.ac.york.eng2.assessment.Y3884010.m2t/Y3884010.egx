@@ -10,3 +10,44 @@ rule Controller2Java
 
 	target : "src-gen/" + c.className + ".java"
 }
+
+rule CliTool2Java
+	transform t : CliTool {
+	
+	template : "cliTool2java.egl"
+	
+	parameters : Map{}
+	
+	target : basePath() + "client/" + basePkg() + "client/ClientCommand.java"
+}
+
+rule CliCommands2Java
+	transform c : Command {
+	
+	template : "cliCommand2java.egl"
+	
+	parameters : Map{}
+	
+	target : basePath() + "client/" + basePkg() + "client/commands/" + c.className + ".java"
+}
+
+rule CliClients2Java
+	transform c : Controller {
+	
+	template : "cliClient2java.egl"
+	
+	parameters : Map{
+        "m" = c.eContainer(),
+        "none" = Deployment!Model#None
+    }
+    
+    target : basePath() + "client/" + basePkg() + "client/clients/" + c.className.replace("Controller", "Client") + ".java"
+}
+
+operation basePath() : String {
+	return "../../../microservices/";
+}
+
+operation basePkg() : String {
+	return "src/main/java/uk/ac/york/eng2/";
+}

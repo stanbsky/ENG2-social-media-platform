@@ -1,0 +1,50 @@
+package uk.ac.york.eng2.client.clients;
+
+import io.micronaut.http.annotation.*;
+import io.micronaut.http.client.annotation.Client;
+[%
+var returnTypes = new Set; 
+for (method in c.methods) {
+	for (response in method.response) {
+		returnTypes.add(response.body.toString());
+	}
+}
+for (t in returnTypes) {
+	if (t == "None") {%]import io.micronaut.http.HttpResponse;
+	[% continue;} 
+	if (t.endsWith("DTO")) {%]import uk.ac.york.eng2.client.dto.[%=t%];
+	[% continue;}
+	if (t.startsWith("Iterable")) {%]import uk.ac.york.eng2.client.domain.[%=t.substring(8)%];
+	[% continue;}
+	%]import uk.ac.york.eng2.client.domain.[%=t%];
+[%}%]
+
+@Client("${[%=c.uri.substring(1)%].url:`http://localhost:[%=m.port%][%=c.uri%]`}")
+public interface [%=c.className.replace("Controller", "Client")%] {
+
+    [% for (method in c.methods) {
+    // Fix casing for the HTTP verb
+    var httpVerb : String = method.request.verb.toString().toLowerCase().ftuc(); 
+    %]
+    @[%=httpVerb%]("[%=method.request.uri%]")
+    public [%
+    // Parse response return type enum to handle iterables and Void responses
+    var returnType : String = "HttpResponse<Void>";
+    for (r in method.response) {
+    	if (r.body != none) {
+    		returnType = r.body.toString();
+    	}
+    }
+    if (returnType.length() > 8 and returnType.substring(0, 8) == "Iterable") {
+    	returnType = "Iterable<" + returnType.substring(8) + ">";
+    }
+    %][%=returnType%] [%=method.name%]([%
+    	// Print out method params
+    	for (param in method.parameters) {
+    		%][%=param.value%] [%=param.key%][%
+    		if (hasMore) {%], [%}
+    	}
+    %]);
+    [%} %]
+    
+}

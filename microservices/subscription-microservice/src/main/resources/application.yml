@@ -10,7 +10,7 @@ micronaut:
   application:
     name: subscription-microservice
   server:
-    port: 8083
+    port: 8082
 jpa:
   default:
     entity-scan:

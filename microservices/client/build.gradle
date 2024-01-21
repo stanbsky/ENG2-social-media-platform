@@ -31,7 +31,7 @@ java {
 
 
 micronaut {
-    testRuntime("junit5")
+//    testRuntime("junit5")
     processing {
         incremental(true)
         annotations("uk.ac.york.eng2.client.*")
