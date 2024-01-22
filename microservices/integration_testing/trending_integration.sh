@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function setup() {
-  curl -s -vX POST -H "Content-Type: application/json" \
+  curl -s -X POST -H "Content-Type: application/json" \
   -d '
   {
       "name": "john"
@@ -13,7 +13,7 @@ function setup() {
   fi
   for i in $(seq 1 $videos) ; do
     echo "Creating video $i"
-     curl -s -vX POST -H "Content-Type: application/json" \
+     curl -s -X POST -H "Content-Type: application/json" \
      -d '
      {
        "title": "Video '$i'",
@@ -40,11 +40,15 @@ function like() {
     likes=$(( ( RANDOM % maxLikes )  + 1 ))
     for j in $(seq 1 $likes) ; do
 #      echo "Liking video $i, like $j"
-      curl -sv -X PUT \
+      curl -s -X PUT \
       "http://localhost:8080/videos/user/1/video/$i/like" > /dev/null
     done
     echo "Video $i has $likes likes"
   done
+}
+
+function trending() {
+  curl -s http://localhost:8081/trending | jq
 }
 
 case "$1" in
@@ -54,7 +58,10 @@ case "$1" in
   like)
     like "$2" "$3"
     ;;
+  trending)
+    trending
+    ;;
   *)
-    echo "Usage: $0 {setup|like [maxLikes] [videos]}"
+    echo "Usage: $0 {setup [videos]|like [maxLikes] [videos]|trending}"
     exit 1
 esac

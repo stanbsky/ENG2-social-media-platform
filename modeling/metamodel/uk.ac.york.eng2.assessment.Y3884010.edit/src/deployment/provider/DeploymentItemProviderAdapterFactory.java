@@ -371,98 +371,6 @@ public class DeploymentItemProviderAdapterFactory extends DeploymentAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link deployment.Table} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TableItemProvider tableItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link deployment.Table}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTableAdapter() {
-		if (tableItemProvider == null) {
-			tableItemProvider = new TableItemProvider(this);
-		}
-
-		return tableItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link deployment.Column} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ColumnItemProvider columnItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link deployment.Column}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createColumnAdapter() {
-		if (columnItemProvider == null) {
-			columnItemProvider = new ColumnItemProvider(this);
-		}
-
-		return columnItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link deployment.ForeignKey} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ForeignKeyItemProvider foreignKeyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link deployment.ForeignKey}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createForeignKeyAdapter() {
-		if (foreignKeyItemProvider == null) {
-			foreignKeyItemProvider = new ForeignKeyItemProvider(this);
-		}
-
-		return foreignKeyItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link deployment.JoinTable} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected JoinTableItemProvider joinTableItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link deployment.JoinTable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createJoinTableAdapter() {
-		if (joinTableItemProvider == null) {
-			joinTableItemProvider = new JoinTableItemProvider(this);
-		}
-
-		return joinTableItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -574,10 +482,6 @@ public class DeploymentItemProviderAdapterFactory extends DeploymentAdapterFacto
 		if (producerItemProvider != null) producerItemProvider.dispose();
 		if (producerMethodItemProvider != null) producerMethodItemProvider.dispose();
 		if (topicItemProvider != null) topicItemProvider.dispose();
-		if (tableItemProvider != null) tableItemProvider.dispose();
-		if (columnItemProvider != null) columnItemProvider.dispose();
-		if (foreignKeyItemProvider != null) foreignKeyItemProvider.dispose();
-		if (joinTableItemProvider != null) joinTableItemProvider.dispose();
 	}
 
 }

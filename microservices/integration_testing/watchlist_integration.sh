@@ -9,7 +9,7 @@ function setup() {
 }
 
 function watch() {
-  curl -s 'http://localhost:8080/videos/'$1'?userId=1'
+  curl -s 'http://localhost:8080/videos/user/1/video/'$1
 }
 
 function list() {
@@ -78,6 +78,6 @@ case "$1" in
     google
     ;;
   *)
-    echo "Usage: $0 {watch [videoId]|sub [hashtag]|post [hashtag]}"
+    echo "Usage: $0 {watch|sub|unsub|post|post2|list|setup|google}"
     exit 1
 esac

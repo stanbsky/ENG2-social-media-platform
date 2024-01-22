@@ -70,10 +70,6 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 			case DeploymentPackage.PRODUCER: return createProducer();
 			case DeploymentPackage.PRODUCER_METHOD: return createProducerMethod();
 			case DeploymentPackage.TOPIC: return createTopic();
-			case DeploymentPackage.TABLE: return createTable();
-			case DeploymentPackage.COLUMN: return createColumn();
-			case DeploymentPackage.FOREIGN_KEY: return createForeignKey();
-			case DeploymentPackage.JOIN_TABLE: return createJoinTable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -245,46 +241,6 @@ public class DeploymentFactoryImpl extends EFactoryImpl implements DeploymentFac
 	public Topic createTopic() {
 		TopicImpl topic = new TopicImpl();
 		return topic;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Table createTable() {
-		TableImpl table = new TableImpl();
-		return table;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Column createColumn() {
-		ColumnImpl column = new ColumnImpl();
-		return column;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ForeignKey createForeignKey() {
-		ForeignKeyImpl foreignKey = new ForeignKeyImpl();
-		return foreignKey;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public JoinTable createJoinTable() {
-		JoinTableImpl joinTable = new JoinTableImpl();
-		return joinTable;
 	}
 
 	/**

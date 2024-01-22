@@ -8,10 +8,6 @@
         eType="#//Topic" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cliTool" eType="#//CliTool"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" upperBound="-1"
-        eType="#//Table" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="joinTables" upperBound="-1"
-        eType="#//JoinTable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Microservice">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -110,18 +106,4 @@
     <eLiterals name="Top10DTO" value="13"/>
     <eLiterals name="WatchlistDTO" value="14"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Table">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
-        eType="#//Column" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Column">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Model"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ForeignKey">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Column"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Column"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="JoinTable" eSuperTypes="#//Table"/>
 </ecore:EPackage>

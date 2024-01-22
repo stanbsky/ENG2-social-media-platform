@@ -95,31 +95,13 @@ public interface DeploymentPackage extends EPackage {
 	int DEPLOYMENT__CLI_TOOL = 2;
 
 	/**
-	 * The feature id for the '<em><b>Tables</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPLOYMENT__TABLES = 3;
-
-	/**
-	 * The feature id for the '<em><b>Join Tables</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPLOYMENT__JOIN_TABLES = 4;
-
-	/**
 	 * The number of structural features of the '<em>Deployment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_FEATURE_COUNT = 5;
+	int DEPLOYMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Deployment</em>' class.
@@ -818,190 +800,6 @@ public interface DeploymentPackage extends EPackage {
 	int TOPIC_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link deployment.impl.TableImpl <em>Table</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see deployment.impl.TableImpl
-	 * @see deployment.impl.DeploymentPackageImpl#getTable()
-	 * @generated
-	 */
-	int TABLE = 13;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE__COLUMNS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link deployment.impl.ColumnImpl <em>Column</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see deployment.impl.ColumnImpl
-	 * @see deployment.impl.DeploymentPackageImpl#getColumn()
-	 * @generated
-	 */
-	int COLUMN = 14;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLUMN__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLUMN__TYPE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Column</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLUMN_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Column</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLUMN_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link deployment.impl.ForeignKeyImpl <em>Foreign Key</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see deployment.impl.ForeignKeyImpl
-	 * @see deployment.impl.DeploymentPackageImpl#getForeignKey()
-	 * @generated
-	 */
-	int FOREIGN_KEY = 15;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREIGN_KEY__SOURCE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Destination</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREIGN_KEY__DESTINATION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Foreign Key</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREIGN_KEY_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Foreign Key</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREIGN_KEY_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link deployment.impl.JoinTableImpl <em>Join Table</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see deployment.impl.JoinTableImpl
-	 * @see deployment.impl.DeploymentPackageImpl#getJoinTable()
-	 * @generated
-	 */
-	int JOIN_TABLE = 16;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_TABLE__NAME = TABLE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_TABLE__COLUMNS = TABLE__COLUMNS;
-
-	/**
-	 * The number of structural features of the '<em>Join Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_TABLE_FEATURE_COUNT = TABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Join Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_TABLE_OPERATION_COUNT = TABLE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link deployment.HttpVerb <em>Http Verb</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1009,7 +807,7 @@ public interface DeploymentPackage extends EPackage {
 	 * @see deployment.impl.DeploymentPackageImpl#getHttpVerb()
 	 * @generated
 	 */
-	int HTTP_VERB = 17;
+	int HTTP_VERB = 13;
 
 	/**
 	 * The meta object id for the '{@link deployment.HttpCode <em>Http Code</em>}' enum.
@@ -1019,7 +817,7 @@ public interface DeploymentPackage extends EPackage {
 	 * @see deployment.impl.DeploymentPackageImpl#getHttpCode()
 	 * @generated
 	 */
-	int HTTP_CODE = 18;
+	int HTTP_CODE = 14;
 
 	/**
 	 * The meta object id for the '{@link deployment.Model <em>Model</em>}' enum.
@@ -1029,7 +827,7 @@ public interface DeploymentPackage extends EPackage {
 	 * @see deployment.impl.DeploymentPackageImpl#getModel()
 	 * @generated
 	 */
-	int MODEL = 19;
+	int MODEL = 15;
 
 
 	/**
@@ -1074,28 +872,6 @@ public interface DeploymentPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDeployment_CliTool();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link deployment.Deployment#getTables <em>Tables</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tables</em>'.
-	 * @see deployment.Deployment#getTables()
-	 * @see #getDeployment()
-	 * @generated
-	 */
-	EReference getDeployment_Tables();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link deployment.Deployment#getJoinTables <em>Join Tables</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Join Tables</em>'.
-	 * @see deployment.Deployment#getJoinTables()
-	 * @see #getDeployment()
-	 * @generated
-	 */
-	EReference getDeployment_JoinTables();
 
 	/**
 	 * Returns the meta object for class '{@link deployment.Microservice <em>Microservice</em>}'.
@@ -1581,112 +1357,6 @@ public interface DeploymentPackage extends EPackage {
 	EAttribute getTopic_Value();
 
 	/**
-	 * Returns the meta object for class '{@link deployment.Table <em>Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Table</em>'.
-	 * @see deployment.Table
-	 * @generated
-	 */
-	EClass getTable();
-
-	/**
-	 * Returns the meta object for the attribute '{@link deployment.Table#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see deployment.Table#getName()
-	 * @see #getTable()
-	 * @generated
-	 */
-	EAttribute getTable_Name();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link deployment.Table#getColumns <em>Columns</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Columns</em>'.
-	 * @see deployment.Table#getColumns()
-	 * @see #getTable()
-	 * @generated
-	 */
-	EReference getTable_Columns();
-
-	/**
-	 * Returns the meta object for class '{@link deployment.Column <em>Column</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Column</em>'.
-	 * @see deployment.Column
-	 * @generated
-	 */
-	EClass getColumn();
-
-	/**
-	 * Returns the meta object for the attribute '{@link deployment.Column#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see deployment.Column#getName()
-	 * @see #getColumn()
-	 * @generated
-	 */
-	EAttribute getColumn_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link deployment.Column#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see deployment.Column#getType()
-	 * @see #getColumn()
-	 * @generated
-	 */
-	EAttribute getColumn_Type();
-
-	/**
-	 * Returns the meta object for class '{@link deployment.ForeignKey <em>Foreign Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Foreign Key</em>'.
-	 * @see deployment.ForeignKey
-	 * @generated
-	 */
-	EClass getForeignKey();
-
-	/**
-	 * Returns the meta object for the reference '{@link deployment.ForeignKey#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see deployment.ForeignKey#getSource()
-	 * @see #getForeignKey()
-	 * @generated
-	 */
-	EReference getForeignKey_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link deployment.ForeignKey#getDestination <em>Destination</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Destination</em>'.
-	 * @see deployment.ForeignKey#getDestination()
-	 * @see #getForeignKey()
-	 * @generated
-	 */
-	EReference getForeignKey_Destination();
-
-	/**
-	 * Returns the meta object for class '{@link deployment.JoinTable <em>Join Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Join Table</em>'.
-	 * @see deployment.JoinTable
-	 * @generated
-	 */
-	EClass getJoinTable();
-
-	/**
 	 * Returns the meta object for enum '{@link deployment.HttpVerb <em>Http Verb</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1772,22 +1442,6 @@ public interface DeploymentPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DEPLOYMENT__CLI_TOOL = eINSTANCE.getDeployment_CliTool();
-
-		/**
-		 * The meta object literal for the '<em><b>Tables</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPLOYMENT__TABLES = eINSTANCE.getDeployment_Tables();
-
-		/**
-		 * The meta object literal for the '<em><b>Join Tables</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPLOYMENT__JOIN_TABLES = eINSTANCE.getDeployment_JoinTables();
 
 		/**
 		 * The meta object literal for the '{@link deployment.impl.MicroserviceImpl <em>Microservice</em>}' class.
@@ -2172,94 +1826,6 @@ public interface DeploymentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TOPIC__VALUE = eINSTANCE.getTopic_Value();
-
-		/**
-		 * The meta object literal for the '{@link deployment.impl.TableImpl <em>Table</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see deployment.impl.TableImpl
-		 * @see deployment.impl.DeploymentPackageImpl#getTable()
-		 * @generated
-		 */
-		EClass TABLE = eINSTANCE.getTable();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE__NAME = eINSTANCE.getTable_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Columns</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE__COLUMNS = eINSTANCE.getTable_Columns();
-
-		/**
-		 * The meta object literal for the '{@link deployment.impl.ColumnImpl <em>Column</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see deployment.impl.ColumnImpl
-		 * @see deployment.impl.DeploymentPackageImpl#getColumn()
-		 * @generated
-		 */
-		EClass COLUMN = eINSTANCE.getColumn();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COLUMN__NAME = eINSTANCE.getColumn_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COLUMN__TYPE = eINSTANCE.getColumn_Type();
-
-		/**
-		 * The meta object literal for the '{@link deployment.impl.ForeignKeyImpl <em>Foreign Key</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see deployment.impl.ForeignKeyImpl
-		 * @see deployment.impl.DeploymentPackageImpl#getForeignKey()
-		 * @generated
-		 */
-		EClass FOREIGN_KEY = eINSTANCE.getForeignKey();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOREIGN_KEY__SOURCE = eINSTANCE.getForeignKey_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Destination</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOREIGN_KEY__DESTINATION = eINSTANCE.getForeignKey_Destination();
-
-		/**
-		 * The meta object literal for the '{@link deployment.impl.JoinTableImpl <em>Join Table</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see deployment.impl.JoinTableImpl
-		 * @see deployment.impl.DeploymentPackageImpl#getJoinTable()
-		 * @generated
-		 */
-		EClass JOIN_TABLE = eINSTANCE.getJoinTable();
 
 		/**
 		 * The meta object literal for the '{@link deployment.HttpVerb <em>Http Verb</em>}' enum.

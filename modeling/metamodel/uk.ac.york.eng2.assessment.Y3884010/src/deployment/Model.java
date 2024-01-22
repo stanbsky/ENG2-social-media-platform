@@ -156,7 +156,17 @@ public enum Model implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TOP10_DTO(13, "Top10DTO", "Top10DTO");
+	TOP10_DTO(13, "Top10DTO", "Top10DTO"),
+
+	/**
+	 * The '<em><b>Watchlist DTO</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WATCHLIST_DTO_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	WATCHLIST_DTO(14, "WatchlistDTO", "WatchlistDTO");
 
 	/**
 	 * The '<em><b>None</b></em>' literal value.
@@ -313,6 +323,17 @@ public enum Model implements Enumerator {
 	public static final int TOP10_DTO_VALUE = 13;
 
 	/**
+	 * The '<em><b>Watchlist DTO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WATCHLIST_DTO
+	 * @model name="WatchlistDTO"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WATCHLIST_DTO_VALUE = 14;
+
+	/**
 	 * An array of all the '<em><b>Model</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,6 +355,7 @@ public enum Model implements Enumerator {
 			USER_VIDEO,
 			HASHTAG_SET,
 			TOP10_DTO,
+			WATCHLIST_DTO,
 		};
 
 	/**
@@ -404,6 +426,7 @@ public enum Model implements Enumerator {
 			case USER_VIDEO_VALUE: return USER_VIDEO;
 			case HASHTAG_SET_VALUE: return HASHTAG_SET;
 			case TOP10_DTO_VALUE: return TOP10_DTO;
+			case WATCHLIST_DTO_VALUE: return WATCHLIST_DTO;
 		}
 		return null;
 	}

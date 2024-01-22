@@ -3,17 +3,14 @@
 package deployment.impl;
 
 import deployment.CliTool;
-import deployment.Column;
 import deployment.Command;
 import deployment.Controller;
 import deployment.Deployment;
 import deployment.DeploymentFactory;
 import deployment.DeploymentPackage;
-import deployment.ForeignKey;
 import deployment.HttpCode;
 import deployment.HttpVerb;
 import deployment.JavaClass;
-import deployment.JoinTable;
 import deployment.Method;
 import deployment.Microservice;
 import deployment.Model;
@@ -22,7 +19,6 @@ import deployment.Producer;
 import deployment.ProducerMethod;
 import deployment.Request;
 import deployment.Response;
-import deployment.Table;
 import deployment.Topic;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -130,34 +126,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 	 * @generated
 	 */
 	private EClass topicEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass tableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass columnEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass foreignKeyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass joinTableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -275,24 +243,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 	 */
 	public EReference getDeployment_CliTool() {
 		return (EReference)deploymentEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDeployment_Tables() {
-		return (EReference)deploymentEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDeployment_JoinTables() {
-		return (EReference)deploymentEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -705,96 +655,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTable() {
-		return tableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTable_Name() {
-		return (EAttribute)tableEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTable_Columns() {
-		return (EReference)tableEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getColumn() {
-		return columnEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getColumn_Name() {
-		return (EAttribute)columnEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getColumn_Type() {
-		return (EAttribute)columnEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getForeignKey() {
-		return foreignKeyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getForeignKey_Source() {
-		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getForeignKey_Destination() {
-		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getJoinTable() {
-		return joinTableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getHttpVerb() {
 		return httpVerbEEnum;
 	}
@@ -849,8 +709,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 		createEReference(deploymentEClass, DEPLOYMENT__MICROSERVICES);
 		createEReference(deploymentEClass, DEPLOYMENT__TOPICS);
 		createEReference(deploymentEClass, DEPLOYMENT__CLI_TOOL);
-		createEReference(deploymentEClass, DEPLOYMENT__TABLES);
-		createEReference(deploymentEClass, DEPLOYMENT__JOIN_TABLES);
 
 		microserviceEClass = createEClass(MICROSERVICE);
 		createEAttribute(microserviceEClass, MICROSERVICE__NAME);
@@ -909,20 +767,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 		createEAttribute(topicEClass, TOPIC__KEY);
 		createEAttribute(topicEClass, TOPIC__VALUE);
 
-		tableEClass = createEClass(TABLE);
-		createEAttribute(tableEClass, TABLE__NAME);
-		createEReference(tableEClass, TABLE__COLUMNS);
-
-		columnEClass = createEClass(COLUMN);
-		createEAttribute(columnEClass, COLUMN__NAME);
-		createEAttribute(columnEClass, COLUMN__TYPE);
-
-		foreignKeyEClass = createEClass(FOREIGN_KEY);
-		createEReference(foreignKeyEClass, FOREIGN_KEY__SOURCE);
-		createEReference(foreignKeyEClass, FOREIGN_KEY__DESTINATION);
-
-		joinTableEClass = createEClass(JOIN_TABLE);
-
 		// Create enums
 		httpVerbEEnum = createEEnum(HTTP_VERB);
 		httpCodeEEnum = createEEnum(HTTP_CODE);
@@ -960,15 +804,12 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 		controllerEClass.getESuperTypes().add(this.getJavaClass());
 		cliToolEClass.getESuperTypes().add(this.getJavaClass());
 		commandEClass.getESuperTypes().add(this.getJavaClass());
-		joinTableEClass.getESuperTypes().add(this.getTable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(deploymentEClass, Deployment.class, "Deployment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeployment_Microservices(), this.getMicroservice(), null, "microservices", null, 0, -1, Deployment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeployment_Topics(), this.getTopic(), null, "topics", null, 0, -1, Deployment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeployment_CliTool(), this.getCliTool(), null, "cliTool", null, 0, 1, Deployment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDeployment_Tables(), this.getTable(), null, "tables", null, 0, -1, Deployment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDeployment_JoinTables(), this.getJoinTable(), null, "joinTables", null, 0, -1, Deployment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(microserviceEClass, Microservice.class, "Microservice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMicroservice_Name(), ecorePackage.getEString(), "name", null, 0, 1, Microservice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1027,20 +868,6 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 		initEAttribute(getTopic_Key(), this.getModel(), "key", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTopic_Value(), this.getModel(), "value", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTable_Columns(), this.getColumn(), null, "columns", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(columnEClass, Column.class, "Column", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getColumn_Name(), ecorePackage.getEString(), "name", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getColumn_Type(), this.getModel(), "type", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(foreignKeyEClass, ForeignKey.class, "ForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getForeignKey_Source(), this.getColumn(), null, "source", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForeignKey_Destination(), this.getColumn(), null, "destination", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(joinTableEClass, JoinTable.class, "JoinTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		// Initialize enums and add enum literals
 		initEEnum(httpVerbEEnum, HttpVerb.class, "HttpVerb");
 		addEEnumLiteral(httpVerbEEnum, HttpVerb.GET);
@@ -1070,6 +897,7 @@ public class DeploymentPackageImpl extends EPackageImpl implements DeploymentPac
 		addEEnumLiteral(modelEEnum, Model.USER_VIDEO);
 		addEEnumLiteral(modelEEnum, Model.HASHTAG_SET);
 		addEEnumLiteral(modelEEnum, Model.TOP10_DTO);
+		addEEnumLiteral(modelEEnum, Model.WATCHLIST_DTO);
 
 		// Create resource
 		createResource(eNS_URI);

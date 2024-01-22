@@ -5,9 +5,7 @@ package deployment.impl;
 import deployment.CliTool;
 import deployment.Deployment;
 import deployment.DeploymentPackage;
-import deployment.JoinTable;
 import deployment.Microservice;
-import deployment.Table;
 import deployment.Topic;
 
 import java.util.Collection;
@@ -37,8 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link deployment.impl.DeploymentImpl#getMicroservices <em>Microservices</em>}</li>
  *   <li>{@link deployment.impl.DeploymentImpl#getTopics <em>Topics</em>}</li>
  *   <li>{@link deployment.impl.DeploymentImpl#getCliTool <em>Cli Tool</em>}</li>
- *   <li>{@link deployment.impl.DeploymentImpl#getTables <em>Tables</em>}</li>
- *   <li>{@link deployment.impl.DeploymentImpl#getJoinTables <em>Join Tables</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,26 +69,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 	 * @ordered
 	 */
 	protected CliTool cliTool;
-
-	/**
-	 * The cached value of the '{@link #getTables() <em>Tables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Table> tables;
-
-	/**
-	 * The cached value of the '{@link #getJoinTables() <em>Join Tables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJoinTables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<JoinTable> joinTables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,30 +161,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Table> getTables() {
-		if (tables == null) {
-			tables = new EObjectContainmentEList<Table>(Table.class, this, DeploymentPackage.DEPLOYMENT__TABLES);
-		}
-		return tables;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<JoinTable> getJoinTables() {
-		if (joinTables == null) {
-			joinTables = new EObjectContainmentEList<JoinTable>(JoinTable.class, this, DeploymentPackage.DEPLOYMENT__JOIN_TABLES);
-		}
-		return joinTables;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -218,10 +170,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 				return ((InternalEList<?>)getTopics()).basicRemove(otherEnd, msgs);
 			case DeploymentPackage.DEPLOYMENT__CLI_TOOL:
 				return basicSetCliTool(null, msgs);
-			case DeploymentPackage.DEPLOYMENT__TABLES:
-				return ((InternalEList<?>)getTables()).basicRemove(otherEnd, msgs);
-			case DeploymentPackage.DEPLOYMENT__JOIN_TABLES:
-				return ((InternalEList<?>)getJoinTables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -240,10 +188,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 				return getTopics();
 			case DeploymentPackage.DEPLOYMENT__CLI_TOOL:
 				return getCliTool();
-			case DeploymentPackage.DEPLOYMENT__TABLES:
-				return getTables();
-			case DeploymentPackage.DEPLOYMENT__JOIN_TABLES:
-				return getJoinTables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -268,14 +212,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 			case DeploymentPackage.DEPLOYMENT__CLI_TOOL:
 				setCliTool((CliTool)newValue);
 				return;
-			case DeploymentPackage.DEPLOYMENT__TABLES:
-				getTables().clear();
-				getTables().addAll((Collection<? extends Table>)newValue);
-				return;
-			case DeploymentPackage.DEPLOYMENT__JOIN_TABLES:
-				getJoinTables().clear();
-				getJoinTables().addAll((Collection<? extends JoinTable>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -297,12 +233,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 			case DeploymentPackage.DEPLOYMENT__CLI_TOOL:
 				setCliTool((CliTool)null);
 				return;
-			case DeploymentPackage.DEPLOYMENT__TABLES:
-				getTables().clear();
-				return;
-			case DeploymentPackage.DEPLOYMENT__JOIN_TABLES:
-				getJoinTables().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -321,10 +251,6 @@ public class DeploymentImpl extends MinimalEObjectImpl.Container implements Depl
 				return topics != null && !topics.isEmpty();
 			case DeploymentPackage.DEPLOYMENT__CLI_TOOL:
 				return cliTool != null;
-			case DeploymentPackage.DEPLOYMENT__TABLES:
-				return tables != null && !tables.isEmpty();
-			case DeploymentPackage.DEPLOYMENT__JOIN_TABLES:
-				return joinTables != null && !joinTables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

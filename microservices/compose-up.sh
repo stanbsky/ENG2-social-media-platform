@@ -11,5 +11,5 @@ done
 printf "\nkafka-topic-creator has completed, re-running docker compose up...\n"
 docker-compose up -d
 
-printf "\nMicroservices starting again and should be ready in 10-20 seconds"
+printf "\nMicroservices starting again and should be ready in 10-20 seconds\n"
 

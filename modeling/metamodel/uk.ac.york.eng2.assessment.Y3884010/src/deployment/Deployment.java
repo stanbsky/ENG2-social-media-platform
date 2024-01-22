@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link deployment.Deployment#getMicroservices <em>Microservices</em>}</li>
  *   <li>{@link deployment.Deployment#getTopics <em>Topics</em>}</li>
  *   <li>{@link deployment.Deployment#getCliTool <em>Cli Tool</em>}</li>
- *   <li>{@link deployment.Deployment#getTables <em>Tables</em>}</li>
- *   <li>{@link deployment.Deployment#getJoinTables <em>Join Tables</em>}</li>
  * </ul>
  *
  * @see deployment.DeploymentPackage#getDeployment()
@@ -72,29 +70,5 @@ public interface Deployment extends EObject {
 	 * @generated
 	 */
 	void setCliTool(CliTool value);
-
-	/**
-	 * Returns the value of the '<em><b>Tables</b></em>' containment reference list.
-	 * The list contents are of type {@link deployment.Table}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tables</em>' containment reference list.
-	 * @see deployment.DeploymentPackage#getDeployment_Tables()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Table> getTables();
-
-	/**
-	 * Returns the value of the '<em><b>Join Tables</b></em>' containment reference list.
-	 * The list contents are of type {@link deployment.JoinTable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Join Tables</em>' containment reference list.
-	 * @see deployment.DeploymentPackage#getDeployment_JoinTables()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<JoinTable> getJoinTables();
 
 } // Deployment

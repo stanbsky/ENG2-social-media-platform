@@ -10,9 +10,9 @@
       - uri: "/videos"
       - method:
         - name: listVideos
-        - transactional: true
+        - transactional: false
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/"
         - response:
           - code: OK
@@ -21,11 +21,14 @@
         - name: getVideo
         - transactional: true
         - parameter:
-          - key: id
+          - key: videoId
+          - value: Long
+        - parameter:
+          - key: userId
           - value: Long
         - request:
-          - verb: Get
-          - uri: "/{id}"
+          - verb: GET
+          - uri: "/user/{userId}/video/{videoId}"
         - response:
           - code: OK
           - body: VideoDTO
@@ -34,14 +37,14 @@
         - name: likeVideo
         - transactional: true
         - parameter:
-          - key: id
+          - key: videoId
           - value: Long
         - parameter:
-          - key: username
-          - val: String
+          - key: userId
+          - value: Long
         - request:
-          - verb: Put
-          - uri: "/{id}/like"
+          - verb: PUT
+          - uri: "/user/{userId}/video/{videoId}/like"
         - response:
           - code: FORBIDDEN
         - response:
@@ -55,11 +58,14 @@
         - name: dislikeVideo
         - transactional: false
         - parameter:
-          - key: id
+          - key: videoId
+          - value: Long
+        - parameter:
+          - key: userId
           - value: Long
         - request:
-          - verb: Put
-          - uri: "/{id}/dislike"
+          - verb: PUT
+          - uri: "/user/{userId}/video/{videoId}/dislike"
         - response:
           - code: FORBIDDEN
         - response:
@@ -71,8 +77,11 @@
         - name: addVideo
         - transactional: true
         - request:
-          - verb: Post
+          - verb: POST
           - uri: "/"
+        - parameters:
+          - key: video
+          - val: VideoDTO
         - response:
           - code: FORBIDDEN
         - response:
@@ -82,18 +91,10 @@
       - name: UsersController
       - uri: "/users"
       - method:
-        - name: listUsers
-        - transactional: false
-        - request:
-          - verb: Get
-          - uri: "/"
-        - response:
-          - body: IterableUser;
-      - method:
         - name: getUser
         - transactional: false
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/{id}"
         - parameter:
           - key: id
@@ -105,8 +106,11 @@
         - name: addUser
         - transactional: false
         - request:
-          - verb: Post
+          - verb: POST
           - uri: "/"
+        - parameters:
+          - key: body
+          - val: UserDTO
         - response:
           - code: CREATED   
     - controller:
@@ -116,7 +120,7 @@
         - name: getHashtag
         - transactional: true
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/{id}"
         - parameter:
           - key: id
@@ -124,7 +128,7 @@
         - response:
           - body: Hashtag
   - microservice:
-    - name: trending-microservice
+    - name: trending-hashtag-microservice
     - port: 8081
     - javaPackage: uk.ac.york.eng2.thm
     - controller:
@@ -132,13 +136,13 @@
       - uri: "/trending"
       - method:
         - name: getTrending
-        - transactional: true
+        - transactional: false
         - request:
-          - verb: Get
+          - verb: GET
           - uri: "/"
         - response:
           - code: OK
-          - body: IterableVideo
+          - body: Top10DTO
   - microservice:
     - name: subscription-microservice
     - port: 8082
@@ -150,8 +154,8 @@
         - name: getWatchlist
         - transactional: true
         - request:
-          - verb: Get
-          - uri: "/{userId}/hashtag/{hashtagId}"
+          - verb: GET
+          - uri: "/user/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
           - val: Long
@@ -165,8 +169,8 @@
         - name: subHashtag # 'subscribe' name breaks Command ref
         - transactional: true
         - request:
-          - verb: Put
-          - uri: "/{userId}/hashtag/{hashtagId}"
+          - verb: PUT
+          - uri: "/user/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
           - val: Long
@@ -187,7 +191,7 @@
         - transactional: true
         - request:
           - verb: Delete
-          - uri: "/{userId}/hashtag/{hashtagId}"
+          - uri: "/user/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
           - val: Long
@@ -322,7 +326,7 @@
       - controllerMethod: subHashtag
     - command:
       - className: UnsubscribeCommand
-      - name: unsubscribe-hashtag
+      - name: unsubscribe
       - description: Unsubscribe to a hashtag
       - controllerMethod: unsubHashtag
 

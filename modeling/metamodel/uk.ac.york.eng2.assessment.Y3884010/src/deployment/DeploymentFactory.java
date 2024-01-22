@@ -139,42 +139,6 @@ public interface DeploymentFactory extends EFactory {
 	Topic createTopic();
 
 	/**
-	 * Returns a new object of class '<em>Table</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table</em>'.
-	 * @generated
-	 */
-	Table createTable();
-
-	/**
-	 * Returns a new object of class '<em>Column</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Column</em>'.
-	 * @generated
-	 */
-	Column createColumn();
-
-	/**
-	 * Returns a new object of class '<em>Foreign Key</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Foreign Key</em>'.
-	 * @generated
-	 */
-	ForeignKey createForeignKey();
-
-	/**
-	 * Returns a new object of class '<em>Join Table</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Join Table</em>'.
-	 * @generated
-	 */
-	JoinTable createJoinTable();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

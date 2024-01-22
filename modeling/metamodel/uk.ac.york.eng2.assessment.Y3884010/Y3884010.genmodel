@@ -34,13 +34,12 @@
       <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/UserVideo"/>
       <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/HashtagSet"/>
       <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/Top10DTO"/>
+      <genEnumLiterals ecoreEnumLiteral="Y3884010.ecore#//Model/WatchlistDTO"/>
     </genEnums>
     <genClasses ecoreClass="Y3884010.ecore#//Deployment">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/microservices"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/topics"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/cliTool"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/tables"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Deployment/joinTables"/>
     </genClasses>
     <genClasses ecoreClass="Y3884010.ecore#//Microservice">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Microservice/name"/>
@@ -99,18 +98,5 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Topic/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Topic/value"/>
     </genClasses>
-    <genClasses ecoreClass="Y3884010.ecore#//Table">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Table/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Y3884010.ecore#//Table/columns"/>
-    </genClasses>
-    <genClasses ecoreClass="Y3884010.ecore#//Column">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Column/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Y3884010.ecore#//Column/type"/>
-    </genClasses>
-    <genClasses ecoreClass="Y3884010.ecore#//ForeignKey">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//ForeignKey/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Y3884010.ecore#//ForeignKey/destination"/>
-    </genClasses>
-    <genClasses ecoreClass="Y3884010.ecore#//JoinTable"/>
   </genPackages>
 </genmodel:GenModel>

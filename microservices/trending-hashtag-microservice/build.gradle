@@ -24,7 +24,7 @@ dependencies {
     implementation("com.google.guava:guava:33.0.0-jre")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("org.yaml:snakeyaml")
-    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("ch.qos.logback:logback-classic:1.4.14")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
     testImplementation("io.micronaut:micronaut-http-client")
 }
@@ -51,8 +51,8 @@ micronaut {
 //        sharedServer = true
 //    }
     aot {
-    // Please review carefully the optimizations enabled below
-    // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
         optimizeServiceLoading = false
         convertYamlToJava = false
         precomputeOperations = true

@@ -120,22 +120,6 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
 				return createTopicAdapter();
 			}
 			@Override
-			public Adapter caseTable(Table object) {
-				return createTableAdapter();
-			}
-			@Override
-			public Adapter caseColumn(Column object) {
-				return createColumnAdapter();
-			}
-			@Override
-			public Adapter caseForeignKey(ForeignKey object) {
-				return createForeignKeyAdapter();
-			}
-			@Override
-			public Adapter caseJoinTable(JoinTable object) {
-				return createJoinTableAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -334,62 +318,6 @@ public class DeploymentAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTopicAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link deployment.Table <em>Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see deployment.Table
-	 * @generated
-	 */
-	public Adapter createTableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link deployment.Column <em>Column</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see deployment.Column
-	 * @generated
-	 */
-	public Adapter createColumnAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link deployment.ForeignKey <em>Foreign Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see deployment.ForeignKey
-	 * @generated
-	 */
-	public Adapter createForeignKeyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link deployment.JoinTable <em>Join Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see deployment.JoinTable
-	 * @generated
-	 */
-	public Adapter createJoinTableAdapter() {
 		return null;
 	}
 
