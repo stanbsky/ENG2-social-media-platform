@@ -1,12 +1,10 @@
 package uk.ac.york.eng2.client.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
-import uk.ac.york.eng2.client.domain.Hashtag;
 import uk.ac.york.eng2.client.domain.Video;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Serdeable
 public class VideoDTO {
@@ -24,13 +22,14 @@ public class VideoDTO {
 
     public VideoDTO(Video video) {
         this.title = video.getTitle();
-        Set<String> hashtags = video.getHashtags().stream()
-                .map(Hashtag::getName).collect(Collectors.toSet());
+//        Set<String> hashtags = video.getHashtags().stream()
+//                .map(Hashtag::getName).collect(Collectors.toSet());
         this.hashtags = hashtags;
         this.views = video.getViews();
         this.likes = video.getLikes();
         this.dislikes = video.getDislikes();
-        this.userId = video.getUserId();
+        // TODO: this isn't right, the user id is returned as part of the response
+//        this.userId = video.getUserId();
     }
 
     public Set<String> getHashtags() {

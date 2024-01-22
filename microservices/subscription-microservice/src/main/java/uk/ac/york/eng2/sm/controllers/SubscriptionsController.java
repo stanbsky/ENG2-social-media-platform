@@ -8,6 +8,8 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uk.ac.york.eng2.sm.domain.Hashtag;
 import uk.ac.york.eng2.sm.domain.User;
 import uk.ac.york.eng2.sm.dto.WatchlistDTO;
@@ -23,34 +25,40 @@ import java.util.Set;
 @Controller("/subscriptions")
 public class SubscriptionsController {
 
+    private static final Logger logger = LoggerFactory.getLogger(SubscriptionsController.class);
+    /* protected region private-fields on begin */
     @Inject
     private UsersRepository userRepository;
-
     @Inject
     private HashtagRepository hashtagRepository;
-
     @Inject
     private SubscriptionsProducer subscriptionsProducer;
-
     @Inject
     private WatchlistIQS watchlistIQS;
+    /* protected region private-fields end */
 
+
+    @Transactional
     @Get("/user/{userId}/hashtag/{hashtagId}")
     public WatchlistDTO getWatchlist(Long userId, Long hashtagId) {
+        /* protected region controller-method-body on begin */
         return watchlistIQS.getWatchlist(
                 new UserHashtag(userId, hashtagId));
+        /* protected region controller-method-body end */
     }
 
     @Transactional
     @Put("/user/{userId}/hashtag/{hashtagId}")
-    public HttpResponse<Void> subscribe(Long userId, Long hashtagId) {
+    public HttpResponse<Void> subHashtag(Long userId, Long hashtagId) {
+        /* protected region controller-method-body on begin */
+        logger.warn("User: " + userId + " is subscribing to hashtag: " + hashtagId);
         // Return 403 if user doesn't exist: knowing the right user == being authorized
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
             return HttpResponse.status(HttpStatus.FORBIDDEN);
         }
 
-        Hashtag hashtag = hashtagRepository.findById(hashtagId).orElse(null);
+        Hashtag hashtag = hashtagRepository.retrieveById(hashtagId).orElse(null);
         if (hashtag == null) {
             return HttpResponse.notFound();
         }
@@ -64,11 +72,13 @@ public class SubscriptionsController {
         subscriptionsProducer.subscribe(userId, hashtagId);
 
         return HttpResponse.ok();
+        /* protected region controller-method-body end */
     }
 
     @Transactional
     @Delete("/user/{userId}/hashtag/{hashtagId}")
-    public HttpResponse<Void> unsubscribe(Long userId, Long hashtagId) {
+    public HttpResponse<Void> unsubHashtag(Long userId, Long hashtagId) {
+        /* protected region controller-method-body on begin */
         // Return 403 if user doesn't exist: knowing the right user == being authorized
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
@@ -91,5 +101,7 @@ public class SubscriptionsController {
         subscriptionsProducer.updateSubscriptions(userId, new HashtagSet(hashtags));
 
         return HttpResponse.ok();
+        /* protected region controller-method-body end */
     }
+
 }

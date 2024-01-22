@@ -14,6 +14,4 @@ public interface UsersRepository extends CrudRepository<User, Long> {
     @Join(value = "videos", type = Join.Type.LEFT_FETCH)
     @Join(value = "likedVideos", type = Join.Type.LEFT_FETCH)
     @NonNull Optional<User> findById(@NonNull Long id);
-
-    @NonNull Optional<User> findByName(@NonNull String name);
 }

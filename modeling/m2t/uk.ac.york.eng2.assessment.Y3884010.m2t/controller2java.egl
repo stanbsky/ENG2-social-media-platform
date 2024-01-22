@@ -38,6 +38,10 @@ public class [%=c.className%] {
     	returnType = "Iterable<" + returnType.substring(8) + ">";
     }
     %][%=returnType%] [%=method.name%]([%
+    // WEIRD STUFF WARNING: the below if statement will only run on the first execution
+    // if we're regenerating already existing code. To make it apply properly, need to
+    // temporarily remove the protected regions below.
+    	if (method.request.verb.toString() == "POST") {%]@Body [%}
     	// Print out method params
     	for (param in method.parameters) {
     		%][%=param.value%] [%=param.key%][%

@@ -17,6 +17,7 @@ dependencies {
     implementation("io.micronaut.picocli:micronaut-picocli")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut:micronaut-http-client")
+    implementation("com.google.guava:guava:33.0.0-jre")
     runtimeOnly("ch.qos.logback:logback-classic")
 }
 

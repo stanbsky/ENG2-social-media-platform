@@ -13,15 +13,15 @@ function watch() {
 }
 
 function list() {
-  curl -s 'http://localhost:8083/subscriptions/user/1/hashtag/'$1 | jq
+  curl -s 'http://localhost:8082/subscriptions/user/1/hashtag/'$1 | jq
 }
 
 function sub() {
-  curl -s -X PUT 'http://localhost:8083/subscriptions/user/1/hashtag/'$1
+  curl -s -X PUT 'http://localhost:8082/subscriptions/user/1/hashtag/'$1
 }
 
 function unsub() {
-  curl -s -X DELETE 'http://localhost:8083/subscriptions/user/1/hashtag/'$1
+  curl -s -X DELETE 'http://localhost:8082/subscriptions/user/1/hashtag/'$1
 }
 
 function post() {

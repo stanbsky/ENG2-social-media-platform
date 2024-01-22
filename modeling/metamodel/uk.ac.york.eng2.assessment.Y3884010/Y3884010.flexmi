@@ -10,7 +10,7 @@
       - uri: "/videos"
       - method:
         - name: listVideos
-        - transactional: true
+        - transactional: false
         - request:
           - verb: GET
           - uri: "/"
@@ -44,7 +44,7 @@
           - value: Long
         - request:
           - verb: PUT
-          - uri: "/user/{userId}/video/{videoId}like"
+          - uri: "/user/{userId}/video/{videoId}/like"
         - response:
           - code: FORBIDDEN
         - response:
@@ -80,7 +80,7 @@
           - verb: POST
           - uri: "/"
         - parameters:
-          - key: body
+          - key: video
           - val: VideoDTO
         - response:
           - code: FORBIDDEN
@@ -128,7 +128,7 @@
         - response:
           - body: Hashtag
   - microservice:
-    - name: trending-microservice
+    - name: trending-hashtag-microservice
     - port: 8081
     - javaPackage: uk.ac.york.eng2.thm
     - controller:
@@ -136,13 +136,13 @@
       - uri: "/trending"
       - method:
         - name: getTrending
-        - transactional: true
+        - transactional: false
         - request:
           - verb: GET
           - uri: "/"
         - response:
           - code: OK
-          - body: IterableVideo
+          - body: Top10DTO
   - microservice:
     - name: subscription-microservice
     - port: 8082
@@ -155,7 +155,7 @@
         - transactional: true
         - request:
           - verb: GET
-          - uri: "/{userId}/hashtag/{hashtagId}"
+          - uri: "/user/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
           - val: Long
@@ -170,7 +170,7 @@
         - transactional: true
         - request:
           - verb: PUT
-          - uri: "/{userId}/hashtag/{hashtagId}"
+          - uri: "/user/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
           - val: Long
@@ -191,7 +191,7 @@
         - transactional: true
         - request:
           - verb: Delete
-          - uri: "/{userId}/hashtag/{hashtagId}"
+          - uri: "/user/{userId}/hashtag/{hashtagId}"
         - parameter:
           - key: userId
           - val: Long
@@ -326,7 +326,7 @@
       - controllerMethod: subHashtag
     - command:
       - className: UnsubscribeCommand
-      - name: unsubscribe-hashtag
+      - name: unsubscribe
       - description: Unsubscribe to a hashtag
       - controllerMethod: unsubHashtag
 

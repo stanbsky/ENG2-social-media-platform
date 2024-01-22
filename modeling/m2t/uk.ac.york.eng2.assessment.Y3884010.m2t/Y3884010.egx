@@ -8,7 +8,7 @@ rule Controller2Java
         "none" = Deployment!Model#None
     }
 
-	target : "src-gen/" + c.className + ".java"
+	target : c.ctrlPath() + c.className + ".java"
 }
 
 rule CliTool2Java
@@ -50,4 +50,9 @@ operation basePath() : String {
 
 operation basePkg() : String {
 	return "src/main/java/uk/ac/york/eng2/";
+}
+
+operation Controller ctrlPath() : String {
+	var m : Microservice = self.eContainer();
+	return basePath() + m.name + "/src/main/java/" + m.javaPackage.replaceAll("\\.", "/") + "/controllers/";
 }

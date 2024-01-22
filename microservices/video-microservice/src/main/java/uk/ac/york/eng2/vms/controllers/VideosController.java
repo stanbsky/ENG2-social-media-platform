@@ -3,7 +3,6 @@ package uk.ac.york.eng2.vms.controllers;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
-import jakarta.annotation.Nullable;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -27,29 +26,30 @@ import java.util.stream.Collectors;
 public class VideosController {
 
     private static final Logger logger = LoggerFactory.getLogger(VideosController.class);
-
+    /* protected region private-fields on begin */
     @Inject
     private VideosRepository videosRepository;
-
     @Inject
     private UsersRepository userRepository;
-
     @Inject
     private VideosProducer videosProducer;
-
     @Inject
     private HashtagRepository hashtagRepository;
+    /* protected region private-fields end */
 
-    // TODO: add hashtag retrieval after pagination implementation
+
     @Get("/")
-    public Iterable<Video> list() {
+    public Iterable<Video> listVideos() {
+        /* protected region controller-method-body on begin */
         return videosRepository.findAll();
+        /* protected region controller-method-body end */
     }
 
     @Transactional
-    @Get("/{id}")
-    public VideoDTO getVideo(Long id, @Nullable @QueryValue Long userId) {
-        Video video = videosRepository.findById(id).orElse(null);
+    @Get("/user/{userId}/video/{videoId}")
+    public VideoDTO getVideo(Long videoId, Long userId) {
+        /* protected region controller-method-body on begin */
+        Video video = videosRepository.findById(videoId).orElse(null);
         if (video == null) {
             return null;
         }
@@ -62,31 +62,24 @@ public class VideosController {
         }
 
         return new VideoDTO(video);
+        /* protected region controller-method-body end */
     }
 
     @Transactional
-    @Put("/{id}/like")
-    public HttpResponse<Void> likeVideo(Long id, @QueryValue String username) {
+    @Put("/user/{userId}/video/{videoId}/like")
+    public HttpResponse<Void> likeVideo(Long videoId, Long userId) {
+        /* protected region controller-method-body on begin */
         // Return 403 if user doesn't exist: knowing the right user == being authorized
-        User user = userRepository.findByName(username).orElse(null);
+        User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
             return HttpResponse.status(HttpStatus.FORBIDDEN);
         }
 
         // Return 404 if video doesn't exist
-        Video video = videosRepository.findById(id).orElse(null);
+        Video video = videosRepository.findById(videoId).orElse(null);
         if (video == null) {
             return HttpResponse.notFound();
         }
-
-//        logger.warn("Video: ", video.toString());
-//        logger.warn("Hashtags", video.getHashtags().toString());
-
-        // TODO: commented out for debugging
-//        // If user has already liked the video, return 200
-//        if (user.getLikedVideos().contains(video)) {
-//        	return HttpResponse.ok();
-//        }
 
         // TODO: move to worker
         video.setLikes(video.getLikes() + 1);
@@ -94,8 +87,7 @@ public class VideosController {
         videosProducer.likeVideo(video.getId(), video);
 
         for (Hashtag hashtag : video.getHashtags()) {
-//            logger.warn("Hashtag: ", hashtag.toString());
-        	videosProducer.likeHashtag(user.getId(), hashtag.getId());
+            videosProducer.likeHashtag(user.getId(), hashtag.getId());
         }
 
         Set<Video> userVideos = user.getLikedVideos();
@@ -104,11 +96,19 @@ public class VideosController {
         userRepository.update(user);
 
         return HttpResponse.ok();
+        /* protected region controller-method-body end */
     }
 
-    @Patch("/{id}/dislike")
-    public HttpResponse<Void> dislikeVideo(Long id) {
-        Video video = videosRepository.findById(id).orElse(null);
+    @Put("/user/{userId}/video/{videoId}/dislike")
+    public HttpResponse<Void> dislikeVideo(Long videoId, Long userId) {
+        /* protected region controller-method-body on begin */
+        // Return 403 if user doesn't exist: knowing the right user == being authorized
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            return HttpResponse.status(HttpStatus.FORBIDDEN);
+        }
+
+        Video video = videosRepository.findById(videoId).orElse(null);
         if (video == null) {
             return HttpResponse.notFound();
         }
@@ -119,11 +119,13 @@ public class VideosController {
         videosProducer.dislikeVideo(video.getId(), video);
 
         return HttpResponse.ok();
+        /* protected region controller-method-body end */
     }
 
-    @Post("/")
     @Transactional
-    public HttpResponse<Void> add(@Body VideoDTO video) {
+    @Post("/")
+    public HttpResponse<Void> addVideo(@Body VideoDTO video) {
+        /* protected region controller-method-body on begin */
         User user = userRepository.findById(video.getUserId()).orElse(null);
         if (user == null) {
             return HttpResponse.notFound();
@@ -155,5 +157,7 @@ public class VideosController {
         userRepository.update(user);
 
         return HttpResponse.created(URI.create("/videos/" + newVideo.getId()));
+        /* protected region controller-method-body end */
     }
+
 }

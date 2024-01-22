@@ -108,6 +108,7 @@
     <eLiterals name="UserVideo" value="11"/>
     <eLiterals name="HashtagSet" value="12"/>
     <eLiterals name="Top10DTO" value="13"/>
+    <eLiterals name="WatchlistDTO" value="14"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Table">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

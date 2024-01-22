@@ -13,30 +13,19 @@ import uk.ac.york.eng2.thm.events.HashtagIQS;
 public class TrendingController {
 
     private static final Logger logger = LoggerFactory.getLogger(TrendingController.class);
-
+    /* protected region private-fields on begin */
     @Inject
     private HashtagIQS hashtagIQS;
+    /* protected region private-fields end */
+
 
     @Get("/")
-    public Top10DTO getTop10() {
+    public Top10DTO getTrending() {
+        /* protected region controller-method-body on begin */
         Multimap<Long, Long> counts = hashtagIQS.getHashtagCounts();
         logger.warn("counts: {}", counts);
         return new Top10DTO(counts);
-    /*public LinkedHashMap<Long, List<Long>> getTop10() {
-        Multimap<Long, Long> counts = hashtagIQS.getHashtagCounts();
-        logger.warn("counts: {}", counts);
-        LinkedHashMap<Long, List<Long>> result = new LinkedHashMap<>();
-        for (Long key : counts.keySet()) {
-            Collection<Long> values = counts.get(key);
-            result.put(key, new ArrayList<>(values));
-        }
-        return result;*/
-//        Multimap<Long, Long> map = MultimapBuilder.treeKeys(Collections.reverseOrder()).arrayListValues().build();
-//        map.put
-//
-//
-//        return counts.entrySet().stream()
-//                .limit(10)
-//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, HashMap::new));
+        /* protected region controller-method-body end */
     }
+
 }
