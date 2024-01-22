@@ -22,7 +22,7 @@ public class HashtagCountStream {
     public KStream<Long, Long> topHashtagCountStream(ConfiguredStreamBuilder builder) {
         String stateStoreName = "hashtag-counts-store";
         // TODO: adjust window size after testing
-        Duration windowSize = Duration.ofMinutes(1);//.ofHours(1);
+        Duration windowSize = Duration.ofHours(1);
         String inputTopic = "eng2-hashtag-liked";
         String outputTopic = "eng2-top-hashtags-windowed";
 

@@ -3,9 +3,9 @@ datasources:
     driver-class-name: org.mariadb.jdbc.Driver
     db-type: mariadb
     dialect: MYSQL
-    url: jdbc:mariadb://localhost:3306/videos
-    username: todo
-    password: todosecret
+    url: ${DB_URL:`jdbc:mariadb://localhost:3306/videos`}
+    username: ${DB_USER:`todo`}
+    password: ${DB_PASSWORD:`todosecret`}
 micronaut:
   application:
     name: video-microservice
